@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+
+
+.container_navbar {
+
+    width: 100%;
+    height: 80px;
+    background-color: aliceblue;
+    border-bottom: 1px solid rgb(218, 213, 213);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+
+
+
+}
+
+.logo-container {
+    width: max-content;
+    height: 80px;
+    margin-left: 20px;
+    padding-right: 20px;
+    border-right: 1px solid rgb(218, 213, 213);
+    ;
+}
+
+
+
+.division-selector select {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px;
+    color: rgba(83, 128, 140, 1);
+    padding-inline: 40px;
+    margin-inline-start: 50px;
+    background-color: rgb(237, 232, 232);
+    border-radius:15px;
+    border:none;
+    
+   
+    
+}
+
+.top-bar-icon {
+    color: rgba(83, 128, 140, 1);
+    font-size: 20px;
+    margin-left: 50px;
+    margin-right:1px;
+  
+}
+
+.top-bar-right {
+    margin-left:auto;
+    margin-right: 100px;
+    display: flex;                      
+    align-items: center;                
+}
+
+
+
+.user {
+    display: flex;                     
+    align-items: center;             
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 10px;
+    color: rgba(83, 128, 140, 1);
+    padding-inline: 40px;
+
+}
+
+.admin-text {
+    margin-right: 10px;                 
+}
