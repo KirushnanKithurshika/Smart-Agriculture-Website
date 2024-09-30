@@ -1,10 +1,12 @@
-import React from 'react'
-import "./DropdownItem.css"
+import React from "react";
+import "./DropdownItem.css";
 
-const DropdownItem = ({children ,onClick}) => {
+const DropdownItem = ({ children, onClick }) => {
   return (
-    <div className='dropdown-item' onClick={onClick}>{children}</div>
-  )
-}
+    <div className="dropdown-item" onClick={onClick}>
+      {children}
+    </div>
+  );
+};
 
-export default DropdownItem
+export default DropdownItem;

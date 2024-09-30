@@ -2,23 +2,24 @@
 import React from 'react';
 import { FaBell, FaUserAlt } from 'react-icons/fa';
 import './navbar.css';
+import { Link } from 'react-router-dom';
 import Logo from '../assets/slogo.png';
+import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
+import Sidebar from './sidenavbar';
 
 
 function Navbar() {
+  
+
   return (
+    <div className='Page'>
     <div className='container_navbar'>
       <div className='logo-container'>
-        <img src={Logo} alt="Logo" />
+      <Sidebar/>
+        <img className =" Logo"src={Logo} alt="Logo" />
       </div>
-
-      <div className="division-selector">
-        <select className="division-selector">
-          <option value="A">Division A</option>
-          <option value="B">Division B</option>
-          <option value="C">Division C</option>
-        </select>
-      </div>
+      <Dropdown/>
+      
 
       <div className="top-bar-right">
         <FaBell className="top-bar-icon" />
@@ -27,8 +28,11 @@ function Navbar() {
         <FaUserAlt className="top-bar-iconuser" />
         </div>
       </div>
+     
     </div>
+ 
 
+  </div>
 
 
 

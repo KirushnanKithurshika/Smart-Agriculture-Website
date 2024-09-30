@@ -1,63 +1,77 @@
-import React from 'react'
-import DropdownButton from '../DropdownButton/DropdownButton';
-import DropdownContent from '../DropdownContent/DropdownContent';
-import './Dropdown.css'
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
+import DropdownButton from "../DropdownButton/DropdownButton";
+import DropdownContent from "../DropdownContent/DropdownContent";
+import DropdownItem from "../DropdownItem/DropdownItem"; // Import DropdownItem
+import "./Dropdown.css";
 
-const Dropdown = (buttonText, content) => {
-    const [open, setOpen] = useState(false);
-    const dropdownRef = useRef();
-    const buttonRef = useRef();
-    const contentRef = useRef();
+const Dropdown = () => {
+  const [open, setOpen] = useState(false);
+  const [dropdownTop, setDropdownTop] = useState(0);
+  const [selectedItem, setSelectedItem] = useState("Select Division"); // State to hold the selected item
 
-    const toggleDropdown = () => {
-        if(!open){
-            const spaceRemaining =
-            window.innerHeight -buttonRef.
-            current.getBoundingClientRect().
-            bottom;
+  const dropdownRef = useRef();
+  const buttonRef = useRef();
+  const contentRef = useRef();
 
-            const contentHeight =contentRef.
-            current.clientHeight;
+  // Dropdown items array
+  const dropdownItems = [
+    "Division A",
+    "Division B",
+    "Division C",
+    "Division D",
+    "Division E",
+    "Division F",
+    "Division G",
+    "Division H",
+  ];
 
-            const topPosition = spaceRemaining>
-            contentHeight ? null : spaceRemaining -
-            contentHeight;
-        }
+  const toggleDropdown = () => {
+    if (!open) {
+      const spaceRemaining =
+        window.innerHeight - buttonRef.current.getBoundingClientRect().bottom;
+      const contentHeight = contentRef.current.clientHeight;
 
-
-        setOpen((open) => !open);
+      const topPosition =
+        spaceRemaining > contentHeight
+          ? null
+          : -(contentHeight - spaceRemaining); // move up by height clipped by window
+      setDropdownTop(topPosition);
     }
-    const items = [1, 2, 3, 4, 5, 6, 7, 8];
-    useEffect(() => {
-        const handler = (event) => {
-            if (dropdownRef.current &&
-                !dropdownRef.current.contains
-                    (event.target)
-            ) {
-                setOpen(false);
-            }
-            document.addEventListener("click", handler);
+    setOpen((prev) => !prev); // Toggle the dropdown state
+  };
 
-        };
+  useEffect(() => {
+    const handler = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setOpen(false); // Close dropdown if click is outside
+      }
+    };
 
-    }, [dropdownRef])
-    return (
-        <div className='dropdown' ref={dropdownRef}>
-            <div className='content'>
+    document.addEventListener("click", handler);
+    return () => {
+      document.removeEventListener("click", handler); // Cleanup event listener
+    };
+  }, [dropdownRef]);
 
-                <div>
-                    <DropdownButton ref={buttonRef}
-                    toggle={toggleDropdown} open={open}>
-                        {buttonText}
-                    </DropdownButton>
-                    <DropdownContent ref={contentRef} 
-                    open={open}>
-                        {content}
-                    </DropdownContent>
-                </div>
-            </div>
-        </div>
-    )
-}
+  const handleItemClick = (item) => {
+    setSelectedItem(item); // Update the selected item
+    setOpen(false); // Close the dropdown
+  };
+
+  return (
+    <div ref={dropdownRef} className="dropdown">
+      <DropdownButton ref={buttonRef} toggle={toggleDropdown} open={open} selectedItem={selectedItem}>
+        {/* No need to include the selectedItem here since it's passed to DropdownButton */}
+      </DropdownButton>
+      <DropdownContent top={dropdownTop} ref={contentRef} open={open}>
+        {dropdownItems.map((item, index) => (
+          <DropdownItem key={index} onClick={() => handleItemClick(item)}>
+            {item}
+          </DropdownItem>
+        ))}
+      </DropdownContent>
+    </div>
+  );
+};
+
 export default Dropdown;

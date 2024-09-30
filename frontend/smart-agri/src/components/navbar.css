@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
-
-
-
+.page{
+    display:flex;
+    margin:0;
+}
 .container_navbar {
 
     width: 100%;
@@ -17,33 +18,19 @@
 
 
 
+
 }
 
 .logo-container {
-    width: max-content;
-    height: 80px;
-    margin-left: 20px;
+    width: 250px;
+    height: 100%;
+    margin-left: 0px;
     padding-right: 20px;
     border-right: 1px solid rgb(218, 213, 213);
-    ;
+    
 }
-
-
-
-.division-selector select {
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 15px;
-    padding: 10px;
-    color: rgba(83, 128, 140, 1);
-    padding-inline: 40px;
-    margin-inline-start: 50px;
-    background-color: rgb(237, 232, 232);
-    border-radius:15px;
-    border:none;
-    
-   
-    
+.Logo{
+    margin-left: 10px;
 }
 
 .top-bar-icon {

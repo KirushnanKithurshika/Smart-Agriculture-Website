@@ -1,23 +1,23 @@
 .dropdown-btn{
+  margin-left:20;
   display:flex; 
   align-items:center;
-  width: fit-content;
+  width: 180px;
+  height:10px;
   padding:1rem;
-  background-color: rgb(213, 213, 213); 
+  background-color: rgb(230, 230, 230); 
   border-radius: 0.5rem;
   box-shadow:rgba(149,157,165,0.2) 0px 8px 24px;
   cursor:pointer;
+  color: rgba(83, 128, 140, 1);
+}
   
-}
-.toggle-icon{
-    display:flex;
-    align-items: center;
-    justify-content: center;
-    margin-left:1rem;
 
-
-}
-.button-open{
-    border:rgb(147,197,253) 2px solid;
-    
+.dropdown-button-text{
+  font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 15px;
+    color: rgba(83, 128, 140, 1);
+    padding-inline: 10px;
+    margin-right:20px;
 }

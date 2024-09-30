@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css'
 import Navbar from './components/navbar';
-import Dropdown from './components/DropdownComponent/Dropdown/dropdown';
+import Dropdown from './components/DropdownComponent/Dropdown/Dropdown';
 
 function App() {
 

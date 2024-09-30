@@ -3,7 +3,7 @@ import './DropdownButton.css';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 
 const DropdownButton = forwardRef((props, ref) => {
-    const { children, open, toggle } = props;
+    const { selectedItem, open, toggle } = props; // Destructure selectedItem from props
     
     return (
         <div 
@@ -11,8 +11,8 @@ const DropdownButton = forwardRef((props, ref) => {
             className={`dropdown-btn ${open ? 'button-open' : ''}`}
             ref={ref}
         >
-            {children}
-            <span className="toggle-icon">
+            <span className="dropdown-button-text">{selectedItem}</span> {/* Use selectedItem here */}
+            <span className="Arrow-icons">
                 {open ? <FaChevronUp /> : <FaChevronDown />}
             </span>
         </div>
