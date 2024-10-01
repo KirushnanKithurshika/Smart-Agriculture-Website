@@ -16,6 +16,12 @@
     transition:transform 150ms ease-in-out,opacity 100ms ease-in-out;
 }
 
+.dropdown-item:hover {
+    background-color: rgba(0, 123, 255, 0.1); 
+    transform: translateY(0); 
+    box-shadow: rgba(149, 157, 165, 0.4) 0px 12px 28px; 
+    cursor: pointer; 
+}
 .dropdown-content::-webkit-scrollbar{
     width:0;
     height:0;

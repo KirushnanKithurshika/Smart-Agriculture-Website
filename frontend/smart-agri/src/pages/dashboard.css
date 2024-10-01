@@ -1,0 +1,6 @@
+.Page-root{
+    display:grid;
+    grid-column: 300px auto auto auto;
+    grid-row:100px auto auto;
+    grid-gap: 10px;
+}
