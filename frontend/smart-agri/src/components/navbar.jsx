@@ -4,6 +4,7 @@ import { FaBell, FaUserAlt } from 'react-icons/fa';
 import './navbar.css';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/slogo.png';
+import LogoS from '../assets/slogo.png';
 import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
 
 import MyChart from './Charts/mychart';
@@ -30,6 +31,7 @@ function Navbar() {
       </div>
      
     </div>
+    
  
 
   </div>

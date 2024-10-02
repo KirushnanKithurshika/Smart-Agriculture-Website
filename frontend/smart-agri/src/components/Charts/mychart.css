@@ -3,12 +3,13 @@
  
   display:grid;
   margin-top: 20px;
-  
+
  
   
 }
 
 .chart-panel {
+  margin-left: 10px;
   align-items: center;
   width:fit-content;
   height:fit-content;

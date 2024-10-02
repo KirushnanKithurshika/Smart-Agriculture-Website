@@ -1,7 +1,8 @@
 .weather-panel-area{
   align-items: center;
   width:450px;
-  height:200px;margin-top: 20px;
+  height:200px;
+  margin: 20px;
   padding: 10px;
   display: grid;
   border-radius: 20px;

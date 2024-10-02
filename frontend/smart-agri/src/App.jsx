@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from './components/navbar';
 import Dropdown from './components/DropdownComponent/Dropdown/Dropdown';
 import Dashboard from './pages/dashboard';
+import Navbarmobileview from './components/navbar-mobileview';
 
 function App() {
 
@@ -12,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Dashboard/>}></Route>
-        
+        <Route path='/navM' element={<Navbarmobileview/>}></Route>
       </Routes>
     </BrowserRouter>
   )

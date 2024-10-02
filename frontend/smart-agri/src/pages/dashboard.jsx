@@ -3,7 +3,8 @@ import Navbar from '../components/navbar';
 import MyChart from '../components/Charts/mychart';
 import './dashboard.css';
 import Sidebar from '../components/sidenavbar';
-import Weatherpanel from '../components/Weather/weatherpanel';
+import Weatherpanel from './Weather/weatherpanel';
+import Navbarmobileview from '../components/navbar-mobileview';
 
 
 function Dashboard() {
@@ -11,6 +12,7 @@ function Dashboard() {
         <div className='grid-container'>
             <div className='grid-item grid-item-1'>
                 <Navbar />
+               
             </div>
             <div className='grid-item grid-item-2'>
             
