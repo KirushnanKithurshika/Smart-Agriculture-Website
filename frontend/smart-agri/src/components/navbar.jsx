@@ -5,7 +5,7 @@ import './navbar.css';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/slogo.png';
 import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
-import Sidebar from './sidenavbar';
+
 import MyChart from './Charts/mychart';
 
 
@@ -16,7 +16,6 @@ function Navbar() {
     <div className='nav-bar'>
     <div className='container_navbar'>
       <div className='logo-container'>
-      <Sidebar/>
         <img className =" Logo"src={Logo} alt="Logo" />
       </div>
       <Dropdown/>

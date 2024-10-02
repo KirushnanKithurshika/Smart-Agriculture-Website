@@ -1,14 +1,14 @@
 
 .sidebar {
     height: calc(100vh - 80px);
-    width:270px;
-    background-color: #cee6f1;
+    width:262px;
+    background-color: #d7fdf5;
     border-right: 1px solid #d9d9d9;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     position:fixed;
-    margin-top:80px;
+  
     border-top: 1px solid #d9d9d9
    
   
@@ -34,7 +34,7 @@
   }
   
   .sidebar-menu li:hover {
-    background-color: #f0f0f0;
+    background-color: #d3ded8;
     border-left: 4px solid rgb(23, 167, 45);
     
   }

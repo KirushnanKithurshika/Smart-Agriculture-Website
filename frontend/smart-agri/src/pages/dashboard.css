@@ -1,6 +1,15 @@
-.Page-root{
-    display:grid;
-    grid-column: 300px auto auto auto;
-    grid-row:100px auto auto;
-    grid-gap: 10px;
-}
+.grid-item grid-item-4{
+       background-color:rgb(255, 255, 255);
+       height: 100vh;
+       
+    }
+
+    .grid-container{
+      display:grid;
+      background-color: rgb(164, 204, 240);
+      grid-template-columns: 270px 920px auto;
+      grid-template-rows:72px 300px auto;
+      grid-column-gap:10px;
+    
+    }
+  
