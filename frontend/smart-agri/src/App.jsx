@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Dashboard/>}></Route>
-        <Route path='/navM' element={<Navbarmobileview/>}></Route>
+        {/* <Route path='/navM' element={<Navbarmobileview/>}></Route> */}
       </Routes>
     </BrowserRouter>
   )

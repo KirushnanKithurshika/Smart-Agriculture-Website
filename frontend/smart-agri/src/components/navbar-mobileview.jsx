@@ -5,24 +5,25 @@ import LogoS from '../assets/logosa.png'
 import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
 
 function Navbarmobileview() {
-  return (
-    <div className='container_navbarM'>
-          <Dropdown/>
-        <div className='nav-bar-mobile-view'>
-    <div className='logo-containerM'>
-        <img className =" Logo"src={LogoS} alt="Logo" />
-      </div>
-    
+    return (
 
-      <div className="top-bar-rightM">
-        <FaBell className="top-bar-icon" />
-        <div className='user'>
-        <FaUserAlt className="top-bar-iconuser" />
+<div className='nav-barM '>
+        <div className='container_navbarM'>
+            <div className='logo-containerM grid-item-1'>
+                <img className=" Logo" src={LogoS} alt="Logo" />
+            </div>
+            <div className='dropdownM grid-item-2'>
+                <Dropdown />
+            </div>
+
+
+            <div className="top-bar-rightM grid-item-3">
+                <FaBell className="top-bar-iconM" />
+                <FaUserAlt className="top-bar-iconuserM" />
+            </div>
         </div>
-      </div>
-    </div>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Navbarmobileview
