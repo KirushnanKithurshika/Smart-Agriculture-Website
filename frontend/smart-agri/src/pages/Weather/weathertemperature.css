@@ -1,0 +1,118 @@
+.weather-dashboard {
+    display:grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    margin: 0 auto;
+    padding: 30px;
+    justify-content: space-between;
+    font-family: Arial, sans-serif;
+}
+
+.weather-left {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.temperature {
+    font-size: 68px;
+    font-weight: bold;
+    color: white;
+    margin: 0;
+}
+
+.unit-toggle {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: white;
+  }
+  
+  .toggle-button {
+    cursor: pointer;
+    transition: transform 0.3s ease, color 0.3s ease; /* Added color transition */
+    display: inline-block; /* Allows scaling to be more effective */
+  }
+  
+  .toggle-button:hover {
+    transform: scale(1.1); /* Increased scale for more emphasis */
+    font-weight: bold;
+    
+  }
+  
+
+.temperature-range {
+    font-size: 12px;
+    color: #dad5d5;
+    margin-top: 20px;
+    align-items: center;
+    padding:20px;
+}
+.wind-humidity-presure{
+   padding: 10px;
+    margin-right:30px;
+}
+.temperature-range p {
+    margin: 5px 0;
+}
+
+
+.weather-right {
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    justify-content: space-between;
+}
+
+.weather-info {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    margin-right: 100px;
+}
+
+.icon-text {
+    display: flex;
+    align-items: center;
+}
+
+.icon-text img {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.weather-info span {
+    font-size: 18px;
+    color: #fffdfd;
+}
+
+
+@media (max-width: 768px) {
+    .weather-dashboard {
+    grid-template-columns: 1fr;
+        margin-right: 0px;
+    }
+
+    .weather-left {
+        margin-bottom: 20px;
+        font-size: 48px;
+    }
+
+    .temperature {
+        font-size: 48px;
+    }
+
+    .weather-right {
+        align-items: flex-start;
+        
+    }
+
+    .weather-info {
+        justify-content: center;
+        font-size: 12px;
+
+    }
+}

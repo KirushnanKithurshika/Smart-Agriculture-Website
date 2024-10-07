@@ -1,25 +1,31 @@
 
-.sidebar {
-    height: calc(100vh - 80px);
-    width:272px;
+.sidebarA {
+    width: 272px;
     background-color: #d7fdf5;
     border-right: 1px solid #d9d9d9;
+    border-top:1px solid  #d9d9d9;
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position:fixed;
-  
-    border-top: 1px solid #d9d9d9
-   
-  
-  }
-  .sidebar-menu {
+    position: fixed;
+    height:100%; 
+    transition: transform 0.3s ease; 
+    z-index: 1000;
+}
+
+.sidebarA.closed {
+    transform: translateX(-108%);
+}
+.sidebarA.open {
+    transform: translateX(0); 
+}
+
+
+.sidebar-menu {
     list-style-type: none;
     padding: 0;
-    margin-left:10px;
-  }
-  
-  .sidebar-menu li {
+    margin-top: 30px;
+}
+
+.sidebar-menu li {
     padding: 15px 20px;
     font-size: 16px;
     display: flex;
@@ -28,33 +34,64 @@
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 15px;
-    padding: 15px;
+    font-size: 18px;
     color: rgba(83, 128, 140, 1);
-  }
-  
-  .sidebar-menu li:hover {
+}
+
+.sidebar-menu li:hover {
     background-color: #d3ded8;
     border-left: 4px solid rgb(23, 167, 45);
-    
-  }
-  
-  .sidebar-menu li svg {
+}
+
+.sidebar-menu li svg {
     margin-right: 10px;
-  }
-  
-  .sidebar-footer {
-    padding: 20px;
-    background-color: #f5f5f5;
+}
+
+.Account-setting {
+    margin-top: 40px;
+}
+
+
+.minimize-arrow {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    color: rgba(83, 128, 140, 1);
+}
+
+
+.hamburger-container {
+    position: fixed;
+    width: 40px;
+    margin-top: 10px;
+    height: 40px;
+    background-color: #d7fdf5;
     display: flex;
     align-items: center;
     justify-content: center;
-  }
-  
-  .sidebar-footer span {
-    margin-left: 10px;
-  }
-  
-  .Account-setting{
-    margin-top: 40px;
-  }
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001; 
+}
+
+.hamburger-icon {
+    font-size: 24px;
+    color: rgba(83, 128, 140, 1);
+}
+
+
+@media (max-width: 768px) {
+    .sidebarA {
+        display: none; 
+    }
+
+    .hamburger-container {
+        display: flex; 
+    }
+
+    .sidebarA.open {
+        display: flex; 
+    }
+}

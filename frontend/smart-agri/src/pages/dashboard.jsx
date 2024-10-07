@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../components/navbar';
 import MyChart from '../components/Charts/mychart';
 import './dashboard.css';
-import Sidebar from '../components/sidenavbar';
+import Sidenavigationbar from '../components/sidenavbar';
 import Weatherpanel from './Weather/weatherpanel';
 import Navbarmobileview from '../components/navbar-mobileview';
 
@@ -22,7 +22,7 @@ function Dashboard() {
             <div className='grid-item grid-item-3'>
             </div>
             <div className='grid-item grid-item-4'>
-            <Sidebar/>
+            < Sidenavigationbar/>
             </div>
             <div className='grid-item grid-item-5'>
             <MyChart/>

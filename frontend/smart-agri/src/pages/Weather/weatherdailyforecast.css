@@ -1,0 +1,61 @@
+.weather-forecast {
+   
+    border-radius: 10px;
+    color: white;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    height:100%;
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 1.5em;
+    margin-bottom: 5px;
+  }
+  
+  
+  
+  /* Define grid areas for the hourly forecast */
+  .hourly-forecast {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 items per row */
+    gap: 5px;
+    justify-items: center;
+  }
+  
+  /* Define grid areas for the daily forecast */
+  .daily-forecast {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 items per row */
+    justify-items: center;
+  }
+  
+  .forecast-item {
+    text-align: center;
+    font-size: 1em;
+  }
+  
+  .weather-icon {
+    font-size: 1.5em;
+    margin: 3px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hourly-forecast, .daily-forecast {
+      grid-template-columns: repeat(3, 1fr); /* Adjust number of columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hourly-forecast, .daily-forecast {
+      grid-template-columns: repeat(2, 1fr); /* Adjust number of columns for smaller screens */
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hourly-forecast, .daily-forecast {
+      grid-template-columns: repeat(1, 1fr); /* Adjust number of columns for mobile */
+    }
+  }
+  
