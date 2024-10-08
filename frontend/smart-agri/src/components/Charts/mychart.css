@@ -1,27 +1,45 @@
-
 .chart-panel-area {
- 
-  display:grid;
+  display: grid;
   margin-top: 20px;
-
- 
-  
 }
 
 .chart-panel {
   margin-left: 10px;
   align-items: center;
-  width:fit-content;
-  height:fit-content;
+  width: fit-content;
+  height: 280px;
   padding: 10px;
   display: grid;
   border-radius: 20px;
-  background-color: rgb(254, 254, 254);
+  background-color: rgb(214, 233, 245);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  grid-template-columns: 200px 200px 500px;
-  white-space:initial ;
+  grid-template-columns: 200px 200px 500px; /* Default layout */
+  white-space: initial;
   z-index: 150;
- 
-
 }
 
+.chart-item {
+  background-color: rgb(214, 233, 245);
+  border-radius: 10px;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 768px) { /* You can adjust this breakpoint as needed */
+  .chart-panel {
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr; 
+    margin-left: 0; 
+    padding: 5px;
+    height: fit-content;
+  }
+
+  .chart-item {
+    margin-bottom: 10px; /* Add spacing between items */
+  }
+
+  .chart-panel-area {
+    align-items: center;
+    justify-content: center;
+  }
+}

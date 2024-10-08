@@ -1,13 +1,51 @@
-.weather-panel-area{
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+
+.weather-panel-area {
+  display: grid;
+  grid-template-areas: 
+            
+    "contentA contentB"  
+    "contentC contentD"
+    ;  
+  grid-template-columns: 1fr ;
+  grid-template-rows: 1fr 3fr; 
   align-items: center;
-  width:450px;
-  height:200px;
+  width: auto;
+  height: 280px; 
+  font-size: 15px;
   margin: 20px;
   padding: 10px;
-  display: grid;
   border-radius: 20px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(8, 69, 107);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  white-space:initial ;
+  white-space: initial;
   z-index: 150;
+  align-content: baseline;
+  justify-content: center;
+}
+
+.weather-panel-topic {
+  grid-area: topic; /* Assigning this element to the topic area */
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.weather-panel-contentA {
+  grid-area: contentA; 
+}
+
+.weather-panel-contentB {
+  grid-area: contentB; 
+}
+
+.weather-panel-contentC {
+  grid-area: contentC;
+}
+@media (max-width: 768px) {
+
+  .weather-panel-area {
+    height: max-content;
+  }
+
 }

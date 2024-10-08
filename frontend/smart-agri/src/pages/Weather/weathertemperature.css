@@ -41,7 +41,11 @@
     
   }
   
-
+.Location{
+    font-size:25px;
+    font-weight:600;
+    color: #dad5d5; 
+}
 .temperature-range {
     font-size: 12px;
     color: #dad5d5;
@@ -70,7 +74,7 @@
     justify-content:space-between;
     align-items: center;
     margin-bottom: 10px;
-    margin-right: 100px;
+    margin-right: 10px;
 }
 
 .icon-text {
@@ -107,6 +111,7 @@
 
     .weather-right {
         align-items: flex-start;
+
         
     }
 

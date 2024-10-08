@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import Sidebar from '../../components/sidenavbar';
 import Navbar from '../../components/navbar';
 import './weather.css';
@@ -9,6 +10,12 @@ import WeatherForecast from './weatherdailyforecast';
 
 
 function Weather() {
+    const [city, setCity] = useState('London'); // Default city is London
+
+  // Function to update city when user searches
+  const handleSearch = (newCity) => {
+    setCity(newCity);
+  };
     return (
         <div className='grid-container'>
             <div className='grid-item grid-item-1'>
@@ -27,10 +34,13 @@ function Weather() {
             </div>
             <div className='Weather-dashboard grid-item'>
                 <div className='Weather-boardA grid-item-1'>
-                    <SearchBar />
+                    <SearchBar  onSearch={handleSearch}  />
                     <div className='datetimespan'><span className='datetime'>Thursday,3rd October,2024 | Time-3:33PM</span>
                     </div>
+                   
+                  
                     <div className='Weatheremojibig'>
+                    <div className='datetimespan'></div>
                     <img className="weatheremoji " src={WeatherEmojiBig }  />
                     <span className='weatherdata'>Cloudy</span>
                    
@@ -38,7 +48,7 @@ function Weather() {
                 </div>
 
                 <div className='Weather-boardB grid-item-2'>
-                    <Weathertemperature/>
+                    <Weathertemperature city={city}/>
                 </div>
                 <div className='Weather-boardC grid-item-3'>
                     < WeatherForecast/>
