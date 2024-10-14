@@ -4,9 +4,9 @@ import SearchBar from '../../components/Searchbar/searchbar';
 import Weathertemperature from './weathertemperature';
 
 function Weatherpanel() {
-  const [city, setCity] = useState('London'); // Default city is London
+  const [city, setCity] = useState('Colombo'); 
 
-  // Function to update city when user searches
+  
   const handleSearch = (newCity) => {
     setCity(newCity);
   };

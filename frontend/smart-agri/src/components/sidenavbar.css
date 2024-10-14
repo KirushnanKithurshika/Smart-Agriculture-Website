@@ -25,7 +25,7 @@
     margin-top: 30px;
 }
 
-.sidebar-menu li {
+.sidebar-menu li a{
     padding: 15px 20px;
     font-size: 16px;
     display: flex;
@@ -34,11 +34,12 @@
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 18px;
-    color: rgba(83, 128, 140, 1);
+    font-size: 20px;
+    color: rgba(83, 128, 140, 1) ; 
+    text-decoration: none; 
 }
 
-.sidebar-menu li:hover {
+.sidebar-menu li a:hover {
     background-color: #d3ded8;
     border-left: 4px solid rgb(23, 167, 45);
 }
@@ -61,8 +62,8 @@
 }
 
 .hamburger-container {
-    display: none; 
-    position: fixed;
+    display: flex;
+
     width: 40px;
     margin-top: 10px;
     height: 40px;
@@ -72,7 +73,6 @@
     justify-content: center;
     border-radius: 5px;
     cursor: pointer;
- 
 }
 
 .hamburger-icon {
