@@ -25,7 +25,11 @@
     margin-top: 30px;
 }
 
-.sidebar-menu li a{
+.sidebar-menu li {
+    position: relative; /* Ensure sub-menus stay within the parent list item */
+}
+
+.sidebar-menu li a {
     padding: 15px 20px;
     font-size: 16px;
     display: flex;
@@ -35,8 +39,8 @@
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 20px;
-    color: rgba(83, 128, 140, 1) ; 
-    text-decoration: none; 
+    color: rgba(83, 128, 140, 1);
+    text-decoration: none;
 }
 
 .sidebar-menu li a:hover {
@@ -46,6 +50,29 @@
 
 .sidebar-menu li svg {
     margin-right: 10px;
+}
+
+/* Tree View Styles */
+.sub-menu {
+    list-style-type: none;
+    padding-left: 30px; /* Indent sub-items */
+    display: none; /* Hidden by default, shown on toggle */
+}
+
+.sub-menu li a {
+    font-size: 16px; /* Smaller font for sub-menu items */
+    padding: 10px 20px;
+    font-weight: 500;
+}
+
+.sub-menu li a:hover {
+    background-color: #c5ded5;
+    border-left: 4px solid rgb(23, 167, 45);
+}
+
+/* Show sub-menu when parent is active/open */
+.sidebar-menu li.active .sub-menu {
+    display: block; /* Show sub-menu */
 }
 
 .Account-setting {
@@ -63,12 +90,10 @@
 
 .hamburger-container {
     display: flex;
-
     width: 40px;
     margin-top: 10px;
     height: 40px;
     background-color: #d7fdf5;
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 5px;

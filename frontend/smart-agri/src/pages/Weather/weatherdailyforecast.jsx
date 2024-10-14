@@ -18,8 +18,7 @@ const WeatherForecast = () => {
     { day: "Fri", temperature: "12°", icon: faCloud },
     { day: "Sat", temperature: "12°", icon: faCloud },
     { day: "Sun", temperature: "12°", icon: faCloud },
-    { day: "Mon", temperature: "11°", icon: faCloudSun },
-    { day: "Tue", temperature: "10°", icon: faSnowflake },
+   
   ];
 
   return (
