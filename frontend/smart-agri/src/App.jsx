@@ -8,6 +8,7 @@ import Navbarmobileview from './components/navbar-mobileview';
 import Weather from './pages/Weather/weather';
 import WeatherForecast from './pages/Weather/weatherdailyforecast';
 import Soil from './pages/SoilMoisture/soil';
+import Login from './pages/Login-Page/loginpage';
 
 
 function App() {
@@ -16,7 +17,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Dashboard/>}></Route>
+        <Route path='/' element={<Login/>}></Route>
+        <Route path='/dashboard' element={<Dashboard/>}></Route>
         {/* <Route path='/navM' element={<Navbarmobileview/>}></Route> */}
         <Route path='/weather' element={<Weather/>}></Route>
         <Route path='/weatherforecast' element={<WeatherForecast/>}></Route>

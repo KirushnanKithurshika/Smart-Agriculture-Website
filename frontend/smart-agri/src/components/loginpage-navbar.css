@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap');
+.nav-barL{
+    display:grid;
+    grid-row:1/2;
+    margin:0;
+}
+.container_navbarL {
+
+    width: 100%;
+    height: 80px;
+    background-color: rgb(255, 255, 255);
+    border: 1px solid rgb(218, 213, 213);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+
+
+
+
+}
+.container_navbarM{
+    display:none;
+}
+
+.logo-container {
+    width: 250px;
+    height: 100%;
+    margin-left: 10px;
+    padding-right: 20px;
+    border-right: 1px solid rgb(218, 213, 213);
+    
+}
+.Logo{
+    margin-left: 10px;
+}
+
+.top-bar-icon {
+    color: rgba(83, 128, 140, 1);
+    font-size: 20px;
+    margin-left: 50px;
+    margin-right:1px;
+  
+}
+
+.top-bar-right {
+    margin-left:auto;
+    margin-right: 100px;
+    display: flex;                      
+    align-items: center;                
+}
+
+
+
+.user {
+    display: flex;                     
+    align-items: center;             
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    padding: 10px;
+    color: rgba(83, 128, 140, 1);
+    padding-inline: 40px;
+
+}
+
+.admin-text {
+    margin-right: 10px; 
+    font-size: 16px;                
+}
+
+
+
+@media (max-width: 768px) {
+
+    .nav-barM {
+        display: grid;
+        grid-template-columns: 1fr 2fr 1fr; /* Use 'grid-template-columns' instead of 'grid-column' */
+        margin: 0;
+    }
+
+    .container_navbarM {
+        width: 100%;
+        height: 80px;
+        background-color: rgb(255, 255, 255);
+        border: 1px solid rgb(218, 213, 213);
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        display: grid; /* Use grid layout */
+        grid-template-columns: 1fr 2fr 1fr; /* Define grid layout */
+        align-items: center;
+    }
+
+    .logo-containerM {
+        
+        margin-left: 30px;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding-left: 10px;
+        
+    }
+
+    .LogoM {
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    
+    .dropdownM {
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+
+    .top-bar-iconM {
+        color: rgba(83, 128, 140, 1);
+        font-size: 20px;
+        margin-right: 10px;
+    }
+
+    .top-bar-iconuserM {
+        color: rgba(83, 128, 140, 1);
+        font-size: 20px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .top-bar-rightM {
+        margin-left: auto;
+        margin-right:30px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .userM {
+        display: flex;
+        align-items: center;
+        font-family: 'Inter', sans-serif;
+        font-weight: 600;
+        font-size: 15px;
+        padding: 10px;
+        color: rgba(83, 128, 140, 1);
+        padding-inline: 40px;
+    }
+
+    .admin-text {
+        margin-right: 10px;
+    }
+    .nav-bar{
+        display:none;
+    }
+   
+}
