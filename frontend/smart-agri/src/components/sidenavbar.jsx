@@ -43,7 +43,7 @@ function Sidenavigationbar() {
         )}
         
         <ul className="sidebar-menu">
-          <li><Link to="/"><FaHome /> Dashboard</Link></li>
+          <li><Link to="/dashboard"><FaHome /> Dashboard</Link></li>
           <li><Link to="/weather"><FaCloud /> Weather</Link></li>
           <li><Link to="/soil"><FaWater /> Soil & Moisture</Link></li>
           <li><Link to="/logs"><FaBook /> Logs</Link></li>

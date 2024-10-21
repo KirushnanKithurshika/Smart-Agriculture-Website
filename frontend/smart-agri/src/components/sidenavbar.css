@@ -1,4 +1,5 @@
 .sidebarA {
+    margin-top: 10px;
     width: 272px;
     background-color: #d7fdf5;
     border-right: 1px solid #d9d9d9;
@@ -52,15 +53,15 @@
     margin-right: 10px;
 }
 
-/* Tree View Styles */
+
 .sub-menu {
     list-style-type: none;
-    padding-left: 30px; /* Indent sub-items */
-    display: none; /* Hidden by default, shown on toggle */
+    padding-left: 30px; 
+    display: none; 
 }
 
 .sub-menu li a {
-    font-size: 16px; /* Smaller font for sub-menu items */
+    font-size: 16px; 
     padding: 10px 20px;
     font-weight: 500;
 }
@@ -70,9 +71,9 @@
     border-left: 4px solid rgb(23, 167, 45);
 }
 
-/* Show sub-menu when parent is active/open */
+
 .sidebar-menu li.active .sub-menu {
-    display: block; /* Show sub-menu */
+    display: block; 
 }
 
 .Account-setting {
@@ -105,18 +106,18 @@
     color: rgba(83, 128, 140, 1);
 }
 
-/* Hide sidebar and show hamburger for small screens */
+
 @media (max-width: 768px) {
     .sidebarA {
-        transform: translateX(-108%); /* Sidebar hidden by default on small screens */
+        transform: translateX(-108%); 
     }
 
     .hamburger-container {
-        display: flex; /* Show hamburger menu on small screens */
+        display: flex; 
     }
 
     .sidebarA.open {
         display: flex;
-        transform: translateX(0); /* Slide the sidebar into view when opened */
+        transform: translateX(0); 
     }
 }

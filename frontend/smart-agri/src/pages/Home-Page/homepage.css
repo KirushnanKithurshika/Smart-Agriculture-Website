@@ -1,0 +1,38 @@
+.farms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 80%;
+    margin: auto;
+  }
+  
+  .farm-box {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    font-size: 1.5rem;
+    padding: 50px 0;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+  
+  .farm-box:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  .logout-button {
+    background-color: #92B855;
+    border: none;
+    height: 40px;
+    width: 100px;
+    padding: 8px 20px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  
+  .logout-button:hover {
+    background-color: #688a58;
+  }
