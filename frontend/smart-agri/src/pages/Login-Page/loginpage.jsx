@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate
 import './loginpage.css';
 import Logo from '../../assets/slogo.png';
+import Axios from 'axios';
 import BackgroundImage from '../../assets/BG-login.jpg';
 
 const Login = () => {
+  
   const [passwordVisible, setPasswordVisible] = useState(false); 
   const navigate = useNavigate();  // Initialize useNavigate
 
@@ -15,8 +17,7 @@ const Login = () => {
  
   const handleLogin = (e) => {
     e.preventDefault();  
-   
-    navigate('/homepage');  
+   Axios.post('http://localhost:3000/auth/login',{username,password})
   };
 
   return (
