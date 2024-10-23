@@ -1,30 +1,45 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';  // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import './loginpage.css';
 import Logo from '../../assets/slogo.png';
-import Axios from 'axios';
+import axios from 'axios';
 import BackgroundImage from '../../assets/BG-login.jpg';
 
 const Login = () => {
+  const [data, setData] = useState({
+    username: '',
+    password: '',
+  });
   
-  const [passwordVisible, setPasswordVisible] = useState(false); 
-  const navigate = useNavigate();  // Initialize useNavigate
+  const [passwordVisible, setPasswordVisible] = useState(false); // Password visibility state
+  const [error, setError] = useState(''); // Error state
+  const navigate = useNavigate(); // useNavigate hook for redirection
 
+  // Toggle password visibility
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible); 
   };
 
- 
-  const handleLogin = (e) => {
-    e.preventDefault();  
-   Axios.post('http://localhost:3000/auth/login',{username,password})
+  // Handle form submission
+  const loginUser = async (e) => {
+    e.preventDefault()
+    axios.get('/')
+  };
+
+  // Handle input changes
+  const handleInputChange = (e) => {
+    const { id, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [id]: value,
+    }));
   };
 
   return (
     <div className="login-container">
       <header className="login-header">
         <div className="logo">
-          <img className=" Logo" src={Logo} alt="Logo" />
+          <img className="Logo" src={Logo} alt="Logo" />
         </div>
         <button className="login-button">Login</button>
       </header>
@@ -32,11 +47,20 @@ const Login = () => {
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
         <div className="login-form">
           <h2>Login</h2>
-          <form onSubmit={handleLogin}>  {/* Add onSubmit handler here */}
+          {error && <p className="error-message">{error}</p>} {/* Display error message */}
+          
+          <form onSubmit={loginUser}>
             <div className="form-group">
               <label htmlFor="username">User Name</label>
               <div className="input-container">
-                <input type="text" id="username" placeholder="User Name" required />
+                <input
+                  type="text"
+                  id="username"
+                  placeholder="User Name"
+                  required
+                  value={data.username}
+                  onChange={handleInputChange}  // Handle username change
+                />
               </div> 
             </div>
 
@@ -48,7 +72,9 @@ const Login = () => {
                   id="password"
                   placeholder="Password"
                   required
-                  style={{ paddingRight: '30px' }} 
+                  style={{ paddingRight: '30px' }}
+                  value={data.password}
+                  onChange={handleInputChange}  // Handle password change
                 />
                 <i
                   className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
@@ -71,7 +97,7 @@ const Login = () => {
             </div>
 
             <div className='submit-button-container'>
-              <button className='submit-button' type="submit">Login</button>  {/* Form submit button */}
+              <button className='submit-button' type="submit">Login</button>
             </div>
           </form>
         </div>

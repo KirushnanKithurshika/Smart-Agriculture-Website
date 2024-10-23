@@ -11,7 +11,12 @@ import Soil from './pages/SoilMoisture/soil';
 import Login from './pages/Login-Page/loginpage';
 import Farms from './pages/Home-Page/homepage';
 import LogsTable from './pages/Log-page/logpage';
+import Register from './pages/Signuppage/signuppage';
+import axios from 'axios';
 
+
+axios.defaults.baseURL ='http://localhost:8000'
+axios.defaults.withCredentials =true
 
 function App() {
 
@@ -20,6 +25,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Login/>}></Route>
+        <Route path='/signup' element={<Register/>}></Route>
         <Route path='/homepage' element={<Farms/>}></Route>
         <Route path='/dashboard' element={<Dashboard/>}></Route>
         <Route path='/logs' element={<LogsTable/>}></Route>

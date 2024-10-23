@@ -1,17 +1,23 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import connectDB from '../configuration/Userdb.js';
-import {authRoutes} from '../routes/authRoutes.js';  // Ensure .js extensions
+import authRoutes from './routes/authRoutes.js'; // Import the routes using ES module syntax
+import mongoose from 'mongoose';
 
 dotenv.config();
-connectDB();
-
+mongoose.connect(process.env.MONGO_URL)
+.then(()=>console.log('Database Connected'))
+.catch((err)=>console.log('Database not connected',err))
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-app.use('/api/auth', authRoutes);
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use(cors({
+    origin: 'http://localhost:5173', 
+    credentials: true,
+}));
+
+
+app.use('/', authRoutes); 
+
+const port = 8000;
+app.listen(port, () => console.log(`Server is running on port ${port}`));

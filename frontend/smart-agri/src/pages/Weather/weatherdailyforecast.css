@@ -19,25 +19,28 @@
   .hourly-forecast {
     display: grid;
     grid-template-columns: repeat(5, 1fr); /* 5 items per row */
-    gap: 5px;
+    gap: 20px;
     justify-items: center;
   }
   
-  /* Define grid areas for the daily forecast */
+  
   .daily-forecast {
     display: grid;
-    grid-template-columns: repeat(7, 1fr); /* 7 items per row */
+    grid-template-columns: repeat(5, 1fr);
     justify-items: center;
   }
   
   .forecast-item {
+   
+    padding: 10px;
     text-align: center;
     font-size: 1em;
   }
   
   .weather-icon {
+
     font-size: 1.5em;
-    margin: 3px 0;
+    margin: 20px 0;
   }
   
   /* Responsive Design */
