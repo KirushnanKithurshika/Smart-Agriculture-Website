@@ -11,8 +11,9 @@ import Soil from './pages/SoilMoisture/soil';
 import Login from './pages/Login-Page/loginpage';
 import Farms from './pages/Home-Page/homepage';
 import LogsTable from './pages/Log-page/logpage';
-import Register from './pages/Signuppage/signuppage';
+import Register from './pages/Signuppage/Register';
 import axios from 'axios';
+import{Toaster} from 'react-hot-toast';
 
 
 axios.defaults.baseURL ='http://localhost:8000'
@@ -23,9 +24,11 @@ function App() {
 
   return (
     <BrowserRouter>
+    <Navbar/>
+    <Toaster position ='bottom-right' toastOptions={{duration:2000}}/>
       <Routes>
         <Route path='/' element={<Login/>}></Route>
-        <Route path='/signup' element={<Register/>}></Route>
+        <Route path='/register' element={<Register/>}></Route>
         <Route path='/homepage' element={<Farms/>}></Route>
         <Route path='/dashboard' element={<Dashboard/>}></Route>
         <Route path='/logs' element={<LogsTable/>}></Route>
