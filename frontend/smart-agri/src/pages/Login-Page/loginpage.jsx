@@ -5,28 +5,26 @@ import Logo from '../../assets/slogo.png';
 import axios from 'axios';
 import BackgroundImage from '../../assets/BG-login.jpg';
 
-const Login = () => {
+export default function Login() { // Added parentheses after the function name
   const [data, setData] = useState({
-    username: '',
+    email: '',
     password: '',
   });
   
-  const [passwordVisible, setPasswordVisible] = useState(false); // Password visibility state
-  const [error, setError] = useState(''); // Error state
-  const navigate = useNavigate(); // useNavigate hook for redirection
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  // Toggle password visibility
   const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible); 
+    setPasswordVisible(!passwordVisible);
   };
 
-  // Handle form submission
   const loginUser = async (e) => {
-    e.preventDefault()
-    axios.get('/')
+    e.preventDefault();
+    axios.get('')
+    
   };
 
-  // Handle input changes
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setData((prevData) => ({
@@ -47,19 +45,19 @@ const Login = () => {
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
         <div className="login-form">
           <h2>Login</h2>
-          {error && <p className="error-message">{error}</p>} {/* Display error message */}
-          
+          {error && <p className="error-message">{error}</p>} 
+
           <form onSubmit={loginUser}>
             <div className="form-group">
-              <label htmlFor="username">User Name</label>
+              <label htmlFor="email">Email</label> {/* Changed htmlFor to "email" */}
               <div className="input-container">
                 <input
                   type="text"
-                  id="username"
-                  placeholder="User Name"
+                  id="email"
+                  placeholder="Email"
                   required
-                  value={data.username}
-                  onChange={handleInputChange}  // Handle username change
+                  value={data.email}
+                  onChange={handleInputChange}
                 />
               </div> 
             </div>
@@ -68,13 +66,13 @@ const Login = () => {
               <label htmlFor="password">Password</label>
               <div className="input-container" style={{ position: 'relative' }}>
                 <input
-                  type={passwordVisible ? 'text' : 'password'} 
+                  type={passwordVisible ? 'text' : 'password'}
                   id="password"
                   placeholder="Password"
                   required
                   style={{ paddingRight: '30px' }}
                   value={data.password}
-                  onChange={handleInputChange}  // Handle password change
+                  onChange={handleInputChange}
                 />
                 <i
                   className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
@@ -104,6 +102,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}

@@ -24,7 +24,7 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Navbar/>
+   
     <Toaster position ='bottom-right' toastOptions={{duration:2000}}/>
       <Routes>
         <Route path='/' element={<Login/>}></Route>
