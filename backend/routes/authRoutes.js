@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { test } from '../controllers/authController.js'; // Ensure this path is correct
+import { test } from '../controllers/authController.js'; 
 
 const router = express.Router();
 
@@ -13,4 +13,4 @@ router.use(
 
 router.get('/', test);
 
-export default router; // Use default export
+export default router; 
