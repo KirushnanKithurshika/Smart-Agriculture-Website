@@ -1,18 +1,42 @@
 import React, { useState } from 'react';
 import './register.css';
-
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 export default function Register() {
-    const[data,setData]=useState({
-        name:'',
-        email:'',
-        password:'',
-
-    })
+    const navigate = useNavigate();
+    const [data, setData] = useState({
+        name: '',
+        email: '',
+        password: '',
+    });
     
-    const registerUser=(e) =>{
-        e.preventDefault()
-    }
+    const registerUser = async (e) => {
+        e.preventDefault();
+        const { name, email, password } = data;
+
+        try {
+            const response = await axios.post('/register', {
+                name,
+                email,
+                password,
+            });
+            const responseData = response.data;
+            
+            if (responseData.error) {
+                toast.error(responseData.error);
+            } else {
+                setData({ name: '', email: '', password: '' });
+                toast.success('Registration successful. Welcome!');
+                navigate('/'); // Redirect to login or home page
+            }
+        } catch (error) {
+            console.error('Registration error:', error);
+            toast.error('Registration failed. Please try again.');
+        }
+    };
+
     return (
         <div className="container">
             <form onSubmit={registerUser}>
@@ -22,6 +46,7 @@ export default function Register() {
                     placeholder="Enter name..."
                     value={data.name}
                     onChange={(e) => setData({ ...data, name: e.target.value })}
+                    required
                 />
                 <label>Email</label>
                 <input
@@ -29,6 +54,7 @@ export default function Register() {
                     placeholder="Enter email..."
                     value={data.email}
                     onChange={(e) => setData({ ...data, email: e.target.value })}
+                    required
                 />
                 <label>Password</label>
                 <input
@@ -36,6 +62,7 @@ export default function Register() {
                     placeholder="Enter password..."
                     value={data.password}
                     onChange={(e) => setData({ ...data, password: e.target.value })}
+                    required
                 />
                 <button type="submit">Submit</button>
             </form>

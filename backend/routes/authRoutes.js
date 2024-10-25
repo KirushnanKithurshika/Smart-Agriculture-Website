@@ -1,16 +1,10 @@
 import express from 'express';
-import cors from 'cors';
-import { test } from '../controllers/authController.js'; 
+import { test, registerUser } from '../controllers/authController.js';
 
 const router = express.Router();
 
-router.use(
-    cors({
-        credentials: true,
-        origin: 'http://localhost:3000'
-    })
-);
-
+// Define routes
 router.get('/', test);
+router.post('/register', registerUser);
 
-export default router; 
+export default router;
