@@ -6,18 +6,17 @@ import SearchBar from '../../components/Searchbar/searchbar';
 import Weathertemperature from './weathertemperature';
 import WeatherForecast from './weatherdailyforecast';
 import { getWeatherData } from '../../services/weatherService'; 
+
 function Weather() {
   const [city, setCity] = useState('Colombo'); 
   const [weatherCondition, setWeatherCondition] = useState(''); 
   const [weatherEmoji, setWeatherEmoji] = useState(''); 
   const [datetime, setDatetime] = useState(''); 
 
- 
   const handleSearch = (newCity) => {
     setCity(newCity);
   };
 
-  
   const fetchWeather = async () => {
     const weatherData = await getWeatherData(city);
     if (weatherData) {
@@ -28,7 +27,6 @@ function Weather() {
     }
   };
 
-  
   const updateDateTime = () => {
     const now = new Date();
     const formattedDate = now.toLocaleDateString('en-US', {
@@ -44,11 +42,11 @@ function Weather() {
     setDatetime(`${formattedDate} | Time - ${formattedTime}`);
   };
 
- 
   useEffect(() => {
     fetchWeather();
     updateDateTime();
   }, [city]); 
+
   return (
     <div className="grid-container">
       <div className="grid-item grid-item-1">
@@ -75,7 +73,8 @@ function Weather() {
           <Weathertemperature city={city} />
         </div>
         <div className="Weather-boardC grid-item-3">
-          <WeatherForecast />
+          {/* Pass the city prop to WeatherForecast */}
+          <WeatherForecast city={city} />
         </div>
       </div>
     </div>

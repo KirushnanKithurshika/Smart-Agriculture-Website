@@ -1,29 +1,58 @@
-import React from 'react';
+// WeatherForecast.js
+
+import React, { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCloudSun, faCloudRain, faCloud, faSun, faSnowflake } from '@fortawesome/free-solid-svg-icons';
+import { getWeatherData, getForecastData } from '../../services/weatherService'; // Adjust the path as necessary
 import './weatherdailyforecast.css';
 
-const WeatherForecast = () => {
-  const hourlyForecast = [
-    { time: "10:00 AM", temperature: "14°", icon: faCloud },
-    { time: "01:00 PM", temperature: "15°", icon: faCloudSun },
-    { time: "04:00 PM", temperature: "16°", icon: faSun },
-    { time: "07:00 PM", temperature: "15°", icon: faCloud },
-    { time: "10:00 PM", temperature: "13°", icon: faCloud },
-  ];
+const WeatherForecast = ({ city }) => {
+  const [hourlyForecast, setHourlyForecast] = useState([]);
+  const [dailyForecast, setDailyForecast] = useState([]);
+  
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const weatherData = await getWeatherData(city);
+      if (weatherData) {
+        const { lat, lon } = weatherData.coord; // Get latitude and longitude from weather data
+        const forecastData = await getForecastData(lat, lon); // Fetch forecast data using lat/lon
+        if (forecastData) {
+          setHourlyForecast(forecastData.list.slice(0, 5).map(item => ({
+            time: new Date(item.dt * 1000).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            temperature: `${Math.round(item.main.temp)}°`,
+            icon: getWeatherIcon(item.weather[0].main) // Map weather condition to FontAwesome icon
+          })));
 
-  const dailyForecast = [
-    { day: "Wed", temperature: "13°", icon: faCloudRain },
-    { day: "Thu", temperature: "12°", icon: faCloudRain },
-    { day: "Fri", temperature: "12°", icon: faCloud },
-    { day: "Sat", temperature: "12°", icon: faCloud },
-    { day: "Sun", temperature: "12°", icon: faCloud },
-   
-  ];
+          setDailyForecast(forecastData.list.filter((_, index) => index % 8 === 0).map(item => ({
+            day: new Date(item.dt * 1000).toLocaleDateString('en-US', { weekday: 'short' }),
+            temperature: `${Math.round(item.main.temp)}°`,
+            icon: getWeatherIcon(item.weather[0].main)
+          })));
+        }
+      }
+    };
+
+    fetchWeather();
+  }, [city]);
+
+  const getWeatherIcon = (condition) => {
+    switch (condition) {
+      case 'Clear':
+        return faSun;
+      case 'Clouds':
+        return faCloud;
+      case 'Rain':
+        return faCloudRain;
+      case 'Snow':
+        return faSnowflake;
+      default:
+        return faCloudSun; // Default icon for other conditions
+    }
+  };
 
   return (
     <div className="weather-forecast">
-      <h2>Weather Forecast</h2>
+      <h2>Weather Forecast for {city}</h2>
 
       <div className="forecast-section">
         <h3>3 Hour Step Forecast</h3>

@@ -4,8 +4,9 @@ import './loginpage.css';
 import Logo from '../../assets/slogo.png';
 import axios from 'axios';
 import BackgroundImage from '../../assets/BG-login.jpg';
+import { toast } from 'react-hot-toast';
 
-export default function Login() { // Added parentheses after the function name
+export default function Login() {
   const [data, setData] = useState({
     email: '',
     password: '',
@@ -19,18 +20,36 @@ export default function Login() { // Added parentheses after the function name
     setPasswordVisible(!passwordVisible);
   };
 
-  const loginUser = async (e) => {
-    e.preventDefault();
-    axios.get('')
-    
-  };
-
   const handleInputChange = (e) => {
     const { id, value } = e.target;
     setData((prevData) => ({
       ...prevData,
       [id]: value,
     }));
+    // Clear the error when the user types
+    if (error) {
+      setError('');
+    }
+  };
+
+  const loginUser = async (e) => {
+    e.preventDefault();
+    const { email, password } = data;
+    try {
+      const response = await axios.post('/login', { email, password });
+      const responseData = response.data;
+      if (responseData.error) {
+        toast.error(responseData.error);
+        setError(responseData.error); 
+      } else {
+        setData({ email: '', password: '' });
+        navigate('/homepage'); 
+      }
+    } catch (error) {
+      console.error(error);
+      setError('An unexpected error occurred'); 
+      toast.error('An unexpected error occurred'); 
+    }
   };
 
   return (
@@ -39,7 +58,7 @@ export default function Login() { // Added parentheses after the function name
         <div className="logo">
           <img className="Logo" src={Logo} alt="Logo" />
         </div>
-        <button className="login-button">Login</button>
+        
       </header>
 
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
@@ -49,7 +68,7 @@ export default function Login() { // Added parentheses after the function name
 
           <form onSubmit={loginUser}>
             <div className="form-group">
-              <label htmlFor="email">Email</label> {/* Changed htmlFor to "email" */}
+              <label htmlFor="email">Email</label>
               <div className="input-container">
                 <input
                   type="text"
@@ -59,7 +78,7 @@ export default function Login() { // Added parentheses after the function name
                   value={data.email}
                   onChange={handleInputChange}
                 />
-              </div> 
+              </div>
             </div>
 
             <div className="form-group">

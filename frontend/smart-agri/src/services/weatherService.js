@@ -1,3 +1,4 @@
+// weatherService.js
 
 export const getWeatherData = async (city) => {
   const apiKey = '7ff93158b3f322e1a8e7530059d02ae8';
@@ -23,7 +24,7 @@ export const getForecastData = async (lat, lon) => {
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      throw new Error('Failed to fetch forecast data');
+      throw new Error(`Failed to fetch forecast data: ${response.status} ${response.statusText}`);
     }
     const data = await response.json();
     return data;
