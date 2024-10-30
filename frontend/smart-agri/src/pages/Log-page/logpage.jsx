@@ -7,7 +7,7 @@ import Navbar from '../../components/navbar';
 const LogsTable = () => {
   const headers = ['Time', 'PH', 'K (mg/l)', 'N (mg/l)', 'P (mg/l)'];
   const rows = new Array(10).fill(['', '', '', '', '']); // Creates empty rows for demonstration
-
+ 
   return (
     <div className='grid-container'>
             <div className='grid-item grid-item-1'>

@@ -1,0 +1,18 @@
+.grid-item grid-item-4{
+    background-color:rgb(255, 255, 255);
+    height: 100vh;
+    
+ }
+
+ .grid-container{
+   display:grid;
+   height:fit-content;
+   background-color: rgb(255, 255, 255);
+   grid-template-columns: 270px 920px auto;
+   grid-template-rows:72px 300px 300px auto ;
+   grid-column-gap:10px;
+   background-color: gray;
+ 
+ }
+
+ 

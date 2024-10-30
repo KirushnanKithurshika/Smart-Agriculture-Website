@@ -14,6 +14,7 @@ import LogsTable from './pages/Log-page/logpage';
 import Register from './pages/Signuppage/Register';
 import axios from 'axios';
 import { Toaster } from 'react-hot-toast';
+import Employee from './pages/Employee-Management/employee';
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -29,6 +30,7 @@ function App() {
                 <Route path='/dashboard' element={<Dashboard />} />
                 <Route path='/logs' element={<LogsTable />} />
                 <Route path='/weather' element={<Weather />} />
+                <Route path='/employee' element={<Employee/>}/>
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
                 <Route path='/soil' element={<Soil />} />
             </Routes>
