@@ -1,6 +1,5 @@
 import Employee from '../models/employee.js';
 
-// Create Employee
 export const createEmployee = async (req, res) => {
   try {
     const employee = new Employee(req.body);
@@ -11,7 +10,6 @@ export const createEmployee = async (req, res) => {
   }
 };
 
-// Read All Employees
 export const getEmployees = async (req, res) => {
   try {
     const employees = await Employee.find();
@@ -21,7 +19,6 @@ export const getEmployees = async (req, res) => {
   }
 };
 
-// Read Single Employee by ID
 export const getEmployeeById = async (req, res) => {
   try {
     const employee = await Employee.findById(req.params.id);
@@ -32,7 +29,6 @@ export const getEmployeeById = async (req, res) => {
   }
 };
 
-// Update Employee
 export const updateEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -43,7 +39,6 @@ export const updateEmployee = async (req, res) => {
   }
 };
 
-// Delete Employee
 export const deleteEmployee = async (req, res) => {
   try {
     const employee = await Employee.findByIdAndDelete(req.params.id);

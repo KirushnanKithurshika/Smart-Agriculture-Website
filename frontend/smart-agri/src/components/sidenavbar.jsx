@@ -50,7 +50,7 @@ function Sidenavigationbar() {
           <li><Link to="/status"><FaTag /> Status</Link></li>
           <li><Link to="/crop-management"><FaLeaf /> Crop Management</Link></li>
           <li><Link to="/land-management"><FaLandmark /> Land Management</Link></li>
-          <li><Link to="/labor-management"><FaUsers /> Labor Management</Link></li>
+          <li><Link to="/employee"><FaUsers /> Labor Management</Link></li>
           <li><Link to="/equipment"><FaTractor /> Equipment</Link></li>
           <li className="Account-setting"><Link to="/my-account"><FaUserAlt /> My Account</Link></li>
           <li><Link to="/settings"><FaCogs /> Settings</Link></li>

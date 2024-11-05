@@ -77,7 +77,7 @@ export default function Register() {
                             required
                         />
                         <div className='submit-button-container'>
-                            <button className='submit-button' type="submit">Register</button>
+                            <button className='submit-buttonL' type="submit">Register</button>
                         </div>
                     </form>
                 </div>
