@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './createemployee.css'; 
-import Navbar from '../../components/navbar';
-import { Link } from 'react-router-dom';
+import Navbar from '../../components/navbar'; 
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
-const AddEmployeeForm = () => {
+const AddEmployeeForm = ({ addEmployee }) => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -13,18 +15,50 @@ const AddEmployeeForm = () => {
     job: '',
   });
 
+  const navigate = useNavigate();  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Employee Added:', formData);
+    console.log('Form Data:', formData); 
+    try {
+      const response = await axios.post('http://localhost:8000/api/create', formData);
+
+      // Check if response is successful
+      console.log('Employee added:', response.data);
+
+      
+      if (addEmployee) {
+        addEmployee(response.data);  
+      }
+
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        city: '',
+        phone: '',
+        job: '',
+      });
+
+      navigate('/employee');  
+
+    } catch (error) {
+      console.error('Error adding employee:', error.response ? error.response.data : error.message);
+      
+      // Show error toast instead of alert
+      toast.error('Error adding employee: ' + (error.response ? error.response.data.message : error.message));
+    }
   };
 
   const handleCancel = () => {
-    // Reset form data or navigate to a different page if needed
     setFormData({
       firstName: '',
       lastName: '',
@@ -33,7 +67,7 @@ const AddEmployeeForm = () => {
       phone: '',
       job: '',
     });
-    console.log('Form cancelled');
+    navigate('/employee');  // Navigate to employee page when Cancel is clicked
   };
 
   return (
@@ -95,9 +129,7 @@ const AddEmployeeForm = () => {
             />
             <div className="button-group">
               <button type="submit" className="submit-button">Add Employee</button>
-              <Link to="/employee">
               <button type="button" className="cancel-button" onClick={handleCancel}>Cancel</button>
-              </Link>
             </div>
           </form>
         </div>

@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from '../../components/sidenavbar';
 import Navbar from '../../components/navbar';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './employee.css';
+import { useNavigate } from 'react-router-dom';
 
 function Employee() {
-  const [employees, setEmployees] = useState([
-    { firstName: 'Kithurshika', lastName: 'Krishnan', email: 'kithurshanithurshika@gmail.com', city: 'Batticaloa', phone: '0764181363', job: 'Manager' },
-  ]);
-
+  const [employees, setEmployees] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [employeeToDelete, setEmployeeToDelete] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const navigate = useNavigate();
 
-  const handleEdit = (index) => {
-    console.log('Edit button clicked for:', employees[index]);
+  useEffect(() => {
+    const fetchEmployees = async () => {
+      try {
+        const response = await axios.get('http://localhost:8000/api/employees');
+        setEmployees(response.data);
+      } catch (error) {
+        console.error('Error fetching employees:', error);
+      }
+    };
+
+    fetchEmployees();
+  }, []);
+
+  const addEmployee = (newEmployee) => {
+    setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
   };
 
   const handleDelete = (index) => {
@@ -21,12 +35,21 @@ function Employee() {
     setIsModalOpen(true);
   };
 
-  const confirmDelete = () => {
+  const confirmDelete = async () => {
     if (employeeToDelete !== null) {
-      const updatedEmployees = employees.filter((_, i) => i !== employeeToDelete);
-      setEmployees(updatedEmployees);
-      setEmployeeToDelete(null);
-      setIsModalOpen(false);
+      const employeeId = employees[employeeToDelete]._id;
+      setIsDeleting(true);
+      try {
+        await axios.delete(`http://localhost:8000/api/employees/${employeeId}`);
+        const updatedEmployees = employees.filter((_, i) => i !== employeeToDelete);
+        setEmployees(updatedEmployees);
+        setEmployeeToDelete(null);
+        setIsModalOpen(false);
+      } catch (error) {
+        console.error('Error deleting employee:', error);
+      } finally {
+        setIsDeleting(false);
+      }
     }
   };
 
@@ -62,7 +85,7 @@ function Employee() {
               </thead>
               <tbody>
                 {employees.map((employee, index) => (
-                  <tr key={index}>
+                  <tr key={employee._id}>
                     <td>{employee.firstName}</td>
                     <td>{employee.lastName}</td>
                     <td>{employee.email}</td>
@@ -70,8 +93,8 @@ function Employee() {
                     <td>{employee.phone}</td>
                     <td>{employee.job}</td>
                     <td>
-                      <Link to="/editemployee">
-                        <button className="editE-button" onClick={() => handleEdit(index)}>Edit</button>
+                      <Link to={`/editemployee/${employee._id}`}>
+                        <button className="editE-button">Edit</button>
                       </Link>
                       <button className="deleteE-button" onClick={() => handleDelete(index)}>Delete</button>
                     </td>
@@ -86,13 +109,18 @@ function Employee() {
         </div>
       </div>
 
-      {/* Modal for delete confirmation */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal">
-            <p>Do you want to delete this employee details?</p>
-            <button className="deleteE-button" onClick={confirmDelete}>Delete</button>
-            <button className="cancelE-button" onClick={closeModal}>Cancel</button>
+            <p>Do you want to delete this employee's details?</p>
+            {isDeleting ? (
+              <button className="deleteE-button" disabled>Deleting...</button>
+            ) : (
+              <>
+                <button className="deleteE-button" onClick={confirmDelete}>Delete</button>
+                <button className="cancelE-button" onClick={closeModal}>Cancel</button>
+              </>
+            )}
           </div>
         </div>
       )}

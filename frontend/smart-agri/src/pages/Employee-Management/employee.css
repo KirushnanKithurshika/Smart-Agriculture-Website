@@ -1,6 +1,5 @@
 .gridemployee-container {
-  grid-column: 2 / 4;
-  grid-row: 2 / 4;
+ 
   display: grid;
   height: fit-content;
   background-color: rgb(255, 255, 255);
