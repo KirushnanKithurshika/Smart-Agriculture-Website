@@ -5,6 +5,7 @@
     }
 
     .grid-container{
+      background-color: rgb(228, 239, 250);
       display:grid;
       background-color:rgb(255, 255, 255);
       grid-template-columns: 270px 920px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
