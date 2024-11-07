@@ -1,14 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import './mychart.css';
 
 const MyChart = () => {
-    const moisturePercentage = 75;  
-    const phLevel = 6.5; 
-    const nitrogenLevel = 25;  
-    const phosphorusLevel = 30;  
-    const potassiumLevel = 40;  
+    // State to store chart data
+    const [chartData, setChartData] = useState({
+        moisturePercentage: null, // Use null initially to check if data is fetched
+        phLevel: null,
+        nitrogenLevel: null,
+        phosphorusLevel: null,
+        potassiumLevel: null,
+    });
+
+    // Fetch data from the API
+    const fetchData = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/api/logs/latest');
+            if (!response.ok) {
+                throw new Error('Failed to fetch data');
+            }
+            const data = await response.json();
+            console.log('Fetched data:', data); // Log the fetched data
+            setChartData({
+                moisturePercentage: data.moistureContent || 0,  // Map to moistureContent
+                phLevel: data.PH || 0,                          // Map to PH
+                nitrogenLevel: data.N || 0,                      // Map to N (Nitrogen)
+                phosphorusLevel: data.P || 0,                    // Map to P (Phosphorus)
+                potassiumLevel: data.K || 0,                     // Map to K (Potassium)
+            });
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    };
+
+    // Fetch data when the component mounts
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     // Function to generate pie chart options
     const getPieChartOptions = (value, titleText, emoji, unit = '%') => ({
@@ -19,16 +48,15 @@ const MyChart = () => {
             events: {
                 load: function () {
                     const chart = this;
-                    
-                    const text = `${emoji}</br>${value} ${unit}`; 
+                    const text = `${emoji}</br>${value} ${unit}`;
                     chart.renderer.text(
                         text,
-                        chart.plotLeft + chart.plotWidth / 2 - 10 ,
-                        chart.plotTop + chart.plotHeight / 2 
+                        chart.plotLeft + chart.plotWidth / 2 - 10,
+                        chart.plotTop + chart.plotHeight / 2
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '18px', 
+                            fontSize: '18px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })
@@ -37,11 +65,11 @@ const MyChart = () => {
                 }
             }
         },
-        title: { text: titleText }, 
+        title: { text: titleText },
         plotOptions: {
             pie: {
                 innerSize: '70%',
-                dataLabels: { enabled: false }, 
+                dataLabels: { enabled: false },
                 center: ['50%', '50%']
             }
         },
@@ -53,19 +81,18 @@ const MyChart = () => {
                     : [{ name: titleText, y: value }]
             }
         ],
-        colors: titleText === 'Moisture' ? ['#00BFFF', '#cfd8dc'] : ['#4caf50'] // Light blue for moisture
+        colors: titleText === 'Moisture' ? ['#00BFFF', '#cfd8dc'] : ['#4caf50']
     });
-    
 
     const getBarChartOptions = () => ({
-        chart: { type: 'column', width: 500, height: 200 }, // Adjust height for smaller bars
+        chart: { type: 'column', width: 500, height: 200 },
         title: { 
             text: 'Nutrient Levels',
             style: {
-                fontSize: '14px',          
-                color: '#333333',         
-                fontWeight: 'bold',       
-                fontFamily: 'Arial, sans-serif' 
+                fontSize: '14px',
+                color: '#333333',
+                fontWeight: 'bold',
+                fontFamily: 'Arial, sans-serif'
             }
         },
         xAxis: {
@@ -73,9 +100,9 @@ const MyChart = () => {
             title: { text: null },
             labels: {
                 style: {
-                    fontSize: '12px',       
-                    color: '#888888',    
-                    fontFamily: 'Arial, sans-serif' 
+                    fontSize: '12px',
+                    color: '#888888',
+                    fontFamily: 'Arial, sans-serif'
                 }
             }
         },
@@ -85,52 +112,55 @@ const MyChart = () => {
                 text: 'Amount (mg/L)', 
                 align: 'high',
                 style: {
-                    fontSize: '10px',       
-                    color: '#888888',      
-                    fontFamily: 'Arial, sans-serif' 
+                    fontSize: '10px',
+                    color: '#888888',
+                    fontFamily: 'Arial, sans-serif'
                 }
             },
-            labels: { // Added missing closing bracket for labels
+            labels: {
                 style: {
-                    fontSize: '10px',       
-                    color: '#888888',      // Y-axis labels font color
-                    fontFamily: 'Arial, sans-serif' // Y-axis labels font family
+                    fontSize: '10px',
+                    color: '#888888',
+                    fontFamily: 'Arial, sans-serif'
                 }
             }
         },
         tooltip: {
             valueSuffix: ' mg/L',
             style: {
-                fontSize: '10px',          // Tooltip font size
-                color: '#000000',         // Tooltip font color
-                fontFamily: 'Arial, sans-serif' // Tooltip font family
+                fontSize: '10px',
+                color: '#000000',
+                fontFamily: 'Arial, sans-serif'
             }
         },
         series: [
             {
                 name: 'Nutrient Levels',
                 data: [
-                    { y: nitrogenLevel, color: '#FF5733' },
-                    { y: phosphorusLevel, color: '#74158C' },
-                    { y: potassiumLevel, color: '#01495C' }
+                    { y: chartData.nitrogenLevel, color: '#FF5733' },
+                    { y: chartData.phosphorusLevel, color: '#74158C' },
+                    { y: chartData.potassiumLevel, color: '#01495C' }
                 ],
-                pointWidth:50
-            
+                pointWidth: 50
             }
         ]
     });
-    
+
+    // Check if chart data is available before rendering the charts
+    if (chartData.moisturePercentage === null || chartData.phLevel === null) {
+        return <div>Loading...</div>; // Show loading until data is available
+    }
+
     return (
         <div className="chart-panel-area">
             <div className="chart-panel">
                 <div className="chart-item">
-                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(moisturePercentage, 'Moisture', '🌧️', '%')} />
-                
+                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(chartData.moisturePercentage, 'Moisture', '🌧️', '%')} />
                 </div>
                 <div className="chart-item">
-                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(phLevel, 'pH Level', '⚗️','')} />
+                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(chartData.phLevel, 'pH Level', '⚗️', '')} />
                 </div>
-                <div className="chart-item ">
+                <div className="chart-item">
                     <HighchartsReact highcharts={Highcharts} options={getBarChartOptions()} />
                 </div>
             </div>

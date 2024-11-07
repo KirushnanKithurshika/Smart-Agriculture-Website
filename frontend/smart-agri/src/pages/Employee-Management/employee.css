@@ -4,7 +4,7 @@
   height: fit-content;
   background-color: rgb(255, 255, 255);
   grid-template-columns: 270px auto;
-  grid-template-rows: 72px 300px 300px auto;
+  grid-template-rows: 72px 300px ;
   grid-column-gap: 10px;
 
 
@@ -14,12 +14,11 @@
 
 .employee-dashboard {
   grid-column: 2 / 4;
-  grid-row: 2 / 4;
+  grid-row: 2/3;
   margin: 20px;
   display: grid;
   height: fit-content;
   grid-template-columns: 1fr;
-  grid-template-rows: 0.8fr 1.5fr;
   border-radius: 20px;
   opacity: 100%;
   padding: 10px;
@@ -45,7 +44,8 @@ td {
 }
 
 th {
-  background-color: #d7fdf5;
+  background-color:  #069351;
+  color:white;
   font-weight: bold;
 }
 

@@ -1,10 +1,10 @@
 
 import express from 'express';
-import { addLog, getLogs } from '../controllers/logController.js';
+import { addLog, getLogs,getLatestLog } from '../controllers/logController.js';
 
 const router = express.Router();
 
-router.post('/add', addLog);      // Route to add a new log entry
-router.get('/', getLogs);          // Route to get all log entries
-
+router.post('/add', addLog);     
+router.get('/', getLogs);        
+router.get('/latest', getLatestLog);
 export default router;
