@@ -18,6 +18,9 @@ function Navbarmobileview() {
 
 
             <div className="top-bar-rightM grid-item-3">
+            <Link to="/homepage" className="home-link">
+              <FaHome className="top-bar-icon" />
+            </Link>
                 <FaBell className="top-bar-iconM" />
                 <FaUserAlt className="top-bar-iconuserM" />
             </div>

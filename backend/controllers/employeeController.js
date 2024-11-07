@@ -2,11 +2,11 @@ import Employee from '../models/employee.js';
 
 export const createEmployee = async (req, res) => {
   try {
-    // Create and save the new employee from request body
+   
     const employee = new Employee(req.body);
     await employee.save();
 
-    // Send the created employee back to the client
+   
     res.status(201).json(employee);
   } catch (error) {
     res.status(400).json({ error: error.message });

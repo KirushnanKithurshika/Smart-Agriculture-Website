@@ -28,7 +28,7 @@ function App() {
         <BrowserRouter>
             <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
             <Routes>
-                <Route path='/login' element={<Login />} />
+                <Route path='/' element={<Login />} />
                 <Route path='/register' element={<Register />} />
                 <Route path='/homepage' element={<Farms />} />
                 <Route path='/dashboard' element={<Dashboard />} />
@@ -36,7 +36,7 @@ function App() {
                 <Route path='/weather' element={<Weather />} />
                 <Route path='/employee' element={<Employee />} />
                 <Route path='/createemployee' element={<AddEmployeeForm />} />
-                <Route path='/editemployee' element={<EditEmployee />} />
+                <Route path='/editemployee/:id' element={<EditEmployee />} />
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
                 <Route path='/soil' element={<Soil />} />
             </Routes>

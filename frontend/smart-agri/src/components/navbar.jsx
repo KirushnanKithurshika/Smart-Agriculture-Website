@@ -41,7 +41,7 @@ function Navbar() {
 
           <div className="top-bar-rightM grid-item-3">
             {/* Add Home icon for mobile as well */}
-            <Link to="/" className="home-linkM">
+            <Link to="/homepage" className="home-linkM">
               <FaHome className="top-bar-iconM" />
             </Link>
             <FaBell className="top-bar-iconM" />

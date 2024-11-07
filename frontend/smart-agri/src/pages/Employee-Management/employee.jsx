@@ -30,6 +30,15 @@ function Employee() {
     setEmployees((prevEmployees) => [...prevEmployees, newEmployee]);
   };
 
+  // Function to update an employee in the state
+  const handleUpdateEmployee = (updatedEmployee) => {
+    setEmployees((prevEmployees) =>
+      prevEmployees.map((employee) =>
+        employee._id === updatedEmployee._id ? updatedEmployee : employee
+      )
+    );
+  };
+
   const handleDelete = (index) => {
     setEmployeeToDelete(index);
     setIsModalOpen(true);
@@ -96,6 +105,8 @@ function Employee() {
                       <Link to={`/editemployee/${employee._id}`}>
                         <button className="editE-button">Edit</button>
                       </Link>
+
+
                       <button className="deleteE-button" onClick={() => handleDelete(index)}>Delete</button>
                     </td>
                   </tr>
