@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import employeeRoutes from './routes/employeeRoutes.js'; 
+import logRoutes from './routes/logRoutes.js'
 import mongoose from 'mongoose';
 
 dotenv.config();
@@ -33,6 +34,8 @@ app.use(express.json());
 // Routes
 app.use('/', authRoutes); 
 app.use('/api', employeeRoutes); 
+app.use('/api/logs', logRoutes);
+
 
 // Server start
 app.listen(port, () => console.log(`Server is running on port ${port}`));

@@ -1,10 +1,26 @@
-.logs-table-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.gridlog-container {
+  display: grid;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  grid-template-columns: 270px auto;
+  grid-template-rows: 72px 300px 300px auto;
+  grid-column-gap: 10px;
   }
-  
+  .log-dashboard{
+      grid-column: 2 / 4;
+      grid-row: 2 / 4;
+      margin: 20px;
+      display: grid;
+      height: fit-content;
+      grid-template-columns: 1fr;
+      grid-template-rows: 0.8fr 1.5fr;
+      border-radius: 20px;
+      opacity: 100%;
+      padding: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    
+    
+  }
   .logs-table {
     width: 90%;
     border-collapse: collapse;
@@ -14,31 +30,24 @@
   }
   
   .logs-table th, .logs-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 12px;
     text-align: center;
+    border: 1px solid #dbdcdb;
   }
   
-  .logs-table th {
-    background-color: #f3f4f6;
-    font-weight: bold;
-    text-transform: uppercase;
-    color: #333;
+  .logs-table thead {
+    background-color: #071408; /* Dark green for header */
+    color: rgb(21, 21, 21);
   }
   
-  .logs-table tbody tr:nth-of-type(even) {
-    background-color: #f9fafb;
+  .logs-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for even rows */
+  }
+  
+  .logs-table tbody tr:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
   }
   
   .logs-table tbody tr:hover {
-    background-color: #f1f1f1;
+    background-color: #d1e7dd; /* Light green when hovering over rows */
   }
-  
-  .logs-table tbody td {
-    padding: 10px;
-  }
-  
-  .logs-table thead th {
-    padding: 15px;
-  }
-  
