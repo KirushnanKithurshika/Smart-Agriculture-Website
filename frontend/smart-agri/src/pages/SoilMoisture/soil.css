@@ -1,3 +1,29 @@
 .grid-container{
     z-index: 10;
 }
+
+.ph-panel {
+    display: grid;
+    grid-template-columns: 2fr 2fr; 
+    grid-template-areas: "column1 column2"; 
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    height: 300px;
+    margin: 25px;
+    gap: 5px; 
+
+}
+.column1 {
+    display:grid;
+    grid-area: column1;
+    align-items: center;
+    justify-content: center;
+    grid-template-areas:"Ph alertsentence"
+}
+
+.column2 {
+    grid-area: column2;
+  
+}
+

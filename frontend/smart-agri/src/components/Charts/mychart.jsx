@@ -21,25 +21,25 @@ const MyChart = () => {
                 throw new Error('Failed to fetch data');
             }
             const data = await response.json();
-            console.log('Fetched data:', data); // Log the fetched data
+            console.log('Fetched data:', data); 
             setChartData({
-                moisturePercentage: data.moistureContent || 0,  // Map to moistureContent
-                phLevel: data.PH || 0,                          // Map to PH
-                nitrogenLevel: data.N || 0,                      // Map to N (Nitrogen)
-                phosphorusLevel: data.P || 0,                    // Map to P (Phosphorus)
-                potassiumLevel: data.K || 0,                     // Map to K (Potassium)
+                moisturePercentage: data.moistureContent || 0,  
+                phLevel: data.PH || 0,                         
+                nitrogenLevel: data.N || 0,                      
+                phosphorusLevel: data.P || 0,                    
+                potassiumLevel: data.K || 0,                     
             });
         } catch (error) {
             console.error('Error fetching data:', error);
         }
     };
 
-    // Fetch data when the component mounts
+   
     useEffect(() => {
         fetchData();
     }, []);
 
-    // Function to generate pie chart options
+    
     const getPieChartOptions = (value, titleText, emoji, unit = '%') => ({
         chart: {
             type: 'pie',
@@ -155,7 +155,7 @@ const MyChart = () => {
         <div className="chart-panel-area">
             <div className="chart-panel">
                 <div className="chart-item">
-                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(chartData.moisturePercentage, 'Moisture', '🌧️', '%')} />
+                    <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(chartData.moisturePercentage, 'Moisture', '💧', '%')} />
                 </div>
                 <div className="chart-item">
                     <HighchartsReact highcharts={Highcharts} options={getPieChartOptions(chartData.phLevel, 'pH Level', '⚗️', '')} />

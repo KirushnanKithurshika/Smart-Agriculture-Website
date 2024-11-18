@@ -1,41 +1,88 @@
 import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
-import './moisture_panel.css'
-
+import './moisture_panel.css';
 
 const MoistureDashboard = () => {
-  const [moisture, setMoisture] = useState(20); 
+  const [moisture, setMoisture] = useState(20);
   const [timeRange, setTimeRange] = useState('Last Hour');
   const [chartData, setChartData] = useState([]);
-
+  
   useEffect(() => {
-   
     fetchData(timeRange);
   }, [timeRange]);
 
-  const fetchData = (range) => {
-    
-    const data = {
-      'Last Hour': [10, 40, 20, 20, 20], 
-      '6 hours': [20, 30, 25, 40, 35],
-      '1 Day': [15, 25, 35, 20, 45],
-      '1 Week': [30, 40, 35, 50, 45],
-      '1 Month': [25, 45, 35, 55, 50]
-    };
-    setChartData(data[range] || []);
+  const fetchData = async (range) => {
+    try {
+      // Fetch logs from the backend (adjust the URL if needed)
+      const response = await fetch('http://localhost:8000/api/logs');
+      const data = await response.json();
+      
+      if (response.ok) {
+        // Filter logs based on time range (you can adjust the filtering logic here)
+        const filteredData = filterLogsByTimeRange(data, range);
+        setChartData(filteredData);
+      } else {
+        console.error('Error fetching logs:', data);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const filterLogsByTimeRange = (logs, range) => {
+    const now = new Date();
+    let filteredLogs = [];
+
+    switch (range) {
+      case 'Last Hour':
+        filteredLogs = logs.filter(log => {
+          const logTime = new Date(log.time);
+          return (now - logTime) <= 3600000; // 1 hour in milliseconds
+        });
+        break;
+      case '6 hours':
+        filteredLogs = logs.filter(log => {
+          const logTime = new Date(log.time);
+          return (now - logTime) <= 21600000; // 6 hours in milliseconds
+        });
+        break;
+      case '1 Day':
+        filteredLogs = logs.filter(log => {
+          const logTime = new Date(log.time);
+          return (now - logTime) <= 86400000; // 1 day in milliseconds
+        });
+        break;
+      case '1 Week':
+        filteredLogs = logs.filter(log => {
+          const logTime = new Date(log.time);
+          return (now - logTime) <= 604800000; // 1 week in milliseconds
+        });
+        break;
+      case '1 Month':
+        filteredLogs = logs.filter(log => {
+          const logTime = new Date(log.time);
+          return (now - logTime) <= 2592000000; // 1 month in milliseconds
+        });
+        break;
+      default:
+        filteredLogs = logs;
+    }
+
+    return filteredLogs.map(log => log.moistureContent); // Extract moisture data
   };
 
   const chartOptions = {
     chart: {
       type: 'area',
-      backgroundColor: '#f5f5f5', 
+      backgroundColor: '#f5f5f5',
+      height: 200, // Set the desired height here
     },
     title: {
-      text: null, 
+      text: null,
     },
     xAxis: {
-      categories: ['4:10', '4:20', '4:30', '5:00', '5:10', '5:20'],
+      categories: ['4:10', '4:20', '4:30', '5:00', '5:10', '5:20'], // Adjust the categories if needed
       title: {
         text: 'Time',
       },
@@ -44,7 +91,7 @@ const MoistureDashboard = () => {
       title: {
         text: 'Moisture (%)',
       },
-      max: 100, 
+      max: 100,
     },
     plotOptions: {
       area: {
@@ -56,11 +103,11 @@ const MoistureDashboard = () => {
             y2: 1,
           },
           stops: [
-            [0, '#00bfff'], 
-            [1, 'rgba(0,191,255,0)'], 
+            [0, '#00bfff'],
+            [1, 'rgba(0,191,255,0)'],
           ],
         },
-        lineColor: '#00bfff', 
+        lineColor: '#00bfff',
         marker: {
           enabled: false,
         },
@@ -73,16 +120,13 @@ const MoistureDashboard = () => {
       {
         name: 'Moisture',
         data: chartData,
-        color: '#00bfff', 
+        color: '#00bfff',
       },
     ],
   };
 
   return (
     <div className="moisture-dashboard">
-   
-
-     
       <div className="time-range-buttons">
         {['Last Hour', '6 hours', '1 Day', '1 Week', '1 Month'].map((range) => (
           <button
@@ -95,10 +139,10 @@ const MoistureDashboard = () => {
         ))}
       </div>
 
-      {/* Highcharts graph */}
       <div className="moisture-graph">
         <HighchartsReact highcharts={Highcharts} options={chartOptions} />
       </div>
+      
     </div>
   );
 };
