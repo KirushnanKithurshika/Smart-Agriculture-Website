@@ -1,4 +1,4 @@
-// models/log.js
+
 import mongoose from 'mongoose';
 
 const logSchema = new mongoose.Schema({

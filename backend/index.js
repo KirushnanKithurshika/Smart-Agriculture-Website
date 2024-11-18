@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import authRoutes from './routes/authRoutes.js';
 import employeeRoutes from './routes/employeeRoutes.js'; 
+import equipmentRoutes from './routes/equipmentRoutes.js';
 import logRoutes from './routes/logRoutes.js'
 import mongoose from 'mongoose';
 
@@ -35,6 +36,8 @@ app.use(express.json());
 app.use('/', authRoutes); 
 app.use('/api', employeeRoutes); 
 app.use('/api/logs', logRoutes);
+app.use('/api/equipment', equipmentRoutes);
+
 
 
 // Server start
