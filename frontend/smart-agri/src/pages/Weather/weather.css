@@ -9,7 +9,7 @@
    height:fit-content;
    background-color: rgb(255, 255, 255);
    grid-template-columns: 270px 920px auto;
-   grid-template-rows:80px 380px 300px auto ;
+   grid-template-rows:80px 380px 350px auto ;
    grid-column-gap:10px;
  
  }
