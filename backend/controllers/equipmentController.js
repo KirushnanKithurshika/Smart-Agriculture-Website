@@ -47,10 +47,17 @@ export const updateEquipment = async (req, res) => {
 // Delete an equipment
 export const deleteEquipment = async (req, res) => {
   try {
+    console.log('Delete request received for ID:', req.params.id);
     const equipment = await Equipment.findByIdAndDelete(req.params.id);
-    if (!equipment) return res.status(404).json({ message: 'Equipment not found' });
+    if (!equipment) {
+      console.log('Equipment not found'); 
+      return res.status(404).json({ message: 'Equipment not found' });
+    }
+    console.log('Equipment deleted:', equipment); 
     res.status(200).json({ message: 'Equipment deleted successfully' });
   } catch (error) {
+    console.error('Error deleting equipment:', error.message); 
     res.status(500).json({ error: error.message });
   }
+
 };

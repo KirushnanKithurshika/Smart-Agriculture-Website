@@ -1,0 +1,114 @@
+.gridequipment-container {
+    display: grid;
+    height: fit-content;
+    background-color: rgb(255, 255, 255);
+    grid-template-columns: 270px auto;
+    grid-template-rows: 72px 300px;
+    grid-column-gap: 10px;
+  }
+  
+  .equipment-dashboard {
+    grid-column: 2 / 4;
+    grid-row: 2/3;
+    margin: 20px;
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    opacity: 100%;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+  
+  .table-container {
+    padding: 20px;
+    margin: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  th,
+  td {
+    border: 1px solid #dae1e0;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #069351;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .editE-button,
+  .add-button,
+  .deleteE-button,
+  .cancelE-button {
+    padding: 5px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .editE-button {
+    background-color: #094688;
+    color: #fff;
+  }
+  
+  .deleteE-button {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .addE-button-link {
+    text-decoration: none;
+  }
+  
+  .addE-button {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #28a745;
+    color: #fff;
+    margin-top: 10px;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .gridequipment-container.blur .equipment-dashboard,
+  .gridequipment-container.blur .grid-item {
+    filter: blur(5px);
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+  }
+  
+  .modal button {
+    margin: 10px;
+  }
+  

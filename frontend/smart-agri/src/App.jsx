@@ -18,6 +18,9 @@ import { Toaster } from 'react-hot-toast';
 import AddEmployeeForm from './pages/Employee-Management/createemployee';
 import EditEmployee from './pages/Employee-Management/updateemployee';
 import Employee from './pages/Employee-Management/employee';
+import Equipment from './pages/Equipment-Managemnet/equipment';
+import CreateEquipmentForm from './pages/Equipment-Managemnet/createequipment';
+import UpdateEquipment from './pages/Equipment-Managemnet/updateequipment';
 
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -35,7 +38,10 @@ function App() {
                 <Route path='/logs' element={<LogsTable />} />
                 <Route path='/weather' element={<Weather />} />
                 <Route path='/employee' element={<Employee />} />
+                <Route path='/equipment' element={<Equipment/>} />
+                <Route path='/createequipment' element={<CreateEquipmentForm/>}/>
                 <Route path='/createemployee' element={<AddEmployeeForm />} />
+                <Route path='/updateequipment/:id' element={<UpdateEquipment/>} />
                 <Route path='/editemployee/:id' element={<EditEmployee />} />
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
                 <Route path='/soil' element={<Soil />} />
