@@ -7,13 +7,13 @@ import { toast } from 'react-hot-toast';
 
 const CreateEquipmentForm = ({ addEquipment }) => {
   const [formData, setFormData] = useState({
-    equipmentID: '',
+    equipmentId: '',
     equipmentName: '',
     category: '',
     brand: '',
     purchaseDate: '',
     price: '',
-    image: null,
+    image: '', 
     quantity: '',
     assignedTo: '',
   });
@@ -29,44 +29,30 @@ const CreateEquipmentForm = ({ addEquipment }) => {
     }));
   };
 
-  // Handle file input change
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
-  };
-
-  // Handle form submission
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data:', formData); 
+  
+    
+    if (!formData.equipmentId || !formData.equipmentName) {
+      toast.error('Equipment ID and Name are required.');
+      return;
+    }
+  
     try {
-      const formDataToSend = new FormData();
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
-      }
-
-      const response = await axios.post('http://localhost:8000/api/equipment', formDataToSend, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
-
-      console.log('Equipment added:', response.data);
-
-      if (addEquipment) {
-        addEquipment(response.data);  
-      }
-
-      // Reset form data
+      const response = await axios.post("http://localhost:8000/api/equipment", formData);
+      console.log("Equipment added:", response.data);
+      toast.success('Equipment added successfully!');
+      
+     
       setFormData({
-        equipmentID: '',
+        equipmentId: '',
         equipmentName: '',
         category: '',
         brand: '',
         purchaseDate: '',
         price: '',
-        image: null,
+        image: '',
         quantity: '',
         assignedTo: '',
       });
@@ -79,16 +65,16 @@ const CreateEquipmentForm = ({ addEquipment }) => {
     }
   };
 
-  // Handle cancel action
+
   const handleCancel = () => {
     setFormData({
-      equipmentID: '',
+      equipmentId: '',
       equipmentName: '',
       category: '',
       brand: '',
       purchaseDate: '',
       price: '',
-      image: null,
+      image: '',
       quantity: '',
       assignedTo: '',
     });
@@ -106,9 +92,9 @@ const CreateEquipmentForm = ({ addEquipment }) => {
           <form onSubmit={handleSubmit}>
             <input
               type="text"
-              name="equipmentID"
+              name="equipmentId"
               placeholder="Equipment ID"
-              value={formData.equipmentID}
+              value={formData.equipmentId}  
               onChange={handleChange}
               required
             />
@@ -155,10 +141,11 @@ const CreateEquipmentForm = ({ addEquipment }) => {
               required
             />
             <input
-              type="file"
+              type="text"
               name="image"
-              accept="image/*"
-              onChange={handleFileChange}
+              placeholder="Image URL"
+              value={formData.image}
+              onChange={handleChange}
               required
             />
             <input

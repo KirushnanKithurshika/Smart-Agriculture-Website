@@ -9,7 +9,7 @@
       display:grid;
       background-color:rgb(255, 255, 255);
       grid-template-columns: 270px 920px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-      grid-template-rows:80px 350px auto;
+      grid-template-rows:100px 380px auto;
       grid-column-gap:10px;
                                                                                                                                                                                                                                                                                                                                                                                             
     }

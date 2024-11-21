@@ -17,7 +17,7 @@ const UpdateEquipment = () => {
     brand: '',
     purchaseDate: '',
     price: '',
-    image: null, // Use null for file selection
+    image: '', // Use string for image URL
     quantity: '',
     assignedTo: '',
   });
@@ -30,10 +30,7 @@ const UpdateEquipment = () => {
     const fetchEquipmentData = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/api/equipment/${id}`);
-        setFormData({
-          ...response.data,
-          image: null, // Reset image to null for editing
-        });
+        setFormData(response.data);
         setPreviewImage(response.data.image); // Set preview to existing image URL
         setLoading(false);
       } catch (err) {
@@ -46,38 +43,20 @@ const UpdateEquipment = () => {
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value } = e.target;
 
+    setFormData({ ...formData, [name]: value });
+
+    // Update preview image if the input is for the image URL
     if (name === 'image') {
-      const file = files[0];
-      setFormData({ ...formData, image: file });
-
-      // Preview the selected image
-      const reader = new FileReader();
-      reader.onloadend = () => setPreviewImage(reader.result);
-      if (file) {
-        reader.readAsDataURL(file);
-      }
-    } else {
-      setFormData({ ...formData, [name]: value });
+      setPreviewImage(value);
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formDataToSend = new FormData();
-
-    // Append all form data
-    for (const key in formData) {
-      if (formData[key] !== null) {
-        formDataToSend.append(key, formData[key]);
-      }
-    }
-
     try {
-      await axios.put(`http://localhost:8000/api/equipment/${id}`, formDataToSend, {
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      await axios.put(`http://localhost:8000/api/equipment/${id}`, formData);
       if (onUpdate) onUpdate(); // Notify parent component about update
       navigate('/equipment');
     } catch (err) {
@@ -138,12 +117,12 @@ const UpdateEquipment = () => {
             required
           />
           <input
-  type="date"
-  name="purchaseDate"
-  value={formData.purchaseDate || ''} // Ensure it's an empty string if undefined
-  onChange={handleChange}
-  placeholder="Purchase Date"
-  required/>
+            type="date"
+            name="purchaseDate"
+            value={formData.purchaseDate ? formData.purchaseDate.slice(0, 10) : ''} // Proper date format
+            onChange={handleChange}
+            placeholder="Purchase Date"
+          />
           <input
             type="number"
             name="price"
@@ -153,10 +132,11 @@ const UpdateEquipment = () => {
             required
           />
           <input
-            type="file"
+            type="text"
             name="image"
-            accept="image/*"
+            value={formData.image}
             onChange={handleChange}
+            placeholder="Image URL"
             required
           />
           {previewImage && (

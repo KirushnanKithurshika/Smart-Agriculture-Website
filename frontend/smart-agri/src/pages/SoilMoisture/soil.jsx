@@ -4,8 +4,10 @@ import Sidenavigationbar from '../../components/sidenavbar'
 import Moisture_panel from '../../components/Moisture/moisture_panel'
 import './soil.css';
 import PH from '../../assets/ph.png';
-import PhProgressBar  from '../../components/PHchart/phchart'
-import MoistureGraph from '../../components/Moisturepichart/moisturepichart';
+import PhProgressBar from '../../components/PHchart/phchart'
+import NitrogenStatus from '../../components/Nitrogenpichart/nitrogen'
+import PhosphorusStatus from '../../components/Phosphoruspichart/phosphorus';
+import PotassiumStatus from '../../components/Postasiumpichart/potassium';
 
 function Soil() {
   return (
@@ -27,27 +29,38 @@ function Soil() {
         </div>
         <div className='grid-item grid-item-moisture-panel'>
           <Moisture_panel />
-          <div> <MoistureGraph/></div>
+
         </div>
-       
+
         <div className='grid-item grid-item-ph'>
           <div className='ph-panel'>
             <div class="column1">
               <PhProgressBar />
             </div>
             <div class="column2" style={{
-        backgroundImage: `url(${PH})`,
-        backgroundSize: 'cover',   // Ensures the image covers the entire div
-        backgroundPosition: 'center',  // Centers the image in the div
-        width: '90%',             // Adjust the width and height as needed
-        height: '300px',
-      }}
-    >
-              
+              backgroundImage: `url(${PH})`,
+              backgroundSize: 'cover',   // Ensures the image covers the entire div
+              backgroundPosition: 'center',  // Centers the image in the div
+              width: '90%',             // Adjust the width and height as needed
+              height: '300px',
+            }}
+            >
+
             </div>
           </div>
 
         </div>
+
+        <div>
+       
+        </div>
+
+        <div className='status'>
+        <NitrogenStatus/>
+        <PhosphorusStatus />
+       
+        </div>
+        <div> <PotassiumStatus/></div>
       </div>
 
     </div>

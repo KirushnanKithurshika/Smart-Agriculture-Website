@@ -27,3 +27,11 @@
   
 }
 
+.status {
+    display: flex;
+    justify-content: space-between;  /* Distribute the space evenly */
+    align-items: flex-start;         /* Align the items at the top of the container */
+    gap: 20px;                       /* Add some space between the two components */
+}
+
+

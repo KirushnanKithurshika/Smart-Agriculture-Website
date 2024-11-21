@@ -1,0 +1,32 @@
+.potassium-status-container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 400px;
+    margin: 20px;
+}
+
+.potassium-graph-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.potassium-info {
+    padding-left: 20px;
+}
+
+.potassium-info h2 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.potassium-info p {
+    margin: 5px 0;
+    font-size: 16px;
+}
+
+.potassium-info p:last-child {
+    font-weight: bold;
+}

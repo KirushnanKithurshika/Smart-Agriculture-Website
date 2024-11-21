@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import MoistureGraph from '../../components/Moisturepichart/moisturepichart';
 import './moisture_panel.css';
 
 const MoistureDashboard = () => {
@@ -140,7 +141,8 @@ const MoistureDashboard = () => {
       </div>
 
       <div className="moisture-graph">
-        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+        <div><HighchartsReact highcharts={Highcharts} options={chartOptions} /></div>
+         <div><MoistureGraph/></div>
       </div>
       
     </div>

@@ -10,8 +10,7 @@ const equipmentSchema = new mongoose.Schema({
   image: { type: String, required: false },
   quantity: { type: Number, required: true },
   assignedTo: { type: String, required: false },
-  vendorName: { type: String, required: true },
-  vendorContactNumber: { type: String, required: true },
+
 });
 
 const Equipment = mongoose.model('Equipment', equipmentSchema);

@@ -49,7 +49,7 @@ function Equipment() {
       const equipmentId = equipments[equipmentToDelete]._id;
       setIsDeleting(true);
       try {
-        await axios.delete(`http://localhost:8000/api/equipments/${equipmentId}`);
+        await axios.delete(`http://localhost:8000/api/equipment/${equipmentId}`);
         const updatedEquipments = equipments.filter((_, i) => i !== equipmentToDelete);
         setEquipments(updatedEquipments);
         setEquipmentToDelete(null);
