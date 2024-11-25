@@ -10,6 +10,8 @@
   }
   
   .login-container {
+    height:100vh;
+    background-color: rgb(225, 243, 242);
     height: 100vh;
     display: flex;
     flex-direction: column;

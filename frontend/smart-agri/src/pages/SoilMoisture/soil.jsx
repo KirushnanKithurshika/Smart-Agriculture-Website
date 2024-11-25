@@ -18,10 +18,8 @@ function Soil() {
 
         </div>
         <div className='grid-item grid-item-2'>
-
-
-
         </div>
+    
         <div className='grid-item grid-item-3'>
         </div>
         <div className='grid-item grid-item-4'>

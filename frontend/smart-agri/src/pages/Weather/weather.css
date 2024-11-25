@@ -6,10 +6,10 @@
 
  .grid-container{
    display:grid;
-   height:fit-content;
-   background-color: rgb(255, 255, 255);
+   height:100vh;
+   background-color: rgb(216, 236, 244);
    grid-template-columns: 270px 920px auto;
-   grid-template-rows:80px 380px 350px auto ;
+   grid-template-rows:72px 320px 350px auto ;
    grid-column-gap:10px;
  
  }

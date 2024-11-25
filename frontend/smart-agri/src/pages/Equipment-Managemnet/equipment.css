@@ -1,13 +1,14 @@
 .gridequipment-container {
     display: grid;
-    height: fit-content;
-    background-color: rgb(255, 255, 255);
+    height:100vh;
+    background-color: rgb(225, 243, 242);
     grid-template-columns: 270px auto;
-    grid-template-rows: 72px 300px;
+    grid-template-rows: 72px 300px auto;
     grid-column-gap: 10px;
   }
   
   .equipment-dashboard {
+    background-color: white;
     grid-column: 2 / 4;
     grid-row: 2/3;
     margin: 20px;

@@ -9,8 +9,18 @@
       display:grid;
       background-color:rgb(255, 255, 255);
       grid-template-columns: 270px 920px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-      grid-template-rows:100px 380px auto;
+      grid-template-rows:100px 350px auto;
       grid-column-gap:10px;
                                                                                                                                                                                                                                                                                                                                                                                             
     }
-   
+   .irrigationgraph{
+    background-color: white;
+    border-radius:20px;
+    margin-left: 10px;
+   }
+   .landandalert{
+    background-color: white;
+    border-radius:20px;
+    margin-left: 10px;
+    margin-right: 20px;
+   }

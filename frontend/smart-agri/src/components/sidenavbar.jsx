@@ -48,7 +48,7 @@ function Sidenavigationbar() {
           <li><Link to="/soil"><FaWater /> Soil & Moisture</Link></li>
           <li><Link to="/logs"><FaBook /> Logs</Link></li>
           <li><Link to="/status"><FaTag /> Status</Link></li>
-          <li><Link to="/crop-management"><FaLeaf /> Crop Management</Link></li>
+          <li><Link to="/cropmanagement"><FaLeaf /> Crop Management</Link></li>
           <li><Link to="/land-management"><FaLandmark /> Land Management</Link></li>
           <li><Link to="/employee"><FaUsers /> Labor Management</Link></li>
           <li><Link to="/equipment"><FaTractor /> Equipment</Link></li>

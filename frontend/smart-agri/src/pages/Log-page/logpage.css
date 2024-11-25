@@ -1,12 +1,13 @@
 .gridlog-container {
   display: grid;
-  height: fit-content;
-  background-color: rgb(255, 255, 255);
+   height:100vh;
+  background-color: rgb(225, 243, 242);
   grid-template-columns: 270px auto;
   grid-template-rows: 72px 300px 300px auto;
   grid-column-gap: 10px;
   }
   .log-dashboard{
+    background-color: rgb(255, 255, 255);
       grid-column: 2 / 4;
       grid-row: 2 / 4;
       margin: 20px;

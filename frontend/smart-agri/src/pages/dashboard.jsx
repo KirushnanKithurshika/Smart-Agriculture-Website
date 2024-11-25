@@ -30,6 +30,9 @@ function Dashboard() {
             <div className='grid-item grid-item-6'>
                 <Weatherpanel/>
             </div>
+            <div></div>
+            <div className='irrigationgraph'></div>
+            <div className='landandalert'></div>
         </div>
 
     );

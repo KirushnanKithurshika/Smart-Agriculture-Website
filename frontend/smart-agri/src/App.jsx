@@ -20,6 +20,7 @@ import Employee from './pages/Employee-Management/employee';
 import Equipment from './pages/Equipment-Managemnet/equipment';
 import CreateEquipmentForm from './pages/Equipment-Managemnet/createequipment';
 import UpdateEquipment from './pages/Equipment-Managemnet/updateequipment';
+import Cropmanagement from './pages/Crop-Management/cropmanagement';
 
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -40,6 +41,7 @@ function App() {
                 <Route path='/equipment' element={<Equipment/>} />
                 <Route path='/createequipment' element={<CreateEquipmentForm/>}/>
                 <Route path='/createemployee' element={<AddEmployeeForm />} />
+                <Route path='/cropmanagement' element={<Cropmanagement/>}/>
                 <Route path='/updateequipment/:id' element={<UpdateEquipment/>} />
                 <Route path='/editemployee/:id' element={<EditEmployee />} />
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
