@@ -5,6 +5,7 @@ import './dashboard.css';
 import Sidenavigationbar from '../components/sidenavbar';
 import Weatherpanel from './Weather/weatherpanel';
 import Navbarmobileview from '../components/navbar-mobileview';
+import IrrigationWaterCapacity from '../components/irrigationgrapgh/irrigation';
 
 
 function Dashboard() {
@@ -31,7 +32,9 @@ function Dashboard() {
                 <Weatherpanel/>
             </div>
             <div></div>
-            <div className='irrigationgraph'></div>
+            <div className='irrigationgraph'>
+            <IrrigationWaterCapacity/>
+            </div>
             <div className='landandalert'></div>
         </div>
 
