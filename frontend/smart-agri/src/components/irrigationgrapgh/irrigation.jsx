@@ -1,11 +1,13 @@
 import React from 'react';
 import Highcharts from 'highcharts';
+import './irrigation.css';
 import HighchartsReact from 'highcharts-react-official';
 
 const IrrigationWaterCapacity = () => {
   const options = {
     chart: {
       type: 'line',
+      height: 300, // Set the height of the chart (in pixels)
     },
     title: {
       text: 'Irrigation Water Capacity for Crops',
@@ -44,7 +46,7 @@ const IrrigationWaterCapacity = () => {
   };
 
   return (
-    <div>
+    <div className='irrigation'>
       <HighchartsReact highcharts={Highcharts} options={options} />
     </div>
   );

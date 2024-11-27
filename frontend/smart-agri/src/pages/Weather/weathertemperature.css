@@ -94,30 +94,4 @@
 }
 
 
-@media (max-width: 768px) {
-    .weather-dashboard {
-    grid-template-columns: 1fr;
-        margin-right: 0px;
-    }
 
-    .weather-left {
-        margin-bottom: 20px;
-        font-size: 48px;
-    }
-
-    .temperature {
-        font-size: 48px;
-    }
-
-    .weather-right {
-        align-items: flex-start;
-
-        
-    }
-
-    .weather-info {
-        justify-content: center;
-        font-size: 12px;
-
-    }
-}

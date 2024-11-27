@@ -28,7 +28,7 @@
 }
 
 .sidebar-menu li {
-    position: relative; /* Ensure sub-menus stay within the parent list item */
+    position: relative; 
 }
 
 .sidebar-menu li a {
@@ -50,6 +50,12 @@
     border-left: 4px solid rgb(23, 167, 45);
 }
 
+.sidebar-menu li.active a {
+    background-color: #b2dfdb; 
+    border-left: 4px solid rgb(23, 167, 45);
+    color: #259481; 
+  }
+  
 .sidebar-menu li svg {
     margin-right: 10px;
     

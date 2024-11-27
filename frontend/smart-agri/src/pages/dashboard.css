@@ -9,18 +9,25 @@
       display:grid;
       background-color:rgb(255, 255, 255);
       grid-template-columns: 270px 920px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-      grid-template-rows:100px 350px auto;
+      grid-template-rows:100px 350px 450px auto;
       grid-column-gap:10px;
-                                                                                                                                                                                                                                                                                                                                                                                            
+      width: 100%; /* Ensures the container takes up full width */
+      min-width: 100vw; /* Prevents it from being smaller than the viewport width */
+      
     }
+                                                                                                                                                                                                                                                                                                                                                                                            
+    
    .irrigationgraph{
     background-color: white;
     border-radius:20px;
     margin-left: 10px;
+    align-items: center;
+    width:100%;
    }
    .landandalert{
+    margin:0px 20px;
+    padding:20px;
     background-color: white;
     border-radius:20px;
-    margin-left: 10px;
-    margin-right: 20px;
+    
    }

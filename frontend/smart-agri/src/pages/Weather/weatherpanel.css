@@ -42,10 +42,3 @@
 .weather-panel-contentC {
   grid-area: contentC;
 }
-@media (max-width: 768px) {
-
-  .weather-panel-area {
-    height: max-content;
-  }
-
-}

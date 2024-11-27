@@ -102,23 +102,3 @@
   }
 
 
-  @media (max-width: 1000px){
-    .datetime {
-        font-size: 10px; }
-    .Weather-dashboard{
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 3fr;
-      height: fit-content;
-      
-    }
-  }
-  @media (max-width: 800px){
-    .datetime {
-        font-size: 10px; }
-    .Weather-dashboard{
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 3fr;
-      height: fit-content;
-      
-    }
-  }

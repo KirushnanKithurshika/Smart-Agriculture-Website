@@ -43,22 +43,4 @@
     margin: 20px 0;
   }
   
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .hourly-forecast, .daily-forecast {
-      grid-template-columns: repeat(3, 1fr); /* Adjust number of columns for smaller screens */
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .hourly-forecast, .daily-forecast {
-      grid-template-columns: repeat(2, 1fr); /* Adjust number of columns for smaller screens */
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .hourly-forecast, .daily-forecast {
-      grid-template-columns: repeat(1, 1fr); /* Adjust number of columns for mobile */
-    }
-  }
   

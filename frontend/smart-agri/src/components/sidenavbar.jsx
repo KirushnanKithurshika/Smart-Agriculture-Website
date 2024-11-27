@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaHome, FaCloud, FaWater, FaCogs, FaUserAlt, FaLeaf, FaUsers, FaTractor, FaBook, FaLandmark, FaTag, FaArrowAltCircleLeft } from 'react-icons/fa';
 import './sidenavbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 function Sidenavigationbar() {
   const [isOpen, setIsOpen] = useState(true); // Sidebar open by default for larger screens
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const location = useLocation(); // Get the current location
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -41,19 +42,41 @@ function Sidenavigationbar() {
             <FaArrowAltCircleLeft className="minimize-arrow" onClick={toggleSidebar} />
           </div>
         )}
-        
+
         <ul className="sidebar-menu">
-          <li><Link to="/dashboard"><FaHome /> Dashboard</Link></li>
-          <li><Link to="/weather"><FaCloud /> Weather</Link></li>
-          <li><Link to="/soil"><FaWater /> Soil & Moisture</Link></li>
-          <li><Link to="/logs"><FaBook /> Logs</Link></li>
-          <li><Link to="/status"><FaTag /> Status</Link></li>
-          <li><Link to="/cropmanagement"><FaLeaf /> Crop Management</Link></li>
-          <li><Link to="/land-management"><FaLandmark /> Land Management</Link></li>
-          <li><Link to="/employee"><FaUsers /> Labor Management</Link></li>
-          <li><Link to="/equipment"><FaTractor /> Equipment</Link></li>
-          <li className="Account-setting"><Link to="/my-account"><FaUserAlt /> My Account</Link></li>
-          <li><Link to="/settings"><FaCogs /> Settings</Link></li>
+          <li className={location.pathname === '/dashboard' ? 'active' : ''}>
+            <Link to="/dashboard"><FaHome /> Dashboard</Link>
+          </li>
+          <li className={location.pathname === '/weather' ? 'active' : ''}>
+            <Link to="/weather"><FaCloud /> Weather</Link>
+          </li>
+          <li className={location.pathname === '/soil' ? 'active' : ''}>
+            <Link to="/soil"><FaWater /> Soil & Moisture</Link>
+          </li>
+          <li className={location.pathname === '/logs' ? 'active' : ''}>
+            <Link to="/logs"><FaBook /> Logs</Link>
+          </li>
+          <li className={location.pathname === '/status' ? 'active' : ''}>
+            <Link to="/status"><FaTag /> Status</Link>
+          </li>
+          <li className={location.pathname === '/cropmanagement' ? 'active' : ''}>
+            <Link to="/cropmanagement"><FaLeaf /> Crop Management</Link>
+          </li>
+          <li className={location.pathname === '/land-management' ? 'active' : ''}>
+            <Link to="/land-management"><FaLandmark /> Land Management</Link>
+          </li>
+          <li className={location.pathname === '/employee' ? 'active' : ''}>
+            <Link to="/employee"><FaUsers /> Labor Management</Link>
+          </li>
+          <li className={location.pathname === '/equipment' ? 'active' : ''}>
+            <Link to="/equipment"><FaTractor /> Equipment</Link>
+          </li>
+          <li className={`Account-setting ${location.pathname === '/my-account' ? 'active' : ''}`}>
+            <Link to="/my-account"><FaUserAlt /> My Account</Link>
+          </li>
+          <li className={location.pathname === '/settings' ? 'active' : ''}>
+            <Link to="/settings"><FaCogs /> Settings</Link>
+          </li>
         </ul>
       </div>
 

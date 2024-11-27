@@ -1,3 +1,88 @@
 .cropmanagement-container{
-    
+    display: grid;
+    min-height:100vh;
+    background-color: rgb(214, 237, 236);
+    min-width:100vw;
+   grid-template-columns: 270px auto;
+   grid-template-rows: 72px 300px 300px auto;
+   grid-column-gap: 10px;
 }
+
+.croplog-dashboard{
+    background-color: transparent;
+       grid-column: 2 / 4;
+      grid-row: 2 / 4;
+      margin: 20px;
+      display: grid;
+      height: fit-content;
+      grid-template-columns: 1fr;
+      border-radius: 20px;
+      opacity: 100%;
+      padding: 10px;
+     
+    
+    
+  }
+
+  .crop-images-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 items in a row */
+    grid-gap: 20px;
+    justify-items: center; /* Center the grid items */
+    align-items: center; /* Vertically center the grid items */
+  }
+  
+  .crop-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden; 
+    padding: 10px;
+    height: 350px; /* Fixed height for each image container */
+    width: 330px; /* Fixed width for each image container */
+  }
+  
+  .crop-image img {
+    object-fit: cover; /* Ensures the image covers the area, cropping if necessary */
+    width: 100%; /* Image takes up full width of the container */
+    height: 100%; /* Image takes up full height of the container */
+    border-radius: 8px;
+  }
+  
+  .crop-image p {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  
+  
+  .crop-image p {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+
+  .nav-button {
+    background-color: #0ba935; /* Green background */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    margin-left: 50px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .nav-button:hover {
+    background-color: #45a049;
+  }
+  
+  .active-button {
+    background-color: #818381; /* Active color (orange) */
+    font-weight: bold;
+  }
