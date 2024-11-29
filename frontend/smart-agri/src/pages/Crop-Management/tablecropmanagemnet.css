@@ -1,0 +1,71 @@
+.task-management-table-container {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .task-management-table-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .task-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+  }
+  
+  .task-table th,
+  .task-table td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  .task-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .task-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .task-table button {
+    margin: 2px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .task-table button:hover {
+    background-color: #ddd;
+  }
+  
+  .add-task-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  
+  .add-task-button:hover {
+    background-color: #45a049;
+  }
+
+  .editcrop-button{
+    background-color: #094688;
+    color: #fff;
+  }
+
+  .deletecrop-button{
+    background-color: #dc3545;
+    color: #fff;
+  }

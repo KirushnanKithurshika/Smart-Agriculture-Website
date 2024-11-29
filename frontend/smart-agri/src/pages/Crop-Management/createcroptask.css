@@ -1,0 +1,106 @@
+.gridform-container {
+    display: grid;
+    grid-template-rows: 1fr 5fr;
+    grid-gap: 20px;
+    padding: 20px;
+    }
+  
+  .navbar-section {
+    grid-row: 1 / 2;
+  }
+  
+  .form-section {
+    grid-row: 2 / 3;
+  }
+  
+  .formadd-container {
+    width: 100%;
+    max-width: 500px; /* Ensures a responsive max width */
+    margin: 0 auto;
+    padding: 25px;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #dcdcdc; /* Subtle border for separation */
+  }
+  
+  .form-title {
+    text-align: center;
+    font-size: 26px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #333333;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  input, select {
+    margin-bottom: 20px;
+    padding: 12px 14px;
+    font-size: 15px;
+    border: 1px solid #c0c0c0;
+    border-radius: 8px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  input:focus, select:focus {
+    outline: none;
+    border-color: #848485; /* Highlight color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  .submit-button,
+  .cancel-button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submit-button {
+    background-color: #28a745;
+    color: #ffffff;
+  }
+  
+  .submit-button:hover {
+    background-color: #218838;
+    transform: scale(1.02);
+  }
+  
+  .cancel-button {
+    background-color: #6c757d;
+    color: #ffffff;
+  }
+  
+  .cancel-button:hover {
+    background-color: #5a6268;
+    transform: scale(1.02);
+  }
+  
+  .button-group {
+    display: flex;
+    justify-content: space-between; 
+    gap: 10px; }
+  
+  @media (max-width: 768px) {
+    .formadd-container {
+      padding: 15px;
+    }
+  
+    .submit-button,
+    .cancel-button {
+      font-size: 14px;
+      padding: 10px 15px;
+    }
+  
+    .form-title {
+      font-size: 22px;
+    }
+  }
+  

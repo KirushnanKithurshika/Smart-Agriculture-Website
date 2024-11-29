@@ -1,21 +1,18 @@
-/* src/pages/Employee-Management/updateemployee.css */
+/* src/pages/Crop-Management/cropmanagement.css */
 
-.edit-employee-grid {
+.update-task-grid{
     display: grid;
     grid-template-rows: 1fr 5fr;
     gap: 20px;
     padding: 20px;
-
 }
 
 .navbar-section {
     grid-row: 1 / 2;
 }
-
 .form-section {
     grid-row: 2 / 3;
 }
-
 .form-section {
     max-width: 600px;
     margin: 0 auto;
@@ -34,6 +31,7 @@
 .form-section form {
     display: flex;
     flex-direction: column;
+    
 }
 
 .form-section input {
@@ -45,9 +43,12 @@
     font-size: 16px;
 }
 
+.form-section input:focus {
+    border-color: #4caf50; /* Highlight with green */
+    box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+}
 
-.buttonE-group {
-   
+.buttonT-group {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -57,16 +58,13 @@
     margin: 5px;
     display: flex;
     justify-content:center;
-
-
 }
-
-.update-button {
+.update-button{
     margin-right:10px;
     padding: 10px 15px;
     border: none;
     border-radius: 4px;
-    background-color: #06468a;
+    background-color: #28a745;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -74,11 +72,9 @@
 }
 
 .update-button:hover {
-    background-color: #0056b3;
+    background-color:#107e29;
 }
-
-
-.cancelupdate-button {
+.cancelupdate-button{
     padding: 10px 15px;
     background-color: #c22216;
     color: white;
@@ -91,5 +87,6 @@
 }
 
 .cancelupdate-button:hover {
-    background-color: #e53935;
+    background-color: #1f0303;
+    transform: scale(1.05);
 }

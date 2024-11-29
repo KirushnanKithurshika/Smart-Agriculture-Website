@@ -11,6 +11,7 @@ import Ladysfinger from '../../assets/ladysfinger.jpg';
 import Peanut from '../../assets/peanut.jpg';
 import Potato from '../../assets/potato.jpg';
 import Tomato from '../../assets/tomato.jpg';
+import Cropdetails from './cropdetails';
 
 function Cropmanagement() {
   // Set the initial active state (Crops button is active by default)
@@ -46,7 +47,7 @@ function Cropmanagement() {
             </Link>
 
             {/* Task Management Button */}
-            <Link to="/task-management">
+            <Link to="/croptask">
               <button
                 className={`nav-button ${activeButton === 'taskManagement' ? 'active-button' : ''}`}
                 onClick={() => handleButtonClick('taskManagement')}

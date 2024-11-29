@@ -1,0 +1,58 @@
+.cropmanagement-container {
+    display: grid;
+    min-height: 100vh;
+    background-color: rgb(214, 237, 236);
+    min-width: 100vw;
+    grid-template-columns: 270px auto;
+    grid-template-rows: 72px 300px 300px auto;
+    grid-column-gap: 10px;
+}
+
+.croplog-dashboard {
+    background-color: transparent;
+    grid-column: 2 / 4;
+    grid-row: 2 / 4;
+    margin: 20px;
+    display: grid;
+    height: fit-content;
+    grid-template-columns: 1fr;
+    border-radius: 20px;
+    opacity: 100%;
+    padding: 10px;
+}
+
+.crop-task-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+    justify-items: center;
+    align-items: center;
+}
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+.modal {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+
+.modal button {
+  margin: 10px;
+}
+
