@@ -1,7 +1,4 @@
-// auth.js
 import bcrypt from 'bcrypt';
-
-// Function to hash a password
 export const hashPassword = (password) => {
     return new Promise((resolve, reject) => {
         bcrypt.genSalt(12, (err, salt) => {

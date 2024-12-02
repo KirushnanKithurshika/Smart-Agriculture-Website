@@ -21,9 +21,9 @@ import Equipment from './pages/Equipment-Managemnet/equipment';
 import CreateEquipmentForm from './pages/Equipment-Managemnet/createequipment';
 import UpdateEquipment from './pages/Equipment-Managemnet/updateequipment';
 import Cropmanagement from './pages/Crop-Management/cropmanagement';
-import Cropdetails from './pages/Crop-Management/cropdetails';
 import UpdateTask from './pages/Crop-Management/updatecroptask';
 import AddCropTask from './pages/Crop-Management/createcroptask';
+
 
 
 axios.defaults.baseURL = 'http://localhost:8000';
@@ -49,9 +49,9 @@ function App() {
                 <Route path='/editemployee/:id' element={<EditEmployee />} />
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
                 <Route path='/soil' element={<Soil />} />
-                <Route path='/croptask' element={<Cropdetails/>}/>
-               <Route path='/updatecroptask'element={<UpdateTask/>}/>
+               <Route path='/updatecroptask/:id'element={<UpdateTask/>}/>
                <Route path='/addcroptask' element={<AddCropTask/>}/>
+            
             </Routes>
         </BrowserRouter>
     );

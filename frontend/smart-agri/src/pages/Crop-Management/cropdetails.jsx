@@ -69,36 +69,10 @@ function Cropdetails() {
   };
 
   return (
-    <div className="cropmanagement-container">
-      <div className="grid-item grid-item-1">
-        <Navbar />
-      </div>
-      <div className="grid-item grid-item-2"></div>
-      <div className="grid-item grid-item-3"></div>
-      <div className="grid-item grid-item-4">
-        <Sidenavigationbar />
-      </div>
-
+    <div >
+      
       <div className="croplog-dashboard grid-item">
-        <div className="button-container">
-          <Link to="/cropmanagement">
-            <button
-              className={`nav-button ${activeButton === 'crops' ? 'active-button' : ''}`}
-              onClick={() => handleButtonClick('crops')}
-            >
-              Crops
-            </button>
-          </Link>
-
-          <Link to="/croptask">
-            <button
-              className={`nav-button ${activeButton === 'taskManagement' ? 'active-button' : ''}`}
-              onClick={() => handleButtonClick('taskManagement')}
-            >
-              Task Management
-            </button>
-          </Link>
-        </div>
+       
 
         <div className="crop-task-container">
           <img src={Paddyfield} alt="Paddy Field" />

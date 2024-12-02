@@ -14,12 +14,17 @@ import Tomato from '../../assets/tomato.jpg';
 import Cropdetails from './cropdetails';
 
 function Cropmanagement() {
-  // Set the initial active state (Crops button is active by default)
   const [activeButton, setActiveButton] = useState('crops');
+  const [showCropDetails, setShowCropDetails] = useState(false); // State to toggle between crop images and crop details
 
-  // Handle button click to update the active button state
+  // Handle button click to update the active button state and toggle view
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
+    if (buttonName === 'taskManagement') {
+      setShowCropDetails(true); // Show crop details when Task Management button is clicked
+    } else {
+      setShowCropDetails(false); // Show crop images when Crops button is clicked
+    }
   };
 
   return (
@@ -35,65 +40,71 @@ function Cropmanagement() {
         </div>
 
         <div className='croplog-dashboard grid-item'>
-          <div className="button-container">
+        <div className="button-container">
             {/* Crops Button */}
-            <Link to="/cropmanagement">
-              <button
-                className={`nav-button ${activeButton === 'crops' ? 'active-button' : ''}`}
-                onClick={() => handleButtonClick('crops')}
-              >
-                Crops
-              </button>
-            </Link>
+            <button
+              className={`nav-button ${activeButton === 'crops' ? 'active-button' : ''}`}
+              onClick={() => handleButtonClick('crops')}
+            >
+              Crops
+            </button>
 
             {/* Task Management Button */}
-            <Link to="/croptask">
-              <button
-                className={`nav-button ${activeButton === 'taskManagement' ? 'active-button' : ''}`}
-                onClick={() => handleButtonClick('taskManagement')}
-              >
-                Task Management
-              </button>
-            </Link>
-          </div>
+            <button
+              className={`nav-button ${activeButton === 'taskManagement' ? 'active-button' : ''}`}
+              onClick={() => handleButtonClick('taskManagement')}
+            >
+              Task Management
+            </button>
+
+            </div>
 
           <div className="crop-images-container">
-            <div className="crop-image">
-              <img src={Whiterice} alt="White Rice Crop" />
-              <p>White Rice Crop</p>
+            
+          {showCropDetails ? (
+              // Render the Cropdetails component if showCropDetails is true
+              <Cropdetails />
+            ) : (
+              <div className="crop-images">
+                <div className="crop-image">
+                  <img src={Whiterice} alt="White Rice Crop" />
+                  <p>White Rice Crop</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Blackrice} alt="Black Rice Crop" />
+                  <p>Black Rice Crop</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Redrice} alt="Red Rice Crop" />
+                  <p>Red Rice Crop</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Chickpea} alt="Chickpea Crop" />
+                  <p>Chickpea Crop</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Ladysfinger} alt="Lady's Finger" />
+                  <p>Lady's Finger</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Tomato} alt="Tomato Crop" />
+                  <p>Tomato</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Potato} alt="Potato Crop" />
+                  <p>Potato</p>
+                </div>
+                <div className="crop-image">
+                  <img src={Peanut} alt="Peanut Crop" />
+                  <p>Peanuts</p>
+                </div>
+              </div>
+            )}
             </div>
-            <div className="crop-image">
-              <img src={Blackrice} alt="Black Rice Crop" />
-              <p>Black Rice Crop</p>
-            </div>
-            <div className="crop-image">
-              <img src={Redrice} alt="Red Rice Crop" />
-              <p>Red Rice Crop</p>
-            </div>
-            <div className="crop-image">
-              <img src={Chickpea} alt="Chickpea Crop" />
-              <p>Chickpea Crop</p>
-            </div>
-            <div className="crop-image">
-              <img src={Ladysfinger} alt="Lady's Finger" />
-              <p>Lady's Finger</p>
-            </div>
-            <div className="crop-image">
-              <img src={Tomato} alt="Tomato Crop" />
-              <p>Tomato</p>
-            </div>
-            <div className="crop-image">
-              <img src={Potato} alt="Potato Crop" />
-              <p>Potato</p>
-            </div>
-            <div className="crop-image">
-              <img src={Peanut} alt="Peanut Crop" />
-              <p>Peanuts</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
+  
   );
 }
 
