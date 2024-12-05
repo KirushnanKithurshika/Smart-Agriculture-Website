@@ -7,23 +7,50 @@ const IrrigationWaterCapacity = () => {
   const options = {
     chart: {
       type: 'line',
-      height: 300, // Set the height of the chart (in pixels)
+      height: 250,
     },
     title: {
       text: 'Irrigation Water Capacity for Crops',
+      style: {
+        fontSize: '16px', // Set the font size for the title
+        fontWeight: 'bold', // Make the title bold
+        color: '#333333', // Set the color
+      },
     },
     subtitle: {
       text: 'Water requirement per crop at different stages of growth',
+      style: {
+        fontSize: '12px', // Set the font size for the subtitle
+       color: '#666666', // Set the color
+      },
     },
     xAxis: {
       categories: ['Stage 1', 'Stage 2', 'Stage 3', 'Stage 4', 'Stage 5'],
       title: {
         text: 'Growth Stages',
+        style: {
+          fontSize: '12px', // Set the font size for the xAxis title
+          fontWeight: 'bold', // Make the title bold
+        },
+      },
+      labels: {
+        style: {
+          fontSize: '12px', // Set the font size for xAxis labels
+        },
       },
     },
     yAxis: {
       title: {
         text: 'Water Capacity (liters)',
+        style: {
+          fontSize: '12px', // Set the font size for the yAxis title
+          fontWeight: 'bold', // Make the title bold
+        },
+      },
+      labels: {
+        style: {
+          fontSize: '12px', // Set the font size for yAxis labels
+        },
       },
     },
     series: [
@@ -43,6 +70,12 @@ const IrrigationWaterCapacity = () => {
         color: '#90ed7d',
       },
     ],
+    legend: {
+      itemStyle: {
+        fontSize: '12px', // Set the font size for legend items
+        fontWeight: 'normal',
+      },
+    },
   };
 
   return (

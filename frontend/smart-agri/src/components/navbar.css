@@ -7,7 +7,7 @@
 .container_navbar {
 
     width: 100%;
-    height: 80px;
+    height: 70px;
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(218, 213, 213);
     position: fixed;
@@ -26,7 +26,7 @@
 }
 
 .logo-container {
-    width: 262px;
+    width: 230px;
     height: 100%;
     margin-left: 10px;
     padding-right: 20px;
@@ -34,12 +34,13 @@
     
 }
 .Logo{
+    width:100%;
     margin-left: 10px;
 }
 
 .top-bar-icon {
     color: rgba(83, 128, 140, 1);
-    font-size: 24px;
+    font-size: 18px;
     margin-left: 50px;
     margin-right:1px;
   
@@ -62,13 +63,13 @@
     padding: 10px;
     color: rgba(83, 128, 140, 1);
     padding-inline: 40px;
-    font-size:22px
+    font-size:18px
 
 }
 
 .admin-text {
     margin-right: 10px; 
-    font-size: 22px;                
+    font-size: 16px;                
 }
 
 
@@ -83,7 +84,7 @@
 
     .container_navbarM {
         width: 100%;
-        height: 80px;
+        height: 72px;
         background-color: rgb(255, 255, 255);
         border: 1px solid rgb(218, 213, 213);
         position: fixed;
@@ -120,20 +121,20 @@
 
     .top-bar-iconM {
         color: rgba(83, 128, 140, 1);
-        font-size: 20px;
+        font-size: 16px;
         margin-right: 10px;
     }
 
     .top-bar-iconuserM {
         color: rgba(83, 128, 140, 1);
-        font-size: 20px;
+        font-size: 14px;
         margin-left: 10px;
         margin-right: 10px;
     }
 
     .top-bar-rightM {
         margin-left: auto;
-        margin-right:30px;
+        margin-right:10px;
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -144,7 +145,7 @@
         align-items: center;
         font-family: 'Inter', sans-serif;
         font-weight: 600;
-        font-size: 15px;
+        font-size: 14px;
         padding: 10px;
         color: rgba(83, 128, 140, 1);
         padding-inline: 40px;

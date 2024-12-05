@@ -1,12 +1,16 @@
+// In Sidenavigationbar.js
 import React, { useState, useEffect } from 'react';
 import { FaBars, FaHome, FaCloud, FaWater, FaCogs, FaUserAlt, FaLeaf, FaUsers, FaTractor, FaBook, FaLandmark, FaTag, FaArrowAltCircleLeft } from 'react-icons/fa';
 import './sidenavbar.css';
 import { Link, useLocation } from 'react-router-dom';
 
 function Sidenavigationbar() {
-  const [isOpen, setIsOpen] = useState(true); // Sidebar open by default for larger screens
+  const [isOpen, setIsOpen] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
   const location = useLocation(); // Get the current location
+
+  // Access the farm name from location.state if it exists, else use 'Farm' as fallback
+  const farmName = location.state ? location.state.farmName : 'Farm A'; 
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -16,16 +20,14 @@ function Sidenavigationbar() {
     const handleResize = () => {
       if (window.innerWidth <= 768) {
         setIsSmallScreen(true);
-        setIsOpen(false); // Close sidebar by default for small screens
+        setIsOpen(false);
       } else {
         setIsSmallScreen(false);
-        setIsOpen(true); // Keep sidebar open by default for large screens
+        setIsOpen(true);
       }
     };
 
-    // Call the function initially to check screen size on page load
     handleResize();
-
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
@@ -34,16 +36,16 @@ function Sidenavigationbar() {
 
   return (
     <>
-      {/* Sidebar */}
       <div className={`sidebarA ${isOpen ? 'open' : 'closed'}`}>
-        {/* Arrow to minimize the sidebar */}
         {isOpen && (
           <div className="sidebar-header">
             <FaArrowAltCircleLeft className="minimize-arrow" onClick={toggleSidebar} />
           </div>
         )}
-
         <ul className="sidebar-menu">
+          {/* <div className="farmName">
+            <h2>{farmName}</h2> 
+          </div> */}
           <li className={location.pathname === '/dashboard' ? 'active' : ''}>
             <Link to="/dashboard"><FaHome /> Dashboard</Link>
           </li>
@@ -55,9 +57,6 @@ function Sidenavigationbar() {
           </li>
           <li className={location.pathname === '/logs' ? 'active' : ''}>
             <Link to="/logs"><FaBook /> Logs</Link>
-          </li>
-          <li className={location.pathname === '/status' ? 'active' : ''}>
-            <Link to="/status"><FaTag /> Status</Link>
           </li>
           <li className={location.pathname === '/cropmanagement' ? 'active' : ''}>
             <Link to="/cropmanagement"><FaLeaf /> Crop Management</Link>
@@ -80,7 +79,6 @@ function Sidenavigationbar() {
         </ul>
       </div>
 
-      {/* Hamburger to open the sidebar when it's closed */}
       <div className="hamburger-container" onClick={toggleSidebar} style={{ display: (isSmallScreen || !isOpen) ? 'flex' : 'none' }}>
         <FaBars className="hamburger-icon" />
       </div>

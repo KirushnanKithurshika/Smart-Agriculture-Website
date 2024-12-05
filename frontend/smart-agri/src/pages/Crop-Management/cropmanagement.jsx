@@ -62,7 +62,6 @@ function Cropmanagement() {
           <div className="crop-images-container">
             
           {showCropDetails ? (
-              // Render the Cropdetails component if showCropDetails is true
               <Cropdetails />
             ) : (
               <div className="crop-images">

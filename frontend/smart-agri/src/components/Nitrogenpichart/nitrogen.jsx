@@ -48,7 +48,7 @@ const NitrogenStatus = () => {
         chart: {
             type: 'pie',
             width: 200,
-            height: 200,
+            height: 180,
             events: {
                 load: function () {
                     const chart = this;
@@ -60,7 +60,7 @@ const NitrogenStatus = () => {
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '22px',
+                            fontSize: '16px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })
@@ -94,8 +94,8 @@ const NitrogenStatus = () => {
             <div className="nitrogen-graph-container">
                 <HighchartsReact highcharts={Highcharts} options={getNitrogenChartOptions()} />
                 <div className="nitrogen-info">
-                    <h2>Nitrogen</h2>
-                    <p>{nitrogenLevel} mg/l</p>
+                    <h2>Nitrogen-level:{nitrogenLevel} mg/l</h2>
+                    <p></p>
                     <p>Allowable range: {allowableRange.min} - {allowableRange.max} mg/l</p>
                     <p style={{ color: status === 'Critical' ? 'red' : 'green' }}>Status: {status}</p>
                 </div>

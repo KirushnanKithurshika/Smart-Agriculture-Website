@@ -7,19 +7,19 @@
   margin-left: 10px;
   align-items: center;
   width: fit-content;
-  height: 280px;
+  height: 250px;
   padding: 10px;
   display: grid;
   border-radius: 20px;
   background-color: rgb(255, 255, 255);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  grid-template-columns: 200px 200px 500px; 
+  grid-template-columns: 160px 160px 360px; 
   white-space: initial;
   z-index: 150;
 }
 
 .chart-item {
-  background-color: rgb(214, 233, 245);
+  
   border-radius: 10px;
 }
 

@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './createcroptask.css';
 import Navbar from '../../components/navbar';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
-const AddCropTask = () => {
+const AddCropTaskForm = ({ addTask }) => {
   const [formData, setFormData] = useState({
     taskName: '',
-    cropType: '',
     assignedTo: '',
     status: '',
     deadline: '',
@@ -22,29 +23,42 @@ const AddCropTask = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form Data Submitted:', formData);
-    // Reset form data after submission
-    setFormData({
-      taskName: '',
-      cropType: '',
-      assignedTo: '',
-      status: '',
-      deadline: '',
-    });
-    navigate('/croptask'); // Navigate back to crop tasks list
-  };
+    console.log('Form Data:', formData);
+  
+    try {
+        const response = await axios.post('http://localhost:8000/api/croptask/tasks', formData);
+        console.log('Response:', response);  // Log the full response here
+        if (response.status === 200 || response.status === 201) {
+            console.log('Crop task added:', response.data);
+            if (addTask) {
+                addTask(response.data);  // Add the new task to the parent component
+            }
+            setFormData({
+                taskName: '',
+                assignedTo: '',
+                status: '',
+                deadline: '',
+            });
+            navigate('/cropmanagement');
+        } else {
+            toast.error('Failed to add crop task. Please try again.');
+        }
+    } catch (error) {
+        console.error('Error adding crop task:', error.response ? error.response.data : error.message);
+        toast.error('Error adding crop task: ' + (error.response ? error.response.data.message : error.message));
+    }
+};
 
   const handleCancel = () => {
     setFormData({
       taskName: '',
-      cropType: '',
       assignedTo: '',
       status: '',
       deadline: '',
     });
-    navigate('/croptask'); // Navigate back to crop tasks list
+    navigate('/cropmanagement');  // Navigate to crop management page when Cancel is clicked
   };
 
   return (
@@ -61,14 +75,6 @@ const AddCropTask = () => {
               name="taskName"
               placeholder="Task Name"
               value={formData.taskName}
-              onChange={handleChange}
-              required
-            />
-            <input
-              type="text"
-              name="cropType"
-              placeholder="Crop Type"
-              value={formData.cropType}
               onChange={handleChange}
               required
             />
@@ -109,4 +115,4 @@ const AddCropTask = () => {
   );
 };
 
-export default AddCropTask;
+export default AddCropTaskForm;

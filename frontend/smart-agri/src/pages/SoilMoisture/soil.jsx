@@ -37,10 +37,11 @@ function Soil() {
             </div>
             <div class="column2" style={{
               backgroundImage: `url(${PH})`,
-              backgroundSize: 'cover',   // Ensures the image covers the entire div
+              backgroundRepeat: 'no-repeat',
+              backgroundSize: '280px 200px',   // Ensures the image covers the entire div
               backgroundPosition: 'center',  // Centers the image in the div
               width: '90%',             // Adjust the width and height as needed
-              height: '300px',
+              
             }}
             >
 
@@ -56,9 +57,10 @@ function Soil() {
         <div className='status'>
         <NitrogenStatus/>
         <PhosphorusStatus />
+        <PotassiumStatus/>
        
         </div>
-        <div> <PotassiumStatus/></div>
+        <div> </div>
       </div>
 
     </div>

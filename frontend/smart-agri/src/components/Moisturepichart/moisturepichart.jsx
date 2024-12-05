@@ -36,8 +36,8 @@ const MoistureGraph = () => {
     const getMoistureChartOptions = () => ({
         chart: {
             type: 'pie',
-            width: 200,
-            height: 200,
+            width: 180,
+            height: 180,
             events: {
                 load: function () {
                     const chart = this;
@@ -49,7 +49,7 @@ const MoistureGraph = () => {
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '18px',
+                            fontSize: '16px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })

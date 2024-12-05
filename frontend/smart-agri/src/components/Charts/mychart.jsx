@@ -43,20 +43,20 @@ const MyChart = () => {
     const getPieChartOptions = (value, titleText, emoji, unit = '%') => ({
         chart: {
             type: 'pie',
-            width: 200,
-            height: 200,
+            width: 170,
+            height: 170,
             events: {
                 load: function () {
                     const chart = this;
                     const text = `${emoji}</br>${value} ${unit}`;
                     chart.renderer.text(
                         text,
-                        chart.plotLeft + chart.plotWidth / 2 - 10,
+                        chart.plotLeft + chart.plotWidth / 2 ,
                         chart.plotTop + chart.plotHeight / 2
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '18px',
+                            fontSize: '14px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })
@@ -85,11 +85,11 @@ const MyChart = () => {
     });
 
     const getBarChartOptions = () => ({
-        chart: { type: 'column', width: 500, height: 200 },
+        chart: { type: 'column', width: 350, height: 200 },
         title: { 
             text: 'Nutrient Levels',
             style: {
-                fontSize: '14px',
+                fontSize: '16px',
                 color: '#333333',
                 fontWeight: 'bold',
                 fontFamily: 'Arial, sans-serif'

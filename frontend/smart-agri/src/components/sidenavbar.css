@@ -1,7 +1,7 @@
 .sidebarA {
-    margin-top: 10px;
-    width: 272px;
-    background-color: #fcfcfc;
+    margin-top:0px;
+    width: 240px;
+    background-color: #ffffff;
     border-right: 1px solid #d9d9d9;
     border-top: 1px solid #d9d9d9;
     display: flex;
@@ -23,8 +23,8 @@
 .sidebar-menu {
     list-style-type: none;
     padding: 0;
-    margin-left: 10px;
-    margin-top: 30px;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 
 .sidebar-menu li {
@@ -32,15 +32,15 @@
 }
 
 .sidebar-menu li a {
-    padding: 15px 20px;
+    padding: 10px 10px;
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     align-items: center;
     transition: background-color 0.3s ease;
     cursor: pointer;
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
     color: rgba(83, 128, 140, 1);
     text-decoration: none;
 }
@@ -92,7 +92,7 @@
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
     color: rgba(83, 128, 140, 1);
 }
@@ -100,9 +100,9 @@
 .hamburger-container {
     margin-left: 10px;
     display: flex;
-    width: 40px;
+    width: 30px;
     margin-top: 10px;
-    height: 40px;
+    height: 30px;
     background-color: #ffffff;
     align-items: center;
     justify-content: center;
@@ -111,7 +111,7 @@
 }
 
 .hamburger-icon {
-    font-size: 24px;
+    font-size: 16px;
     color: rgba(83, 128, 140, 1);
 }
 

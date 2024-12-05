@@ -2,7 +2,7 @@
     display: grid;
     height:100vh;
     background-color: rgb(225, 243, 242);
-    grid-template-columns: 270px auto;
+    grid-template-columns: 240px auto;
     grid-template-rows: 72px 300px auto;
     grid-column-gap: 10px;
   }

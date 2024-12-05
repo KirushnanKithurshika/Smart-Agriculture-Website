@@ -2,21 +2,36 @@ import CropTask from "../models/croptask.js";
 
 export const createCropTask = async (req, res) => {
     try {
-        const cropTasksData = req.body; // Expecting an array of crop tasks
+        // Ensure that the request body is an array. If it's not, make it an array with one task
+        const cropTasksData = Array.isArray(req.body) ? req.body : [req.body];
 
-        // Ensure the request body is an array
-        if (!Array.isArray(cropTasksData)) {
-            return res.status(400).json({ message: "Request body must be an array of crop tasks" });
-        }
+        // Array to store validation errors (if any)
+        const validationErrors = [];
 
-        // Create an array to store all the created crop tasks
-        const createdTasks = [];
-
-        // Loop through each crop task data and save
+        // Validate each crop task
         for (const taskData of cropTasksData) {
             const { taskName, assignedTo, status, deadline } = taskData;
 
-            // Create a new CropTask for each taskData
+            // Check for missing fields
+            if (!taskName || !assignedTo || !status || !deadline) {
+                validationErrors.push("Missing required fields in crop task.");
+            }
+
+            // Check if the 'deadline' is a valid date
+            if (isNaN(Date.parse(deadline))) {
+                validationErrors.push("Invalid deadline format.");
+            }
+        }
+
+        // If validation errors exist, return a 400 response
+        if (validationErrors.length > 0) {
+            return res.status(400).json({ message: "Validation failed", errors: validationErrors });
+        }
+
+        // Create and save crop tasks in parallel using Promise.all for better performance
+        const createdTasks = await Promise.all(cropTasksData.map(async (taskData) => {
+            const { taskName, assignedTo, status, deadline } = taskData;
+
             const cropTask = new CropTask({
                 taskName,
                 assignedTo,
@@ -25,17 +40,16 @@ export const createCropTask = async (req, res) => {
             });
 
             // Save the crop task to the database
-            const savedTask = await cropTask.save();
-            createdTasks.push(savedTask); // Add the saved task to the createdTasks array
-        }
+            return await cropTask.save();
+        }));
 
         // Respond with the created crop tasks
         res.status(201).json({ message: "Crop tasks created successfully", tasks: createdTasks });
     } catch (error) {
+        console.error(error); // Log error for debugging
         res.status(500).json({ message: "Error creating crop tasks", error: error.message });
     }
 };
-
 
 
 export const getAllCropTasks = async (req, res) => {
@@ -66,10 +80,8 @@ export const getCropTaskById = async (req, res) => {
 
 export const updateCropTask = async (req, res) => {
     try {
-        const { id } = req.params; // Get the task ID from the request parameters
-        const updatedData = req.body; // Get the updated data from the request body
-
-        const cropTask = await CropTask.findByIdAndUpdate(id, updatedData, { new: true }); // Update the task
+        const { id } = req.params; 
+        const updatedData = req.body;    const cropTask = await CropTask.findByIdAndUpdate(id, updatedData, { new: true }); // Update the task
 
         if (!cropTask) {
             return res.status(404).json({ message: "Crop task not found" });

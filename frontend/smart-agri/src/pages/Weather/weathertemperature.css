@@ -2,7 +2,7 @@
     display:grid;
     grid-template-columns: 1fr 1fr 2fr;
     margin: 0 auto;
-    padding: 30px;
+    padding: 10px;
     justify-content: space-between;
     font-family: Arial, sans-serif;
 }
@@ -17,14 +17,14 @@
 }
 
 .temperature {
-    font-size: 68px;
+    font-size: 40px;
     font-weight: bold;
     color: white;
     margin: 0;
 }
 
 .unit-toggle {
-    font-size: 1.5rem;
+    font-size: 14px;
     margin-top: 10px;
     color: white;
   }
@@ -42,7 +42,7 @@
   }
   
 .Location{
-    font-size:25px;
+    font-size:18px;
     font-weight:600;
     color: #dad5d5; 
 }
@@ -83,13 +83,13 @@
 }
 
 .icon-text img {
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     margin-right: 10px;
 }
 
 .weather-info span {
-    font-size: 18px;
+    font-size: 14px;
     color: #fffdfd;
 }
 

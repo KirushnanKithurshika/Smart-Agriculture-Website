@@ -8,8 +8,8 @@
    display:grid;
    height:100vh;
    background-color: rgb(216, 236, 244);
-   grid-template-columns: 270px 920px auto;
-   grid-template-rows:72px 320px 350px auto ;
+   grid-template-columns: 240px 700px auto;
+   grid-template-rows:72px 290px 320px auto ;
    grid-column-gap:10px;
  
  }
@@ -66,11 +66,11 @@
     font-size: 13px; 
     color: #f5f2f2; 
     font-family: 'Inter', sans-serif;
-    padding: 20px;
+    padding: 10px;
     border-radius: 5px; 
 }
 .City{
-  font-size: 15px; 
+    font-size: 15px; 
     color: #f5f2f2; 
     font-family: 'Inter', sans-serif;
     padding: 20px;
@@ -89,8 +89,8 @@
     align-items: center;
 }
   .weatheremoji{
-    height:150px;
-    width:150px;
+    height:120px;
+    width:120px;
   }
 
   .weatherdata{

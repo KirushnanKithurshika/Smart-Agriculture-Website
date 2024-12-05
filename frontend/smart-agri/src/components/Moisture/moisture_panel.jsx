@@ -77,7 +77,8 @@ const MoistureDashboard = () => {
     chart: {
       type: 'area',
       backgroundColor: '#f5f5f5',
-      height: 200, // Set the desired height here
+      height: 170, // Set the desired height here
+      width:400,
     },
     title: {
       text: null,

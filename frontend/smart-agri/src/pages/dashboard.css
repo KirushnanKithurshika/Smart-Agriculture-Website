@@ -8,11 +8,11 @@
       background-color: rgb(228, 239, 250);
       display:grid;
       background-color:rgb(255, 255, 255);
-      grid-template-columns: 270px 920px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+      grid-template-columns: 240px 700px auto;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
       grid-template-rows:100px 350px 450px auto;
       grid-column-gap:10px;
-      width: 100%; /* Ensures the container takes up full width */
-      min-width: 100vw; /* Prevents it from being smaller than the viewport width */
+      width: 100%; 
+      min-width: 100vw; 
       
     }
                                                                                                                                                                                                                                                                                                                                                                                             

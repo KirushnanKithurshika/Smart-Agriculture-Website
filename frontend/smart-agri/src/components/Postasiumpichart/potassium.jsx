@@ -47,8 +47,8 @@ const PotassiumStatus = () => {
     const getPotassiumChartOptions = () => ({
         chart: {
             type: 'pie',
-            width: 200,
-            height: 200,
+            width: 180,
+            height: 180,
             events: {
                 load: function () {
                     const chart = this;
@@ -94,8 +94,7 @@ const PotassiumStatus = () => {
             <div className="potassium-graph-container">
                 <HighchartsReact highcharts={Highcharts} options={getPotassiumChartOptions()} />
                 <div className="potassium-info">
-                    <h2>Potassium</h2>
-                    <p>{potassiumLevel} mg/l</p>
+                    <h2>Potassium-level:{potassiumLevel} mg/l</h2>
                     <p>Allowable range: {allowableRange.min} - {allowableRange.max} mg/l</p>
                     <p style={{ color: status === 'Critical' ? 'red' : 'green' }}>Status: {status}</p>
                 </div>

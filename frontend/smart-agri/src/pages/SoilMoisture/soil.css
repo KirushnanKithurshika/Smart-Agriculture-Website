@@ -1,37 +1,39 @@
-.grid-container{
+.grid-container {
     z-index: 10;
 }
 
 .ph-panel {
     display: grid;
-    grid-template-columns: 2fr 2fr; 
-    grid-template-areas: "column1 column2"; 
+    grid-template-columns: 2fr 2fr;
+    grid-template-areas: "column1 column2";
     background-color: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    height: 300px;
-    margin: 25px;
-    gap: 5px; 
-
+    height: 305px;
+    padding: 10px;
+    margin-top: 20px;
+    margin-right: 20px;
+    border-radius: 15px;
 }
+
 .column1 {
-    display:grid;
+    display: grid;
     grid-area: column1;
     align-items: center;
     justify-content: center;
-    grid-template-areas:"Ph alertsentence"
+    grid-template-areas: "Ph alertsentence"
 }
 
 .column2 {
     grid-area: column2;
-  
+
 }
 
 .status {
-    display: flex;
-    justify-content: space-between;  /* Distribute the space evenly */
-    align-items: flex-start;         /* Align the items at the top of the container */
-    gap: 20px;                       /* Add some space between the two components */
+    margin-top: 40px;
+    display: grid;
+    grid-row: 3;
+    grid-column: 2/3;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    /* Add some space between the two components */
 }
-
-

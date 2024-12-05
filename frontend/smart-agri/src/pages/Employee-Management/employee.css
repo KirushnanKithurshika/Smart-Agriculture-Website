@@ -3,7 +3,7 @@
   display: grid;
   height:100vh;
   background-color: rgb(225, 243, 242);
-  grid-template-columns: 270px auto;
+  grid-template-columns: 240px auto;
   grid-template-rows: 72px 300px ;
   grid-column-gap: 10px;
 
@@ -42,9 +42,11 @@ td {
   border: 1px solid #dae1e0;
   padding: 8px;
   text-align: left;
+  font-size: 12px;
 }
 
 th {
+  font-size: 12px;
   background-color:  #069351;
   color:white;
   font-weight: bold;
@@ -64,11 +66,13 @@ th {
 
 .editE-button {
   background-color: #094688;
+  font-size: 12px;
   color: #fff;
 }
 
 
 .deleteE-button {
+  font-size: 12px;
   background-color: #dc3545;
   color: #fff;
 }
@@ -76,6 +80,7 @@ th {
   text-decoration: none;
 }
 .addE-button {
+  font-size:12px;
   padding: 10px;
   border: none;
   border-radius: 5px;

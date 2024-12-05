@@ -47,8 +47,8 @@ const PhosphorusStatus = () => {
     const getPhosphorusChartOptions = () => ({
         chart: {
             type: 'pie',
-            width: 200,
-            height: 200,
+            width: 180,
+            height: 180,
             events: {
                 load: function () {
                     const chart = this;
@@ -94,8 +94,8 @@ const PhosphorusStatus = () => {
             <div className="phosphorus-graph-container">
                 <HighchartsReact highcharts={Highcharts} options={getPhosphorusChartOptions()} />
                 <div className="phosphorus-info">
-                    <h2>Phosphorus</h2>
-                    <p>{phosphorusLevel} mg/l</p>
+                    <h2>Phosphorus-level:{phosphorusLevel} mg/l</h2>
+                    
                     <p>Allowable range: {allowableRange.min} - {allowableRange.max} mg/l</p>
                     <p style={{ color: status === 'Critical' ? 'red' : 'green' }}>Status: {status}</p>
                 </div>

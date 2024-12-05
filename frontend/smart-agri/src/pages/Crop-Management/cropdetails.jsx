@@ -75,7 +75,11 @@ function Cropdetails() {
        
 
         <div className="crop-task-container">
-          <img src={Paddyfield} alt="Paddy Field" />
+        <img 
+    src={Paddyfield} 
+    alt="Paddy Field" 
+    style={{ width: '1000px', height: '500px' }} // Specify desired dimensions
+  />
         </div>
 
         <TaskTable tasks={tasks} onDelete={handleDelete} handleAddTask={handleAddTask} />

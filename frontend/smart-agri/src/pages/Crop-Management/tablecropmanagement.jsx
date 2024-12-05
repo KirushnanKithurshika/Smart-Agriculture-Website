@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './tablecropmanagemnet.css';
 
-function TaskTable({ handleAddTask }) {
+function TaskTable() {
   const [tasks, setTasks] = useState([]);
   const [isDeleting, setIsDeleting] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [taskToDelete, setTaskToDelete] = useState(null);
+  const navigate = useNavigate();
 
   // Fetch tasks from the backend
   useEffect(() => {
@@ -50,6 +51,11 @@ function TaskTable({ handleAddTask }) {
     setTaskToDelete(null);
   };
 
+  // Function to add a new task
+  const handleAddTask = (newTask) => {
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
   return (
     <div className="task-management-table-container">
       <h2>Paddy Field Management Tasks</h2>
@@ -89,9 +95,11 @@ function TaskTable({ handleAddTask }) {
           ))}
         </tbody>
       </table>
-      <button className="add-task-button" onClick={handleAddTask}>
-        Add Task
-      </button>
+      <Link to="/addcroptask">
+        <button className="add-task-button">
+          Add Task
+        </button>
+      </Link>
 
       {isModalOpen && (
         <div className="modal-overlay">
@@ -101,12 +109,8 @@ function TaskTable({ handleAddTask }) {
               <button className="deletecrop-button" disabled>Deleting...</button>
             ) : (
               <>
-                <button className="deleteE-button" onClick={confirmDelete}>
-                  Delete
-                </button>
-                <button className="cancelE-button" onClick={closeModal}>
-                  Cancel
-                </button>
+                <button className="deleteE-button" onClick={confirmDelete}>Delete</button>
+                <button className="cancelE-button" onClick={closeModal}>Cancel</button>
               </>
             )}
           </div>
