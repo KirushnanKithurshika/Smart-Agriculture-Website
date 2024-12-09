@@ -25,7 +25,8 @@
 
 .form-section h2 {
     text-align: center;
-    color: #333;
+    color: #0b6872;
+    font-size: 22px;
 }
 
 .form-section form {
@@ -37,10 +38,11 @@
 .form-section input {
     width: 400px;
     margin: 10px 0;
+    color:#625f5f;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .form-section input:focus {
@@ -53,7 +55,7 @@
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;
     flex: 1;
     margin: 5px;
     display: flex;
@@ -66,7 +68,7 @@
     border-radius: 4px;
     background-color: #28a745;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s;
 }
@@ -81,7 +83,7 @@
     border: none;
     border-radius: 4px;
     color: white;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     transition: background-color 0.3s;
 }

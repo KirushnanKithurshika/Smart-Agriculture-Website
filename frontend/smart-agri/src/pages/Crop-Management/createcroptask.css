@@ -26,10 +26,10 @@
   
   .form-title {
     text-align: center;
-    font-size: 18px;
+    font-size: 22px;
     margin-bottom: 25px;
     font-weight: 600;
-    color: #333333;
+    color:#0b586f;
   }
   
   form {
@@ -40,7 +40,7 @@
   input, select {
     margin-bottom: 20px;
     padding: 12px 14px;
-    font-size: 12px;
+    font-size: 14px;
     border: 1px solid #c0c0c0;
     border-radius: 8px;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -58,7 +58,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 14px;
     margin: 5px;
     transition: background-color 0.3s ease, transform 0.2s ease;
   }
@@ -88,19 +88,4 @@
     justify-content: space-between; 
     gap: 10px; }
   
-  @media (max-width: 768px) {
-    .formadd-container {
-      padding: 15px;
-    }
-  
-    .submit-button,
-    .cancel-button {
-      font-size: 12px;
-      padding: 10px 15px;
-    }
-  
-    .form-title {
-      font-size: 18px;
-    }
-  }
   
