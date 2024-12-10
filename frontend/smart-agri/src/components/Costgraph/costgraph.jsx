@@ -73,12 +73,12 @@ const CropCostChart = () => {
             {
                 name: 'Variable Costs',
                 data: crops.map(crop => crop.variableCost),
-                color: '#25D5F1', 
+                color: '#53808C', 
             },
             {
                 name: 'Total Costs',
                 data: crops.map(crop => crop.totalCost),
-                color: '#7EE51E', 
+                color: '#808485', 
             },
         ],
         tooltip: {

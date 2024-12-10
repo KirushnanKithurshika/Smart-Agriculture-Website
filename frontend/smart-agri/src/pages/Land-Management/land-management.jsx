@@ -7,19 +7,32 @@ import CropCostChart from '../../components/Costgraph/costgraph';
 import Paddyarea from '../../assets/paddy.jpg';
 import marker from '../../assets/marker.png';
 import Jobs from './jobs/jobs';
+import Cost from './cost/cost';
 
 const markers = [
-    { top: '120%', left: '30%' },
-    { top: '150%', left: '50%' },
-    { top: '170%', left: '70%' },
-    { top: '150%', left: '80%' },
-    { top: '140%', left: '70%' },
-    { top: '130%', left: '70%' },
-    { top: '120%', left: '60%' },
+    { top: '120%', left: '30%', label: 'Rice Crop (4 weeks)' },
+    { top: '150%', left: '50%', label: 'Wheat Crop (6 weeks)' },
+    { top: '170%', left: '70%', label: 'Corn Crop (3 weeks)' },
+    { top: '150%', left: '80%', label: 'Barley Crop (5 weeks)' },
+    { top: '140%', left: '70%', label: 'Soybean Crop (2 weeks)' },
+    { top: '130%', left: '70%', label: 'Cotton Crop (8 weekss)' },
+    { top: '120%', left: '60%', label: 'Rice Crop (1 week)' },
+    { top: '210%', left: '40%', label: 'White Rice Crop (3 weeks)' },
+    { top: '200%', left: '65%', label: 'Potato Crop (3 weeks)' },
+    { top: '190%', left: '35%', label: 'Potato Crop (7 weeks)' },
 ];
 
 function LandManagement() {
     const [activeButton, setActiveButton] = useState('crops');
+    const [hoveredMarker, setHoveredMarker] = useState(null);
+
+    const handleMouseEnter = (index) => {
+        setHoveredMarker(index);
+    };
+
+    const handleMouseLeave = () => {
+        setHoveredMarker(null);
+    };
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -27,23 +40,17 @@ function LandManagement() {
 
     return (
         <div>
-            <div className='land-container'>
-                <div className='grid-item grid-item-1'>
+            <div className="land-container">
+                <div className="grid-item grid-item-1">
                     <Navbar />
                 </div>
-                <div className='grid-item grid-item-2'>
-
-                    
-                </div>
-                <div className='grid-item grid-item-3'>
-
-                    
-                </div>
-                <div className='grid-item grid-item-4'>
+                <div className="grid-item grid-item-2"></div>
+                <div className="grid-item grid-item-3"></div>
+                <div className="grid-item grid-item-4">
                     <Sidenavigationbar />
                 </div>
 
-                <div className='land-dashboard grid-item'>
+                <div className="land-dashboard grid-item">
                     <div className="button-container">
                         <button
                             className={`nav-button ${activeButton === 'crops' ? 'active-button' : ''}`}
@@ -67,42 +74,61 @@ function LandManagement() {
 
                     {activeButton === 'crops' && (
                         <div className="land-management-container">
-                            <div className='field'>
-                                <div className='card fields'>
+                            <div className="field">
+                                <div className="card fields">
                                     <h4>Fields</h4>
                                     <p>102</p>
                                 </div>
-                                <div className='card job-active'>
+                                <div className="card job-active">
                                     <h4>Job Active</h4>
                                     <p>102</p>
                                 </div>
-                                <div className='card jobs-due'>
+                                <div className="card jobs-due">
                                     <h4>Jobs Due</h4>
                                     <p>20</p>
                                 </div>
-                                <div className='card jobs-completed'>
+                                <div className="card jobs-completed">
                                     <h4>Jobs Completed</h4>
                                     <p>100</p>
                                 </div>
                             </div>
-                            <div className='field-percentage'>
-                                <div className='crop-distribution-graph'><CropDistributionChart /></div>
-                                <div className='cost-graph'><CropCostChart /></div>
+                            <div className="field-percentage">
+                                <div className="crop-distribution-graph">
+                                    <CropDistributionChart />
+                                </div>
+                                <div className="cost-graph">
+                                    <CropCostChart />
+                                </div>
                             </div>
-                            <div className='paddy-area-container'>
+                            <div className="paddy-area-container">
                                 <img src={Paddyarea} alt="Paddy Field" className="paddy-area" />
                                 {markers.map((markerPosition, index) => (
-                                    <img
-                                        key={index}
-                                        src={marker}
-                                        alt={`Marker ${index + 1}`}
-                                        className="marker"
-                                        style={{
-                                            position: 'absolute',
-                                            top: markerPosition.top,
-                                            left: markerPosition.left,
-                                        }}
-                                    />
+                                    <div key={index}>
+                                        <img
+                                            src={marker}
+                                            alt={`Marker ${index + 1}`}
+                                            className="marker"
+                                            style={{
+                                                position: 'absolute',
+                                                top: markerPosition.top,
+                                                left: markerPosition.left,
+                                            }}
+                                            onMouseEnter={() => handleMouseEnter(index)}
+                                            onMouseLeave={handleMouseLeave}
+                                        />
+                                        {hoveredMarker === index && (
+                                            <div
+                                                className="tooltip"
+                                                style={{
+                                                    position: 'absolute',
+                                                    top: `calc(${markerPosition.top} - 20px)`,
+                                                    left: `calc(${markerPosition.left} + 10px)`,
+                                                        }}
+                                            >
+                                                {markerPosition.label}
+                                            </div>
+                                        )}
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -111,6 +137,12 @@ function LandManagement() {
                     {activeButton === 'taskManagement' && (
                         <div className="jobs-container">
                             <Jobs />
+                        </div>
+                    )}
+
+                    {activeButton === 'costAnalysis' && (
+                        <div className="cost-container">
+                            <Cost />
                         </div>
                     )}
                 </div>

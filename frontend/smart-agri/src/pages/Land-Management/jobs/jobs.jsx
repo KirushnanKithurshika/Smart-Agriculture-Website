@@ -36,7 +36,7 @@ const Jobs = () => {
 
   return (
     <div className="jobs-container">
-      <h1>Jobs Table</h1>
+      <h1>Assigned Jobs</h1>
       <table className="jobs-table">
         <thead>
           <tr>

@@ -12,16 +12,16 @@ const IrrigationWaterCapacity = () => {
     title: {
       text: 'Irrigation Water Capacity for Crops',
       style: {
-        fontSize: '16px', // Set the font size for the title
-        fontWeight: 'bold', // Make the title bold
-        color: '#333333', // Set the color
+        fontSize: '16px', 
+        fontWeight: 'bold', 
+        color: '#0A7B91', 
       },
     },
     subtitle: {
       text: 'Water requirement per crop at different stages of growth',
       style: {
-        fontSize: '12px', // Set the font size for the subtitle
-       color: '#666666', // Set the color
+        fontSize: '12px', 
+       color: '#666666', 
       },
     },
     xAxis: {
@@ -29,13 +29,13 @@ const IrrigationWaterCapacity = () => {
       title: {
         text: 'Growth Stages',
         style: {
-          fontSize: '12px', // Set the font size for the xAxis title
-          fontWeight: 'bold', // Make the title bold
+          fontSize: '12px', 
+          fontWeight: 'bold', 
         },
       },
       labels: {
         style: {
-          fontSize: '12px', // Set the font size for xAxis labels
+          fontSize: '12px', 
         },
       },
     },
@@ -43,13 +43,13 @@ const IrrigationWaterCapacity = () => {
       title: {
         text: 'Water Capacity (liters)',
         style: {
-          fontSize: '12px', // Set the font size for the yAxis title
-          fontWeight: 'bold', // Make the title bold
+          fontSize: '12px', 
+          fontWeight: 'bold', 
         },
       },
       labels: {
         style: {
-          fontSize: '12px', // Set the font size for yAxis labels
+          fontSize: '12px', 
         },
       },
     },
@@ -57,7 +57,7 @@ const IrrigationWaterCapacity = () => {
       {
         name: 'Crop A',
         data: [50, 80, 120, 150, 200],
-        color: '#7cb5ec',
+        color: '#971F7F',
       },
       {
         name: 'Crop B',
@@ -67,12 +67,12 @@ const IrrigationWaterCapacity = () => {
       {
         name: 'Crop C',
         data: [30, 60, 90, 110, 160],
-        color: '#90ed7d',
+        color: '#21758B',
       },
     ],
     legend: {
       itemStyle: {
-        fontSize: '12px', // Set the font size for legend items
+        fontSize: '12px', 
         fontWeight: 'normal',
       },
     },
