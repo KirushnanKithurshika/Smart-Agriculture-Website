@@ -61,8 +61,8 @@ function Sidenavigationbar() {
           <li className={location.pathname === '/cropmanagement' ? 'active' : ''}>
             <Link to="/cropmanagement"><FaLeaf /> Crop Management</Link>
           </li>
-          <li className={location.pathname === '/land-management' ? 'active' : ''}>
-            <Link to="/land-management"><FaLandmark /> Land Management</Link>
+          <li className={location.pathname === '/landmanagement' ? 'active' : ''}>
+            <Link to="/landmanagement"><FaLandmark /> Land Management</Link>
           </li>
           <li className={location.pathname === '/employee' ? 'active' : ''}>
             <Link to="/employee"><FaUsers /> Labor Management</Link>

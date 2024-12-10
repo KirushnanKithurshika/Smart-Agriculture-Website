@@ -31,3 +31,26 @@
     border-radius:20px;
     
    }
+
+   .image-style {
+    width: 100%; 
+    max-width: 500px; 
+    height: 280px; 
+    border-radius: 8px; 
+}
+
+marker {
+  position: absolute;
+  width: 30px; /* Size of the marker */
+  height: 30px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  transition: transform 0.3s ease-in-out; /* Smooth scaling */
+}
+
+.marker:hover {
+    transform: scale(1.5); /* Zoom in the marker */
+}
+
+
+
