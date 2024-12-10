@@ -153,13 +153,10 @@
 .field-percentage {
     display: flex;
     justify-content: space-between;
-    /* Optional: Adds space between the items */
     align-items: flex-start;
-    /* Optional: Aligns items at the top */
     gap: 20px;
-    /* Adds space between the two child elements */
     flex-wrap: wrap;
-    /* Ensures responsiveness: Items wrap to next line if screen is too narrow */
+    
 }
 
 .crop-distribution-graph,

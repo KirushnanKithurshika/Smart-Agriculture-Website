@@ -15,15 +15,15 @@ import Cropdetails from './cropdetails';
 
 function Cropmanagement() {
   const [activeButton, setActiveButton] = useState('crops');
-  const [showCropDetails, setShowCropDetails] = useState(false); // State to toggle between crop images and crop details
+  const [showCropDetails, setShowCropDetails] = useState(false); 
 
-  // Handle button click to update the active button state and toggle view
+ 
   const handleButtonClick = (buttonName) => {
     setActiveButton(buttonName);
     if (buttonName === 'taskManagement') {
-      setShowCropDetails(true); // Show crop details when Task Management button is clicked
+      setShowCropDetails(true); 
     } else {
-      setShowCropDetails(false); // Show crop images when Crops button is clicked
+      setShowCropDetails(false); 
     }
   };
 
@@ -49,7 +49,7 @@ function Cropmanagement() {
               Crops
             </button>
 
-            {/* Task Management Button */}
+          
             <button
               className={`nav-button ${activeButton === 'taskManagement' ? 'active-button' : ''}`}
               onClick={() => handleButtonClick('taskManagement')}
