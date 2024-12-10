@@ -6,9 +6,9 @@
     grid-template-columns: 230px auto;
     grid-template-rows: 72px 300px 300px auto;
     grid-column-gap: 10px;
-  }
-  
-  .land-dashboard {
+}
+
+.land-dashboard {
     background-color: transparent;
     grid-column: 2 / 4;
     grid-row: 2 / 4;
@@ -19,17 +19,17 @@
     border-radius: 20px;
     opacity: 100%;
     padding: 10px;
-  }
-  
-  .crop-images {
+}
+
+.crop-images {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 20px;
     justify-items: center;
     align-items: center;
-  }
-  
-  .crop-image {
+}
+
+.crop-image {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -40,31 +40,31 @@
     padding: 10px;
     height: 250px;
     width: 280px;
-  
-  }
-  
-  .crop-image img {
+
+}
+
+.crop-image img {
     object-fit: cover;
     width: 100%;
     height: 100%;
     border-radius: 8px;
-  }
-  
-  .crop-image p {
+}
+
+.crop-image p {
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
-  }
-  
-  
-  .crop-image p {
+}
+
+
+.crop-image p {
     text-align: center;
     font-weight: bold;
     margin-top: 10px;
     margin-bottom: 20px;
-  }
-  
-  .button-container {
+}
+
+.button-container {
     display: flex;
     gap: 0px;
     margin: 10px 0;
@@ -91,8 +91,9 @@
     color: #ffffff;
     border-color: #767778;
 }
-.land-management-container{
-    grid-template-columns:1fr 1fr 1fr 1fr;
+
+.land-management-container {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto auto auto;
 }
 
@@ -109,12 +110,15 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     font-family: Arial, sans-serif;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for transform and shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Smooth transition for transform and shadow */
 }
 
 .card:hover {
-    transform: scale(1.05); /* Zoom effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: scale(1.05);
+    /* Zoom effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    /* Enhanced shadow on hover */
 }
 
 .card h4 {
@@ -145,41 +149,48 @@
 .card.jobs-completed {
     background-color: #b6d2fc;
 }
+
 .field-percentage {
     display: flex;
-    justify-content: space-between; /* Optional: Adds space between the items */
-    align-items: flex-start; /* Optional: Aligns items at the top */
-    gap: 20px; /* Adds space between the two child elements */
-    flex-wrap: wrap; /* Ensures responsiveness: Items wrap to next line if screen is too narrow */
+    justify-content: space-between;
+    /* Optional: Adds space between the items */
+    align-items: flex-start;
+    /* Optional: Aligns items at the top */
+    gap: 20px;
+    /* Adds space between the two child elements */
+    flex-wrap: wrap;
+    /* Ensures responsiveness: Items wrap to next line if screen is too narrow */
 }
 
 .crop-distribution-graph,
 .cost-graph {
-    flex: 1; 
-    min-width: 300px; 
+    flex: 1;
+    min-width: 300px;
 }
 
-.paddy-area{
-    width:98%;
+.paddy-area {
+    width: 98%;
     margin-top: 20px;
     justify-content: center;
     justify-items: center;
-   
+    border-radius: 20px;
+    height:900px;
+
 }
 
 .paddy-area img {
-    
-    width: 100%; 
-    height: auto; 
-    border-radius: 20px; 
-     display: block;}
+
+    width: 100%;
+    height: 900px;
+    border-radius: 20px;
+    display: block;
+}
 
 
-     .marker {
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        z-index: 20; /* Ensures marker is above the image */
-        transition: transform 0.3s ease-in-out; /* Smooth transition for scaling */
-    }
+.marker {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    z-index: 20;
     
+}

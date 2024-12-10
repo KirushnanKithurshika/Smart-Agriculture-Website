@@ -9,18 +9,18 @@ import Paddyarea from '../../assets/paddy.jpg';
 import marker from '../../assets/marker.png';
 
 const markers = [
-    { top: '20%', left: '30%' },
-    { top: '50%', left: '50%' },
-    { top: '70%', left: '20%' },
-    { top: '40%', left: '80%' },
-    { top: '30%', left: '70%' },
-    { top: '10%', left: '70%' },
-    { top: '80%', left: '60%' },
+    { top: '120%', left: '30%' },
+    { top: '150%', left: '50%' },
+    { top: '170%', left: '70%' },
+    { top: '150%', left: '80%' },
+    { top: '140%', left: '70%' },
+    { top: '130%', left: '70%' },
+    { top: '120%', left: '60%' },
 ];
+
 function LandManagement() {
     const [activeButton, setActiveButton] = useState('crops');
     const [showCropDetails, setShowCropDetails] = useState(false);
-
 
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
@@ -65,7 +65,6 @@ function LandManagement() {
                         </button>
                     </div>
 
-
                     <div className="land-management-container">
                         <div className='field'>
                             <div className='card fields'>
@@ -89,16 +88,26 @@ function LandManagement() {
                             <div className='crop-distribution-graph'><CropDistributionChart /></div>
                             <div className='cost-graph'><CropCostChart /></div>
                         </div>
-                        <div className='paddy-area'>
+                        <div className='paddy-area-container'>
                             <img src={Paddyarea} alt="Paddy Field" className="paddy-area" />
-                          
+                            {markers.map((markerPosition, index) => (
+                                <img
+                                    key={index}
+                                    src={marker}
+                                    alt={`Marker ${index + 1}`}
+                                    className="marker"
+                                    style={{
+                                        position: 'absolute',
+                                        top: markerPosition.top,
+                                        left: markerPosition.left,
+                                    }}
+                                />
+                            ))}
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
-
     );
 }
 
