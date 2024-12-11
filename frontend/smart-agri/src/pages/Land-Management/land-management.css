@@ -156,7 +156,7 @@
     align-items: flex-start;
     gap: 20px;
     flex-wrap: wrap;
-    
+
 }
 
 .crop-distribution-graph,
@@ -171,7 +171,7 @@
     justify-content: center;
     justify-items: center;
     border-radius: 20px;
-    height:900px;
+    height: 900px;
 
 }
 
@@ -185,16 +185,16 @@
 
 
 .marker {
-    position: absolute;
+    position: fixed;
     width: 30px;
     height: 30px;
     z-index: 20;
-    
+
 }
 
 .tooltip {
-    position: absolute;
-    border:rgb(178, 180, 182) solid 2px;
+    position: fixed;
+    border: rgb(178, 180, 182) solid 2px;
     background-color: #ffffff;
     color: #5d5757;
     font-weight: 600;
@@ -204,11 +204,104 @@
     font-size: 12px;
     z-index: 10;
     white-space: nowrap;
-    pointer-events: none; /* Ensures tooltips don't interfere with hovering */
+    pointer-events: none;
+    /* Ensures tooltips don't interfere with hovering */
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
 }
 
-.marker:hover + .tooltip {
+.marker:hover+.tooltip {
     opacity: 1;
+}
+
+.top-right-rectangle {
+    position: absolute;
+    top: 700px; 
+    right: 80px; 
+    width: 60px;
+    height: 180px;
+    background-color: rgba(231, 233, 221, 0.9);
+    color: white;
+    display: flex;
+    z-index: 20; 
+    border-radius: 30px;
+    flex-direction: column; 
+    justify-content: space-evenly; 
+    align-items: center; 
+    align-items: center; 
+    
+}
+
+.icon {
+    font-size: 18px; 
+    background-color: white; 
+    color: black; 
+    border-radius: 50%; 
+    padding: 10px; 
+    cursor: pointer; 
+    transition: transform 0.2s ease, background-color 0.3s ease; 
+    width: 40px; 
+    height: 40px; 
+    border-radius: 50%;
+}
+
+.icon:hover {
+    background-color: black;
+    transform: scale(1.1);
+    color: rgb(246, 246, 246); 
+}
+
+.top-left-rectangle{
+    position: absolute;
+    top: 700px; 
+    left: 340px; 
+    width: 280px;
+    height: 50px;
+    background-color: rgb(255, 255, 255,0.8);
+    color: white;
+    display: flex;
+    z-index: 20; 
+    border-radius: 30px;
+    align-items: center; 
+    
+}
+
+.search-containerL {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content:center;
+   
+}
+
+.search-iconL {
+   margin-left: 10px;
+    font-size: 18px; 
+    background-color: rgb(255, 255, 255); 
+    color: black; 
+    border-radius: 50%; 
+    padding: 10px; 
+    cursor: pointer; 
+    transition: transform 0.2s ease, background-color 0.3s ease; 
+    width: 40px; 
+    height: 40px; 
+  
+}
+.search-iconL:hover {
+    background-color: black;
+    transform: scale(1.0);
+    color: rgb(246, 246, 246); 
+}
+
+.search-barL {
+    margin-top: 20px;
+    width: 100%; 
+    height: 30px; 
+    border:none;
+    border-radius: 30px; 
+    font-size: 14px; 
+    background-color: rgb(255, 255, 255); 
+    color: rgb(101, 98, 98); 
+   
 }

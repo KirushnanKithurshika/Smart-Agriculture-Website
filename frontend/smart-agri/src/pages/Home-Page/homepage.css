@@ -5,7 +5,10 @@
     width: 80%;
     margin: auto;
   }
+  .logo{
   
+    height:auto;
+  }
   .farm-box {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -24,15 +27,18 @@
   .logout-button {
     background-color: #92B855;
     border: none;
-    height: 40px;
-    width: 100px;
-    padding: 8px 20px;
+    height: 35px;
+    width: 80px;
+    padding: 8px 10px;
     color: white;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 20px;
+    font-size: 16px;
   }
   
   .logout-button:hover {
     background-color: #688a58;
+  }
+  .login-header{
+    height:80px;
   }

@@ -51,6 +51,28 @@ marker {
 .marker:hover {
     transform: scale(1.5); /* Zoom in the marker */
 }
+.arrow-icon {
+  position: absolute;
+  top: 20%; 
+  right: 60px;
+  width:40px;
+  height:40px;
+  border-radius: 20px; 
+  transform: translateY(-50%);
+  font-size: 18px;
+  color: black; 
+  background-color: white; 
+  padding: 10px; 
+  border-radius: 50%; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  cursor: pointer; 
+  transition: transform 0.3s ease; 
+}
 
+.arrow-icon:hover {
+  transform: translateY(-50%) scale(1.1); 
+  background-color: black;
+  color:white;
+}
 
 

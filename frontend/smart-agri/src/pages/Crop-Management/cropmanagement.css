@@ -40,7 +40,13 @@
   padding: 10px;
   height: 250px;
   width: 280px;
+  transition: all 0.3s ease; 
+}
 
+.crop-image:hover {
+  background-color: rgba(240, 240, 240, 1); 
+  transform: scale(1.05); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .crop-image img {

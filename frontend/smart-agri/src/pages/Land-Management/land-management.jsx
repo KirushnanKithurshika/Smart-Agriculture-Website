@@ -8,6 +8,7 @@ import Paddyarea from '../../assets/paddy.jpg';
 import marker from '../../assets/marker.png';
 import Jobs from './jobs/jobs';
 import Cost from './cost/cost';
+import { FaSearchPlus, FaPrint, FaInfoCircle } from 'react-icons/fa';
 
 const markers = [
     { top: '120%', left: '30%', label: 'Rice Crop (4 weeks)' },
@@ -15,7 +16,7 @@ const markers = [
     { top: '170%', left: '70%', label: 'Corn Crop (3 weeks)' },
     { top: '150%', left: '80%', label: 'Barley Crop (5 weeks)' },
     { top: '140%', left: '70%', label: 'Soybean Crop (2 weeks)' },
-    { top: '130%', left: '70%', label: 'Cotton Crop (8 weekss)' },
+    { top: '130%', left: '70%', label: 'Cotton Crop (8 weeks)' },
     { top: '120%', left: '60%', label: 'Rice Crop (1 week)' },
     { top: '210%', left: '40%', label: 'White Rice Crop (3 weeks)' },
     { top: '200%', left: '65%', label: 'Potato Crop (3 weeks)' },
@@ -25,6 +26,7 @@ const markers = [
 function LandManagement() {
     const [activeButton, setActiveButton] = useState('crops');
     const [hoveredMarker, setHoveredMarker] = useState(null);
+    const [searchQuery, setSearchQuery] = useState('');
 
     const handleMouseEnter = (index) => {
         setHoveredMarker(index);
@@ -37,6 +39,14 @@ function LandManagement() {
     const handleButtonClick = (buttonName) => {
         setActiveButton(buttonName);
     };
+
+    const handleSearchChange = (event) => {
+        setSearchQuery(event.target.value);
+    };
+
+    const filteredMarkers = markers.filter(marker =>
+        marker.label.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div>
@@ -102,6 +112,32 @@ function LandManagement() {
                             </div>
                             <div className="paddy-area-container">
                                 <img src={Paddyarea} alt="Paddy Field" className="paddy-area" />
+                                <div className="top-left-rectangle">
+                                    <div className="search-containerL">
+                                        <input
+                                            type="text"
+                                            placeholder="Search..."
+                                            className="search-barL"
+                                            value={searchQuery}
+                                            onChange={handleSearchChange}
+                                        />
+                                        <i className="fas fa-search search-iconL"></i>
+                                    </div>
+                                </div>
+
+                                <div className="top-right-rectangle">
+                                    <div className="icon zoom-icon">
+                                        <FaSearchPlus />
+                                    </div>
+
+                                    <div className="icon print-icon">
+                                        <FaPrint />
+                                    </div>
+
+                                    <div className="icon more-details-icon">
+                                        <FaInfoCircle />
+                                    </div>
+                                </div>
                                 {markers.map((markerPosition, index) => (
                                     <div key={index}>
                                         <img
@@ -116,14 +152,14 @@ function LandManagement() {
                                             onMouseEnter={() => handleMouseEnter(index)}
                                             onMouseLeave={handleMouseLeave}
                                         />
-                                        {hoveredMarker === index && (
+                                        {(hoveredMarker === index || filteredMarkers.includes(markerPosition)) && (
                                             <div
                                                 className="tooltip"
                                                 style={{
                                                     position: 'absolute',
                                                     top: `calc(${markerPosition.top} - 20px)`,
                                                     left: `calc(${markerPosition.left} + 10px)`,
-                                                        }}
+                                                }}
                                             >
                                                 {markerPosition.label}
                                             </div>

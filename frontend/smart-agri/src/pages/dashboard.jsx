@@ -8,6 +8,8 @@ import Navbarmobileview from '../components/navbar-mobileview';
 import IrrigationWaterCapacity from '../components/irrigationgrapgh/irrigation';
 import Paddy from '../assets/paddy.jpg';
 import marker from '../assets/marker.png';
+import { Link } from 'react-router-dom';
+
 
 const markers = [
     { top: '20%', left: '30%' },
@@ -57,6 +59,10 @@ function Dashboard() {
                         }}
                     />
                 ))}
+               <Link to="/landmanagement">
+                <i className="fas fa-arrow-right arrow-icon"></i>
+            </Link>
+
             </div>
         </div>
     );
