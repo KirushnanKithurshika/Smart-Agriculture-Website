@@ -24,6 +24,8 @@ import Cropmanagement from './pages/Crop-Management/cropmanagement';
 import UpdateTask from './pages/Crop-Management/updatecroptask';
 import AddCropTask from './pages/Crop-Management/createcroptask';
 import LandManagement from './pages/Land-Management/land-management';
+import FarmingComponent from './components/mapcomponent/slideA';
+
 
 
 
@@ -52,6 +54,7 @@ function App() {
                 <Route path='/soil' element={<Soil />} />
                <Route path='/updatecroptask/:id'element={<UpdateTask/>}/>
                <Route path='/addcroptask' element={<AddCropTask/>}/>
+               <Route path='/slideA' element={<FarmingComponent/>}/>
             <Route path='/landmanagement' element={<LandManagement/>}/>
             </Routes>
         </BrowserRouter>

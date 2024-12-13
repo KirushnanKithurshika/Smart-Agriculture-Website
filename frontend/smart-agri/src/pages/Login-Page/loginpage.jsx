@@ -108,10 +108,11 @@ export default function Login() {
             </div>
 
             <div className="forget-password">
-              <Link to="/reset-password">
-                <label htmlFor="password" style={{ cursor: 'pointer' }}>Forget password?</label>
-              </Link>
-            </div>
+  <Link to="/reset-password" className="forget-password-link">
+    Forget password?
+  </Link>
+</div>
+
 
             <div className='submit-button-container'>
               <button className='submit-buttonL' type="submit">Login</button>

@@ -14,14 +14,14 @@
   .login-container {
     height:100vh;
     background-color: rgb(225, 243, 242);
-    height: 100vh;
+   
     display: flex;
     flex-direction: column;
    
   }
   
   .login-header {
-    font-size: 28px;
+    font-size: 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -72,13 +72,13 @@
     padding: 40px;
     padding-top: 60px;
     padding-bottom: 60px;
-    width: 450px;
+    width: 400px;
     border-radius: 10px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   }
   
   .login-form h2 {
-    font-size: 28px;
+    font-size: 24px;
     text-align: center;
     margin-bottom: 30px;
     color: #f3f0f0;
@@ -86,7 +86,7 @@
   }
   
   .login-form label {
-    font-size: 18px; 
+    font-size: 16px; 
     color: #ffffff;
   }
   .input-container {
@@ -105,27 +105,34 @@
   .input-container input {
     width: 100%;
     padding-left: 40px; 
-    padding: 15px;
-    margin: 15px 0;
+    padding: 10px;
+    margin: 10px 0;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
   .login-form input {
     display: block;
     width: 100%;
-    padding: 15px;
+    padding: 10px;
     margin: 15px 0;
     border-radius: 5px;
     border: 1px solid #ccc;
   }
   
-  .forget-password {
-    font-size: 16px;
-    color: blue ;
+  .forget-password-link{
+    font-size: 12px;
+    color: rgb(122, 255, 237) ;
     margin-bottom: 20px;
-  
+    text-decoration: none;
+    cursor:pointer;
   }
-  
+
+  .forget-password-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+  }
+  .forget-password{
+    margin-bottom: 20px;
+  }
   .submit-button-container {
     display: flex;
     justify-content: center; 
@@ -133,13 +140,14 @@
   
   .submit-buttonL {
     width: 200px; 
-    padding: 10px;
+    padding:8px 8px;
     background-color: #92B855;
     border: none;
     color: white;
+    font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 18px;
+    font-size: 16px;
   }
   
   .submit-button:hover {

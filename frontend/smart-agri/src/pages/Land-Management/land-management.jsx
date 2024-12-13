@@ -9,6 +9,7 @@ import marker from '../../assets/marker.png';
 import Jobs from './jobs/jobs';
 import Cost from './cost/cost';
 import { FaSearchPlus, FaPrint, FaInfoCircle } from 'react-icons/fa';
+import FarmingComponent from '../../components/mapcomponent/slideA';
 
 const markers = [
     { top: '120%', left: '30%', label: 'Rice Crop (4 weeks)' },
@@ -24,6 +25,7 @@ const markers = [
 ];
 
 function LandManagement() {
+    const [isFarmVisible, setIsFarmVisible] = useState(false);
     const [activeButton, setActiveButton] = useState('crops');
     const [hoveredMarker, setHoveredMarker] = useState(null);
     const [searchQuery, setSearchQuery] = useState('');
@@ -47,6 +49,10 @@ function LandManagement() {
     const filteredMarkers = markers.filter(marker =>
         marker.label.toLowerCase().includes(searchQuery.toLowerCase())
     );
+
+    const handleMoreInfoClick = () => {
+        setIsFarmVisible(!isFarmVisible);
+    };
 
     return (
         <div>
@@ -134,10 +140,16 @@ function LandManagement() {
                                         <FaPrint />
                                     </div>
 
-                                    <div className="icon more-details-icon">
+                                    <div className="icon more-details-icon" onClick={handleMoreInfoClick}>
                                         <FaInfoCircle />
                                     </div>
                                 </div>
+                                {isFarmVisible && (
+                                    <div className="farm">
+                                        <FarmingComponent />
+                                    </div>
+                                )}
+
                                 {markers.map((markerPosition, index) => (
                                     <div key={index}>
                                         <img

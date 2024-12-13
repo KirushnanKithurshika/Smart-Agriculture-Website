@@ -1,0 +1,107 @@
+
+.farming-container {
+    width: 300px;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    margin-top: 10px;
+    color:#9c9999;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+    
+  }
+  .division-id{
+    color:black;
+  }
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .activity-list {
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;  
+    gap:5px;
+  }
+  
+  .activity-item {
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    padding: 5px 15px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .activity-item:hover {
+    background-color: #e7e7e7;
+  }
+  
+  .iconsslideA {
+    margin-left: -10px;
+    width: 40px;    
+    height: 40px;   
+    background-color: #0e9a17; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .details {
+    flex-grow: 1;
+  }
+  
+  .name {
+    margin-left: 15px;
+    display: block;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .action {
+    font-size: 12px;
+    color: #777;
+    margin-left:15px;
+  }
+  
+  .arrow {
+    font-size: 26px;
+    color: #b9b6b6;
+  }
+  .close-button {
+    margin-left: 160px;
+    background: none;
+    border: none; 
+    color: rgb(161, 159, 159); 
+    font-size: 14px; 
+    cursor: pointer; 
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease; 
+  }
+  
+  .close-button:hover {
+    color: darkgrey; 
+  }
+
+  .icon-imageM {
+    width: 20px;   
+    height: 20px;  
+    
+}

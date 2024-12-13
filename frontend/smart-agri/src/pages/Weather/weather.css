@@ -6,7 +6,7 @@
 
  .grid-container{
    display:grid;
-   height:100vh;
+   height:fit-content;
    background-color: rgb(216, 236, 244);
    grid-template-columns: 240px 700px auto;
    grid-template-rows:72px 290px 320px auto ;
@@ -19,7 +19,7 @@
     grid-row: 2 / 4; 
     margin: 20px;
     display:grid;
-    height: fit-content;
+    height:auto;
     grid-template-columns:2fr 3fr;
     grid-template-rows: 0.8fr 1.5fr;
     border-radius: 20px;
@@ -31,6 +31,7 @@
 
   .Weather-boardA{
     display: flex;
+    width:500px;
     flex-direction: column;
     align-items: center;
     justify-content:first baseline;
@@ -43,6 +44,7 @@
   }
   .Weather-boardB{
     height:230px;
+    width:680px;
     background: rgba(129, 128, 128, 0.2); 
     border-radius: 10px; 
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
