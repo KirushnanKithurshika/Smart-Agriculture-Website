@@ -22,12 +22,6 @@
   .division-id{
     color:black;
   }
-  .close-button {
-    background: none;
-    border: none;
-    font-size: 16px;
-    cursor: pointer;
-  }
   
   .activity-list {
     padding: 10px 10px;
@@ -97,7 +91,7 @@
   }
   
   .close-button:hover {
-    color: darkgrey; 
+    color: rgb(6, 6, 6); 
   }
 
   .icon-imageM {

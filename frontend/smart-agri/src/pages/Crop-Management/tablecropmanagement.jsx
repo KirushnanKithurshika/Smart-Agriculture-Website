@@ -58,7 +58,7 @@ function TaskTable() {
 
   return (
     <div className="task-management-table-container">
-      <h2>Paddy Field Management Tasks</h2>
+      <h2> Field Management Tasks</h2>
       <table className="task-table">
         <thead>
           <tr>

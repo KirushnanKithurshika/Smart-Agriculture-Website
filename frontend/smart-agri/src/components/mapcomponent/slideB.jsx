@@ -1,7 +1,7 @@
 import React from 'react';
 import './slideB.css';
 
-const FarmingComponentSlideB = ({ activity, onBackClick }) => {
+const FarmingComponentSlideB = ({ activity, onBackClick, onClose }) => {
     if (!activity) {
         return <div>No activity found!</div>;
     }
@@ -17,9 +17,8 @@ const FarmingComponentSlideB = ({ activity, onBackClick }) => {
                     <span className="division-id">#A</span>
                 </div>
                 <div>
-                    <button className="close-buttonB" onClick={() => alert("Close button clicked!")}>
-                        <i className="fas fa-times"></i>
-                    </button>
+                  
+                   
                 </div>
             </div>
             <div className="activityB-details">
@@ -31,50 +30,49 @@ const FarmingComponentSlideB = ({ activity, onBackClick }) => {
                     <span className="activeA">Active</span>
                 </div>
             </div>
-            <div className='SlideBgridC'>
-                <div className='SlideBgridCA'>
-                    <div className='SlideBgridCAA'>
-                        <p className='actionA'>{activity.action}</p>
-                        <div className='circleandprogress'>
-                            <div className='circle'></div>
-                            <span className='progress'>In Progress</span>
+            <div className="SlideBgridC">
+                <div className="SlideBgridCA">
+                    <div className="SlideBgridCAA">
+                        <p className="actionA">{activity.action}</p>
+                        <div className="circleandprogress">
+                            <div className="circle"></div>
+                            <span className="progress">In Progress</span>
                         </div>
                     </div>
-                    <div className='SlideBgridCAB'>
-                        <div className='date'>
+                    <div className="SlideBgridCAB">
+                        <div className="date">
                             <span>End date: 20.12.2024</span>
                         </div>
                     </div>
                 </div>
 
-                <div className='SlideBgridCB'>
-                    <div className='SlideBgridCBA'>
-                        <div className='count'>12</div>
-                        <span className='description'>Workers</span>
+                <div className="SlideBgridCB">
+                    <div className="SlideBgridCBA">
+                        <div className="count">12</div>
+                        <span className="description">Workers</span>
                     </div>
-                    <div className='SlideBgridCBA'>
-                        <div className='count'>5</div>
-                        <span className='description'>Vehicles</span>
+                    <div className="SlideBgridCBA">
+                        <div className="count">5</div>
+                        <span className="description">Vehicles</span>
                     </div>
-                    <div className='SlideBgridCBB'>
+                    <div className="SlideBgridCBB">
                         <button className="add-taskmap-button">Add Task+</button>
                     </div>
                 </div>
             </div>
 
-            <div className='SlideBgridD'>
-                <div className='SlideBgridDA'>
-                    <div className='expense'>Crop expenses</div>
+            <div className="SlideBgridD">
+                <div className="SlideBgridDA">
+                    <div className="expense">Crop expenses</div>
                     <div>
-                        <button className='seedetails'>See Details</button>
+                        <button className="seedetails">See Details</button>
                     </div>
                 </div>
-                <div className='SlideBgridDB'>
-                    <span className='totalA'>Rs.55,000</span>
-                    <span className='totalB'>Total</span>
+                <div className="SlideBgridDB">
+                    <span className="totalA">Rs.55,000</span>
+                    <span className="totalB">Total</span>
                 </div>
 
-                {/* Progress Bars */}
                 <div>
                     <div className="progress-container">
                         <div className="progress-bar" style={{ width: "50%", backgroundColor: "#008000" }}></div>
@@ -84,39 +82,38 @@ const FarmingComponentSlideB = ({ activity, onBackClick }) => {
                     </div>
                 </div>
 
-                <div className='salaryandcolor'>
+                <div className="salaryandcolor">
                     <div>
-                        <div className='salary'>25k</div>
-                        <div className='colorsalary'>
-                            <div className='rounddarkgreen'></div>
-                            <div className='slarytext'>Salary</div>
+                        <div className="salary">25k</div>
+                        <div className="colorsalary">
+                            <div className="rounddarkgreen"></div>
+                            <div className="slarytext">Salary</div>
                         </div>
                     </div>
                     <div>
-                        <div className='salary'>15k</div>
-                        <div className='colorsalary'>
-                            <div className='roundlight'></div>
-                            <div className='slarytext'>Vehicle</div>
+                        <div className="salary">15k</div>
+                        <div className="colorsalary">
+                            <div className="roundlight"></div>
+                            <div className="slarytext">Vehicle</div>
                         </div>
                     </div>
                     <div>
-                        <div className='salary'>10k</div>
-                        <div className='colorsalary'>
-                            <div className='roundverylight'></div>
-                            <div className='slarytext'>Food</div>
+                        <div className="salary">10k</div>
+                        <div className="colorsalary">
+                            <div className="roundverylight"></div>
+                            <div className="slarytext">Food</div>
                         </div>
                     </div>
                     <div>
-                        <div className='salary'>5k</div>
-                        <div className='colorsalary'>
-                            <div className='roundyellow'></div>
-                            <div className='slarytext'>Equip</div>
+                        <div className="salary">5k</div>
+                        <div className="colorsalary">
+                            <div className="roundyellow"></div>
+                            <div className="slarytext">Equip</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        
     );
 };
 

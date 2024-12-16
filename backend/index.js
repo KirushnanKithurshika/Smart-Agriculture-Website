@@ -7,6 +7,7 @@ import equipmentRoutes from './routes/equipmentRoutes.js';
 import logRoutes from './routes/logRoutes.js'
 import mongoose from 'mongoose';
 import cropTaskRoutes from './routes/croptaskRoutes.js';
+import cropcostRoutes from './routes/cropcostRoutes.js';
 dotenv.config();
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api', employeeRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/equipment', equipmentRoutes);
 app.use('/api/croptask', cropTaskRoutes);
+app.use('/api', cropcostRoutes);
 
 
 

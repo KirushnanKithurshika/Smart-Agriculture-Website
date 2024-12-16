@@ -19,6 +19,7 @@ export const activities = [
 
 const FarmingComponent = () => {
     const [selectedActivity, setSelectedActivity] = useState(null); // Track the selected activity
+    const [isVisible, setIsVisible] = useState(true); // Track visibility of the component
 
     const handleActivityClick = (activity) => {
         setSelectedActivity(activity); // Set the selected activity
@@ -28,18 +29,25 @@ const FarmingComponent = () => {
         setSelectedActivity(null); // Go back to the main component
     };
 
+    const handleCloseClick = () => {
+        setIsVisible(false); // Hide the component
+    };
+
+    if (!isVisible) {
+        return null; // Do not render the component if it's not visible
+    }
+
     if (selectedActivity) {
         // Render the SlideB component if an activity is selected
         return <FarmingComponentSlideB activity={selectedActivity} onBackClick={handleBackClick} />;
     }
-    
 
     return (
         <div className="farming-container">
             <div className="header">
                 <span className="division-text">Division No.</span>
                 <span className="division-id">#A</span>
-                <button className="close-button">
+                <button className="close-button" onClick={handleCloseClick}>
                     <i className="fas fa-times"></i>
                 </button>
             </div>

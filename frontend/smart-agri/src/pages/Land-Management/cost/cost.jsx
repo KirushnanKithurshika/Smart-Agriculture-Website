@@ -1,8 +1,11 @@
 import React from 'react'
+import CropTable from '../../../components/Costtable/costmanagemnettable'
 
 function Cost() {
   return (
-    <div>cost</div>
+    <div>
+    <CropTable/>
+    </div>
   )
 }
 
