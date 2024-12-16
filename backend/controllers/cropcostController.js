@@ -1,6 +1,5 @@
 const Crop = require("../models/Crop");
 
-// Get all crops
 exports.getAllCrops = async (req, res) => {
   try {
     const crops = await Crop.find();
@@ -10,7 +9,6 @@ exports.getAllCrops = async (req, res) => {
   }
 };
 
-// Add a new crop
 exports.addCrop = async (req, res) => {
   try {
     const { name } = req.body;
@@ -25,7 +23,7 @@ exports.addCrop = async (req, res) => {
   }
 };
 
-// Update crop expenses
+
 exports.updateExpenses = async (req, res) => {
   try {
     const { id } = req.params;
@@ -41,7 +39,7 @@ exports.updateExpenses = async (req, res) => {
   }
 };
 
-// Delete a crop
+
 exports.deleteCrop = async (req, res) => {
   try {
     const { id } = req.params;
@@ -52,7 +50,7 @@ exports.deleteCrop = async (req, res) => {
   }
 };
 
-// Add a new expense field to all crops
+
 exports.addExpenseField = async (req, res) => {
   try {
     const { expenseName } = req.body;
@@ -66,7 +64,7 @@ exports.addExpenseField = async (req, res) => {
   }
 };
 
-// Delete an expense field from all crops
+
 exports.deleteExpenseField = async (req, res) => {
   try {
     const { expenseName } = req.body;
