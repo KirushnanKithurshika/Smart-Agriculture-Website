@@ -1,23 +1,20 @@
 import express from 'express';
 import {
-  getAllCrops,
+  getCrops,
   addCrop,
-  updateCrop,
-  deleteCrop,
   addExpense,
   updateExpense,
+  deleteCrop,
   deleteExpense,
-} from '../controllers/cropcostController.js'; 
+} from '../controllers/cropcostController.js';
 
 const router = express.Router();
 
-
-router.get('/cropscost', getAllCrops); 
-router.post('/cropscost', addCrop); 
-router.put('/cropscost/:id', updateCrop); 
-router.delete('/cropscost/:id', deleteCrop);
-router.post('/cropscost/:id/expenses', addExpense); 
-router.put('/cropscost/:id/expenses/:expenseName', updateExpense); 
-router.delete('/cropscost/:id/expenses/:expenseName', deleteExpense); 
+router.get('/', getCrops);
+router.post('/add', addCrop);
+router.post('/add-expense', addExpense);
+router.put('/update-expense', updateExpense);
+router.delete('/delete/:name', deleteCrop);
+router.delete('/delete-expense', deleteExpense);
 
 export default router;

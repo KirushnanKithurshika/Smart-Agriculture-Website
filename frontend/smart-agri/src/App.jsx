@@ -25,6 +25,8 @@ import UpdateTask from './pages/Crop-Management/updatecroptask';
 import AddCropTask from './pages/Crop-Management/createcroptask';
 import LandManagement from './pages/Land-Management/land-management';
 import FarmingComponent from './components/mapcomponent/slideA';
+import ResetPassword from './pages/Forget-Password/forget-password';
+import UpdatePassword from './pages/Forget-Password/reset-passwordpage';
 
 
 
@@ -38,6 +40,8 @@ function App() {
             <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
             <Routes>
                 <Route path='/' element={<Login />} />
+                <Route path='/resetpassword' element={<ResetPassword/>}/>
+                <Route path='/updatepasswordpage' element={<UpdatePassword/>}/>
                 <Route path='/register' element={<Register />} />
                 <Route path='/homepage' element={<Farms />} />
                 <Route path='/dashboard' element={<Dashboard />} />

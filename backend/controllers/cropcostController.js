@@ -1,6 +1,10 @@
-const Crop = require("../models/Crop");
+import Crop from "../models/cropcost.js";
 
-exports.getAllCrops = async (req, res) => {
+
+
+
+// Get all crops
+export const getCrops = async (req, res) => {
   try {
     const crops = await Crop.find();
     res.status(200).json(crops);
@@ -9,13 +13,11 @@ exports.getAllCrops = async (req, res) => {
   }
 };
 
-exports.addCrop = async (req, res) => {
+// Add a new crop
+export const addCrop = async (req, res) => {
+  const { name } = req.body;
   try {
-    const { name } = req.body;
-    const newCrop = new Crop({
-      name,
-      expenses: { LandCost: 0, Fertilizer: 0, Seed: 0, Chemical: 0 },
-    });
+    const newCrop = new Crop({ name });
     await newCrop.save();
     res.status(201).json(newCrop);
   } catch (error) {
@@ -23,56 +25,74 @@ exports.addCrop = async (req, res) => {
   }
 };
 
+export const addExpense = async (req, res) => {
+    const { expenseName } = req.body;
+  
+    if (!expenseName) {
+      return res.status(400).json({ message: "Expense name is required" });
+    }
+  
+    try {
+      const crops = await Crop.find();
+  
+      for (const crop of crops) {
+        if (!crop.expenses.has(expenseName)) { // Check if the expense exists
+          crop.expenses.set(expenseName, 0); // Add expense with a default value of 0
+          await crop.save();
+        }
+      }
+  
+      res.status(200).json({ message: "Expense added to all crops successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "An error occurred while adding the expense", error: error.message });
+    }
+  };
+  
 
-exports.updateExpenses = async (req, res) => {
+export const updateExpense = async (req, res) => {
+  const { cropName, expenseName, value } = req.body;
+
   try {
-    const { id } = req.params;
-    const { expenses } = req.body;
-    const updatedCrop = await Crop.findByIdAndUpdate(
-      id,
-      { $set: { expenses } },
-      { new: true }
-    );
-    res.status(200).json(updatedCrop);
+    // Find the crop by name
+    const crop = await Crop.findOne({ name: cropName });
+
+    if (!crop) {
+      return res.status(404).json({ message: "Crop not found" });
+    }
+
+    // Update the expense value
+    crop.expenses.set(expenseName, value); // Use .set for Map in Mongoose
+    await crop.save(); // Save the updated document
+
+    res.status(200).json({ message: "Expense updated successfully!", crop });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 };
 
 
-exports.deleteCrop = async (req, res) => {
+// Delete a crop
+export const deleteCrop = async (req, res) => {
+  const { name } = req.params;
   try {
-    const { id } = req.params;
-    await Crop.findByIdAndDelete(id);
-    res.status(200).json({ message: "Crop deleted successfully" });
+    await Crop.deleteOne({ name });
+    res.status(200).json({ message: 'Crop deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 };
 
-
-exports.addExpenseField = async (req, res) => {
+// Delete an expense
+export const deleteExpense = async (req, res) => {
+  const { cropName, expenseName } = req.body;
   try {
-    const { expenseName } = req.body;
-    const crops = await Crop.updateMany(
-      {},
-      { $set: { [`expenses.${expenseName}`]: 0 } }
-    );
-    res.status(200).json({ message: "Expense field added successfully" });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-
-exports.deleteExpenseField = async (req, res) => {
-  try {
-    const { expenseName } = req.body;
-    const crops = await Crop.updateMany(
-      {},
-      { $unset: { [`expenses.${expenseName}`]: "" } }
-    );
-    res.status(200).json({ message: "Expense field deleted successfully" });
+    const crop = await Crop.findOne({ name: cropName });
+    if (!crop) {
+      return res.status(404).json({ message: 'Crop not found' });
+    }
+    delete crop.expenses[expenseName];
+    await crop.save();
+    res.status(200).json(crop);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

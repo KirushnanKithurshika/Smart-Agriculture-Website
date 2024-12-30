@@ -1,95 +1,108 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "./costmanagementtable.css";
-import React, { useState } from "react";
 
 const CropTable = () => {
- 
-  const [crops, setCrops] = useState([
-    {
-      name: "Corn",
-      expenses: {
-        LandCost: 252669.0,
-        Fertilizer: 157717.02,
-        Seed: 51329.69,
-        Chemical: 16625.0,
-      },
-    },
-    {
-      name: "Soybeans",
-      expenses: {
-        LandCost: 220385.0,
-        Fertilizer: 33459.0,
-        Seed: 67488.0,
-        Chemical: 42180.0,
-      },
-    },
-  ]);
-
+  const [crops, setCrops] = useState([]);
   const [newCrop, setNewCrop] = useState("");
   const [newExpense, setNewExpense] = useState("");
-
- 
   const [showModal, setShowModal] = useState(false);
   const [deleteTarget, setDeleteTarget] = useState(null);
-  const [deleteType, setDeleteType] = useState(""); 
+  const [deleteType, setDeleteType] = useState("");
 
-  const handleAddCrop = () => {
+  useEffect(() => {
+    fetchCrops();
+  }, []);
+
+  const fetchCrops = async () => {
+    try {
+      const response = await axios.get("http://localhost:8000/api/cost");
+      setCrops(response.data);
+    } catch (error) {
+      console.error("Error fetching crops:", error);
+    }
+  };
+
+  const handleAddCrop = async () => {
     if (!newCrop) return;
-    setCrops([
-      ...crops,
-      { name: newCrop, expenses: { LandCost: 0, Fertilizer: 0, Seed: 0, Chemical: 0 } },
-    ]);
-    setNewCrop("");
+    try {
+      const response = await axios.post("http://localhost:8000/api/cost/add", { name: newCrop });
+      setCrops([...crops, response.data]);
+      setNewCrop("");
+    } catch (error) {
+      console.error("Error adding crop:", error);
+    }
   };
 
-
-  const handleAddExpense = () => {
+  const handleAddExpense = async () => {
     if (!newExpense) return;
-    setCrops(
-      crops.map((crop) => ({
-        ...crop,
-        expenses: { ...crop.expenses, [newExpense]: 0 },
-      }))
-    );
-    setNewExpense("");
+
+    try {
+      await axios.post("http://localhost:8000/api/cost/add-expense", { expenseName: newExpense });
+      fetchCrops();
+      setNewExpense("");
+      alert("Expense added successfully to all crops!");
+    } catch (error) {
+      console.error("Error adding expense:", error);
+      alert("Failed to add the expense. Please try again.");
+    }
   };
 
-  
+  const handleUpdateExpense = async (cropName, expenseName, value) => {
+    try {
+      await axios.put("http://localhost:8000/api/cost/update-expense", {
+        cropName,
+        expenseName,
+        value,
+      });
+      fetchCrops(); 
+    } catch (error) {
+      console.error("Error updating expense:", error);
+      alert("Failed to update the expense. Please try again.");
+    }
+  };
+
   const triggerDelete = (name, type) => {
     setDeleteTarget(name);
     setDeleteType(type);
     setShowModal(true);
   };
 
-  
-  const confirmDelete = () => {
-    if (deleteType === "crop") {
-      setCrops(crops.filter((crop) => crop.name !== deleteTarget));
-    } else if (deleteType === "expense") {
-      setCrops(
-        crops.map((crop) => ({
-          ...crop,
-          expenses: Object.keys(crop.expenses)
-            .filter((key) => key !== deleteTarget)
-            .reduce((obj, key) => {
-              obj[key] = crop.expenses[key];
-              return obj;
-            }, {}),
-        }))
-      );
+  const confirmDelete = async () => {
+    try {
+      if (deleteType === "crop") {
+        await axios.delete(`http://localhost:8000/api/cost/delete/${deleteTarget}`);
+        setCrops(crops.filter((crop) => crop.name !== deleteTarget));
+      } else if (deleteType === "expense") {
+        await axios.delete("http://localhost:8000/api/cost/delete-expense", {
+          data: { expenseName: deleteTarget },
+        });
+        setCrops(
+          crops.map((crop) => ({
+            ...crop,
+            expenses: Object.keys(crop.expenses)
+              .filter((key) => key !== deleteTarget)
+              .reduce((obj, key) => {
+                obj[key] = crop.expenses[key];
+                return obj;
+              }, {}),
+          }))
+        );
+      }
+    } catch (error) {
+      console.error("Error deleting:", error);
     }
     setShowModal(false);
     setDeleteTarget(null);
     setDeleteType("");
   };
 
-  
   const closeModal = () => {
     setShowModal(false);
     setDeleteTarget(null);
     setDeleteType("");
   };
 
- 
   const calculateTotal = (crop) =>
     Object.values(crop.expenses).reduce((acc, cost) => acc + cost, 0);
 
@@ -97,7 +110,6 @@ const CropTable = () => {
     <div className="crop-table">
       <h1>Crop Cost Management</h1>
 
-      
       <div className="add-crop">
         <input
           className="expensename"
@@ -109,7 +121,6 @@ const CropTable = () => {
         <button onClick={handleAddCrop}>Add Crop</button>
       </div>
 
-    
       <div className="add-expense">
         <input
           className="expensename"
@@ -121,7 +132,6 @@ const CropTable = () => {
         <button onClick={handleAddExpense}>Add Expense</button>
       </div>
 
-     
       <table>
         <thead>
           <tr>
@@ -140,7 +150,7 @@ const CropTable = () => {
           </tr>
         </thead>
         <tbody>
-          {Object.keys(crops[0].expenses).map((expense) => (
+          {Object.keys(crops[0]?.expenses || {}).map((expense) => (
             <tr key={expense}>
               <td>
                 {expense}
@@ -158,19 +168,7 @@ const CropTable = () => {
                     type="number"
                     value={crop.expenses[expense]}
                     onChange={(e) =>
-                      setCrops(
-                        crops.map((c) =>
-                          c.name === crop.name
-                            ? {
-                                ...c,
-                                expenses: {
-                                  ...c.expenses,
-                                  [expense]: parseFloat(e.target.value) || 0,
-                                },
-                              }
-                            : c
-                        )
-                      )
+                      handleUpdateExpense(crop.name, expense, parseFloat(e.target.value) || 0)
                     }
                   />
                 </td>
@@ -188,7 +186,6 @@ const CropTable = () => {
         </tfoot>
       </table>
 
-     
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">

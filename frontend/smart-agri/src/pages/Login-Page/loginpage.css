@@ -21,7 +21,7 @@
   }
   
   .login-header {
-    font-size: 24px;
+    font-size: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -78,7 +78,7 @@
   }
   
   .login-form h2 {
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
     margin-bottom: 30px;
     color: #f3f0f0;
@@ -86,7 +86,7 @@
   }
   
   .login-form label {
-    font-size: 16px; 
+    font-size: 14px; 
     color: #ffffff;
   }
   .input-container {
@@ -121,14 +121,14 @@
   
   .forget-password-link{
     font-size: 12px;
-    color: rgb(122, 255, 237) ;
+    color: rgb(223, 180, 24) ;
     margin-bottom: 20px;
     text-decoration: none;
     cursor:pointer;
   }
 
   .forget-password-link:hover {
-    text-decoration: underline; /* Add underline on hover */
+    text-decoration: underline; 
   }
   .forget-password{
     margin-bottom: 20px;
@@ -139,19 +139,27 @@
   }
   
   .submit-buttonL {
-    width: 200px; 
-    padding:8px 8px;
+    width: 150px; 
+    padding:8px 5px;
     background-color: #92B855;
     border: none;
     color: white;
     font-weight: bold;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 12px;
   }
   
-  .submit-button:hover {
-    background-color: #688a58;
+  .submit-buttonL:hover {
+    background-color: #6f903a;
+  }
+  
+
+ 
+
+  .loginplaceholder::placeholder {
+    font-size: 12px;
+    color: gray;
   }
   
   /* Responsive design */

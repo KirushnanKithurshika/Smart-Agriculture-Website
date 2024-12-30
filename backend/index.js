@@ -38,7 +38,7 @@ app.use('/api', employeeRoutes);
 app.use('/api/logs', logRoutes);
 app.use('/api/equipment', equipmentRoutes);
 app.use('/api/croptask', cropTaskRoutes);
-app.use('/api', cropcostRoutes);
+app.use('/api/cost', cropcostRoutes);
 
 
 

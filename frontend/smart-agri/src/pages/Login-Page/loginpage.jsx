@@ -71,6 +71,7 @@ export default function Login() {
               <label htmlFor="email">Email</label>
               <div className="input-container">
                 <input
+                className='loginplaceholder'
                   type="text"
                   id="email"
                   placeholder="Email"
@@ -85,6 +86,7 @@ export default function Login() {
               <label htmlFor="password">Password</label>
               <div className="input-container" style={{ position: 'relative' }}>
                 <input
+                className='loginplaceholder'
                   type={passwordVisible ? 'text' : 'password'}
                   id="password"
                   placeholder="Password"
@@ -97,6 +99,7 @@ export default function Login() {
                   className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`} 
                   onClick={togglePasswordVisibility} 
                   style={{ 
+                    fontSize:'12px',
                     cursor: 'pointer', 
                     position: 'absolute', 
                     right: '10px', 
@@ -108,7 +111,7 @@ export default function Login() {
             </div>
 
             <div className="forget-password">
-  <Link to="/reset-password" className="forget-password-link">
+  <Link to="/resetpassword" className="forget-password-link">
     Forget password?
   </Link>
 </div>
