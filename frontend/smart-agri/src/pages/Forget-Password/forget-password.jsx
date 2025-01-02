@@ -10,8 +10,10 @@ export default function ResetPassword() {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [isFormVisible, setIsFormVisible] = useState(true);  // To toggle the form visibility
 
   const handleInputChange = (e) => {
+    console.log('Input Changed:', e.target.value); // Debug log
     setEmail(e.target.value);
     if (error) setError('');
     if (success) setSuccess('');
@@ -20,65 +22,82 @@ export default function ResetPassword() {
   const sendResetEmail = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/reset-password', { email });
-      if (response.data.success) {
-        setSuccess('Password reset link sent to your email.');
-        toast.success('Password reset link sent.');
+      const response = await axios.post('/resetpassword', { email });
+      if (response.data.message) {
+        // Success case - email sent successfully
+        setSuccess(response.data.message);
+        setIsFormVisible(false);  // Hide the form
+        toast.success(response.data.message);
         setEmail('');
       } else {
-        setError(response.data.error || 'Failed to send reset link.');
-        toast.error(response.data.error || 'Failed to send reset link.');
+        // Error case - reset link not sent
+        setError('Failed to send reset link.');
+        setIsFormVisible(false);  // Hide the form
+        toast.error('Failed to send reset link.');
       }
     } catch (error) {
       console.error(error);
       setError('An unexpected error occurred.');
+      setIsFormVisible(false);  // Hide the form
       toast.error('An unexpected error occurred.');
     }
   };
 
   return (
-    <div className="login-container"> {/* Reused class name */}
-      <header className="login-header"> {/* Reused class name */}
+    <div className="login-container">
+      <header className="login-header">
         <div className="logo">
           <img className="Logo" src={Logo} alt="Logo" />
         </div>
       </header>
 
-      <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}> {/* Reused class name */}
-        <div className="login-form"> {/* Reused class name */}
-          <h2>Reset Password</h2>
-          {error && <p className="error-message">{error}</p>}
-          {success && <p className="success-message">{success}</p>}
-
-          <form onSubmit={sendResetEmail}>
-            <div className="form-group">
-              <label htmlFor="email">Email</label>
-              <div className="input-container">
-                <input
-                className='loginplaceholder'
-                  type="email"
-                  id="email"
-                  placeholder="Enter your email"
-                  required
-                  value={email}
-                  onChange={handleInputChange}
-                />
-              </div>
-            </div>
-
-            <div className="submit-button-container">
-              <button className="submit-buttonL" type="submit">
-                Send Reset Link
-              </button>
-            </div>
-          </form>
-
-          <div className="forget-password"> {/* Same class for back navigation */}
-            <Link to="/" className="forget-password-link">
-              Back to Login
-            </Link>
-          </div>
+      {/* Success or error message box */}
+      {(success || error) && (
+        <div className="message-box">
+          <p>{success || error}</p>
         </div>
+      )}
+
+      <div
+        className="login-background"
+        style={{ backgroundImage: `url(${BackgroundImage})` }}
+      >
+        {isFormVisible && (
+          <div className="login-form">
+            <h2>Reset Password</h2>
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
+
+            <form onSubmit={sendResetEmail}>
+              <div className="form-group">
+                <label htmlFor="email">Email</label>
+                <div className="input-container">
+                  <input
+                    className="loginplaceholder"
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                    required
+                    value={email}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              </div>
+
+              <div className="submit-button-container">
+                <button className="submit-buttonL" type="submit">
+                  Send Reset Link
+                </button>
+              </div>
+            </form>
+
+            <div className="forget-password">
+              <Link to="/" className="forget-password-link">
+                Back to Login
+              </Link>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

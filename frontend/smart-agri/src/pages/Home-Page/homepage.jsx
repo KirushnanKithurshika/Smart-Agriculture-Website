@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './homepage.css';
 import Logo from '../../assets/slogo.png';
 import BackgroundImage from '../../assets/BG-login.jpg';
@@ -10,22 +10,33 @@ const farms = [
     { id: 'farmC', name: 'Farm C', link: '/dashboard' },
     { id: 'farmD', name: 'Farm D', link: '/dashboard' },
     { id: 'farmE', name: 'Farm E', link: '/dashboard' },
-  ];
+];
 
-// In Farms.js
 const Farms = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const navigate = useNavigate();
+
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleLogout = () => {
+   
+    localStorage.removeItem('authToken'); 
+    sessionStorage.removeItem('authToken'); 
+    
+    navigate('/');
   };
 
   return (
     <div className="login-container">
       <header className="login-header">
         <div className="logo">
-          <img className=" Logo" src={Logo} alt="Logo" />
+          <img className="Logo" src={Logo} alt="Logo" />
         </div>
-        <button className="logout-button">Logout</button>
+        <button className="logout-button" onClick={handleLogout}>
+          Logout
+        </button>
       </header>
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
         <div className="farms-grid">
@@ -34,7 +45,7 @@ const Farms = () => {
               key={farm.id}
               to={{
                 pathname: farm.link,
-                state: { farmName: farm.name } // Passing the selected farm's name
+                state: { farmName: farm.name } 
               }}
               className="farm-box"
             >

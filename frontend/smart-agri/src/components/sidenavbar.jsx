@@ -74,7 +74,7 @@ function Sidenavigationbar() {
             <Link to="/my-account"><FaUserAlt /> My Account</Link>
           </li>
           <li className={location.pathname === '/settings' ? 'active' : ''}>
-            <Link to="/settings"><FaCogs /> Settings</Link>
+            <Link to="/settings"><FaCogs /> Alert</Link>
           </li>
         </ul>
       </div>
