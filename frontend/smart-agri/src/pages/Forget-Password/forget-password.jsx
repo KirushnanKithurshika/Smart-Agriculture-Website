@@ -24,21 +24,20 @@ export default function ResetPassword() {
     try {
       const response = await axios.post('/resetpassword', { email });
       if (response.data.message) {
-        // Success case - email sent successfully
         setSuccess(response.data.message);
-        setIsFormVisible(false);  // Hide the form
+        setIsFormVisible(false); 
         toast.success(response.data.message);
         setEmail('');
       } else {
-        // Error case - reset link not sent
+       
         setError('Failed to send reset link.');
-        setIsFormVisible(false);  // Hide the form
+        setIsFormVisible(false);  
         toast.error('Failed to send reset link.');
       }
     } catch (error) {
       console.error(error);
       setError('An unexpected error occurred.');
-      setIsFormVisible(false);  // Hide the form
+      setIsFormVisible(false); 
       toast.error('An unexpected error occurred.');
     }
   };

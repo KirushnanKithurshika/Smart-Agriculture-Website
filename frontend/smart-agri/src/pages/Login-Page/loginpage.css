@@ -192,7 +192,7 @@
     }
   }
    */
-   /* Message box styling */
+ 
 .message-box {
   position: fixed;
   top: 400px;
@@ -200,13 +200,14 @@
   right: 0;
   background-color: white;
   color: rgb(21, 72, 132);
+  font-weight: bold;
   padding: 15px;
   text-align: center;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   z-index: 999;
 }
 
-/* Success/Error Message Styles */
+
 .success-message, .error-message {
   font-size: 16px;
   margin: 0;
@@ -223,4 +224,36 @@
 .error-message {
   background-color: #f8d7da;
   color: #721c24;
+}
+.success-message-box {
+  background-color: #f4f4f9; 
+  padding: 10px;
+  border-radius: 8px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+}
+
+.success-message-box h2 {
+  color: rgb(21, 72, 132);
+  font-size: 16px;
+  margin-bottom: 10px;
+  
+}
+
+.success-message-box p {
+  color: #555; 
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.success-message-box .forget-password-link {
+  color: #98a319; 
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.success-message-box .forget-password-link:hover {
+  text-decoration: underline; 
 }

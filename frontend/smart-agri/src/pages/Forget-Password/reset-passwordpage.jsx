@@ -12,6 +12,7 @@ export default function UpdatePassword() {
   const [passwordVisible, setPasswordVisible] = useState(false); 
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [formVisible, setFormVisible] = useState(true); // Track form visibility
 
   const query = new URLSearchParams(useLocation().search);
   const token = query.get('token');
@@ -35,12 +36,11 @@ export default function UpdatePassword() {
     }
 
     try {
-      const response = await axios.post('/reset-password', { token, newPassword });
+      const response = await axios.post('/updatepassword', { token, newPassword });
       if (response.data.success) {
-        setSuccess('Password reset successfully.');
-        toast.success('Password reset successfully.');
-        setNewPassword('');
-        setConfirmPassword('');
+        setSuccess('Password reset successfully');
+        toast.success('Password reset successfully');
+        setFormVisible(false); 
       } else {
         setError(response.data.error || 'Failed to reset password.');
         toast.error(response.data.error || 'Failed to reset password.');
@@ -61,79 +61,88 @@ export default function UpdatePassword() {
       </header>
 
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
-        <div className="login-form">
-          <h2>Reset Your Password</h2>
-          {error && <p className="error-message">{error}</p>}
-          {success && <p className="success-message">{success}</p>}
+        {formVisible ? (
+          <div className="login-form">
+            <h2>Reset Your Password</h2>
+            {error && <p className="error-message">{error}</p>}
+            {success && <p className="success-message">{success}</p>}
 
-          <form onSubmit={handlePasswordReset}>
-            <div className="form-group">
-              <label htmlFor="newPassword">New Password</label>
-              <div className="input-container" style={{ position: 'relative' }}>
-                <input
-                  className="loginplaceholder"
-                  type={passwordVisible ? 'text' : 'password'}
-                  id="newPassword"
-                  placeholder="Enter new password"
-                  required
-                  value={newPassword}
-                  onChange={(e) => handleInputChange(e, setNewPassword)}
-                />
-                <i
-                  className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}
-                  onClick={togglePasswordVisibility}
-                  style={{
-                    fontSize:'12px',
-                    cursor: 'pointer',
-                    position: 'absolute',
-                    right: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                  }}
-                ></i>
+            <form onSubmit={handlePasswordReset}>
+              <div className="form-group">
+                <label htmlFor="newPassword">New Password</label>
+                <div className="input-container" style={{ position: 'relative' }}>
+                  <input
+                    className="loginplaceholder"
+                    type={passwordVisible ? 'text' : 'password'}
+                    id="newPassword"
+                    placeholder="Enter new password"
+                    required
+                    value={newPassword}
+                    onChange={(e) => handleInputChange(e, setNewPassword)}
+                  />
+                  <i
+                    className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}
+                    onClick={togglePasswordVisibility}
+                    style={{
+                      fontSize: '12px',
+                      cursor: 'pointer',
+                      position: 'absolute',
+                      right: '10px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                    }}
+                  ></i>
+                </div>
               </div>
-            </div>
 
-            <div className="form-group">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <div className="input-container" style={{ position: 'relative' }}>
-                <input
-                  className="loginplaceholder"
-                  type={passwordVisible ? 'text' : 'password'} 
-                  id="confirmPassword"
-                  placeholder="Confirm new password"
-                  required
-                  value={confirmPassword}
-                  onChange={(e) => handleInputChange(e, setConfirmPassword)}
-                />
-                <i
-                  className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}
-                  onClick={togglePasswordVisibility}
-                  style={{
-                    fontSize:'12px',
-                    cursor: 'pointer',
-                    position: 'absolute',
-                    right: '10px',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                  }}
-                ></i>
+              <div className="form-group">
+                <label htmlFor="confirmPassword">Confirm Password</label>
+                <div className="input-container" style={{ position: 'relative' }}>
+                  <input
+                    className="loginplaceholder"
+                    type={passwordVisible ? 'text' : 'password'} 
+                    id="confirmPassword"
+                    placeholder="Confirm new password"
+                    required
+                    value={confirmPassword}
+                    onChange={(e) => handleInputChange(e, setConfirmPassword)}
+                  />
+                  <i
+                    className={`fas ${passwordVisible ? 'fa-eye-slash' : 'fa-eye'}`}
+                    onClick={togglePasswordVisibility}
+                    style={{
+                      fontSize: '12px',
+                      cursor: 'pointer',
+                      position: 'absolute',
+                      right: '10px',
+                      top: '50%',
+                      transform: 'translateY(-50%)',
+                    }}
+                  ></i>
+                </div>
               </div>
-            </div>
 
-            <div className="submit-button-container">
-              <button className="submit-buttonL" type="submit">
-                Reset Password
-              </button>
-            </div>
-          </form>
+              <div className="submit-button-container">
+                <button className="submit-buttonL" type="submit">
+                  Reset Password
+                </button>
+              </div>
+            </form>
 
-          <div className="forget-password">
+            <div className="forget-password">
+              <Link to="/" className="forget-password-link">
+                Back to Login
+              </Link>
+            </div>
+          </div>
+        ) : (
+          <div className="success-message-box">
+            <h2>{success}</h2>
             <Link to="/" className="forget-password-link">
               Back to Login
             </Link>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );
