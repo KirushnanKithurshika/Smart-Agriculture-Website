@@ -39,7 +39,7 @@ export const registerUser = async (req, res) => {
             password: hashedPassword,
         });
         
-        // Return the new user 
+  
         const { password: _, ...userData } = user.toObject();
         return res.json(userData);
     } catch (error) {
@@ -48,18 +48,18 @@ export const registerUser = async (req, res) => {
     }
 };
 
-// Login endpoint
+
 export const loginUser = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Check if the user exists
+       
         const user = await User.findOne({ email });
         if (!user) {
             return res.json({ error: 'No user found' });
         }
 
-        // Compare passwords
+       
         const match = await comparePassword(password, user.password);
         console.log("Entered Password:", password);
         console.log("Stored Hashed Password:", user.password);
