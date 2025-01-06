@@ -7,9 +7,16 @@ const userSchema = new Schema({
         type: String,
         unique: true,
         required: true,
-        match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,  // Regular expression for email validation
+        match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
     },
     password: String,
+    address: String,
+    contactNumber: String,
+    jobDescription: String,
+    profilePicture: {
+        type: mongoose.Schema.Types.ObjectId, // Store the file ID of the image in GridFS
+        ref: 'GridFS'
+    },
 });
 
 const UserModel = mongoose.model('User', userSchema);

@@ -168,3 +168,12 @@
     }
    
 }
+
+
+.farmtext{
+    justify-content: center;
+    justify-items: center;
+    margin-left: 300px;
+    color:rgb(19, 89, 108);
+    font-weight: 600;
+}

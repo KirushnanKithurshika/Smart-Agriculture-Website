@@ -27,6 +27,7 @@ import LandManagement from './pages/Land-Management/land-management';
 import FarmingComponent from './components/mapcomponent/slideA';
 import ResetPassword from './pages/Forget-Password/forget-password';
 import UpdatePassword from './pages/Forget-Password/reset-passwordpage';
+import Myaccount from './pages/myaccount/myacount';
 
 
 
@@ -55,6 +56,7 @@ function App() {
                 <Route path='/updateequipment/:id' element={<UpdateEquipment/>} />
                 <Route path='/editemployee/:id' element={<EditEmployee />} />
                 <Route path='/weatherforecast' element={<WeatherForecast />} />
+                <Route path='/myaccount' element={<Myaccount/>}/>
                 <Route path='/soil' element={<Soil />} />
                <Route path='/updatecroptask/:id'element={<UpdateTask/>}/>
                <Route path='/addcroptask' element={<AddCropTask/>}/>

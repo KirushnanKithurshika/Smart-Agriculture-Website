@@ -71,7 +71,7 @@ function Sidenavigationbar() {
             <Link to="/equipment"><FaTractor /> Equipment</Link>
           </li>
           <li className={`Account-setting ${location.pathname === '/my-account' ? 'active' : ''}`}>
-            <Link to="/my-account"><FaUserAlt /> My Account</Link>
+            <Link to="/myaccount"><FaUserAlt /> My Account</Link>
           </li>
           <li className={location.pathname === '/settings' ? 'active' : ''}>
             <Link to="/settings"><FaCogs /> Alert</Link>

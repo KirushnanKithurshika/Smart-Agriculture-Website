@@ -1,19 +1,19 @@
-// authController.js
+
 import User from '../models/user.js';
 import { hashPassword, comparePassword } from '../helpers/auth.js';
 
-// Test route to check if the controller is working
+
 export const test = (req, res) => {
     res.json('Test is working');
 };
 
-// Register endpoint
+
 export const registerUser = async (req, res) => {
     console.log('Request Body:', req.body); 
     try {
         const { name, email, password } = req.body;
 
-        // Validate inputs
+       
         if (!name) {
             return res.json({ error: 'Name is required' });
         }

@@ -13,18 +13,11 @@ const farms = [
 ];
 
 const Farms = () => {
-  const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
 
-  const togglePasswordVisibility = () => {
-    setPasswordVisible(!passwordVisible);
-  };
-
   const handleLogout = () => {
-   
-    localStorage.removeItem('authToken'); 
-    sessionStorage.removeItem('authToken'); 
-    
+    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
     navigate('/');
   };
 
@@ -38,15 +31,18 @@ const Farms = () => {
           Logout
         </button>
       </header>
-      <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
+      <div
+        className="login-background"
+        style={{ backgroundImage: `url(${BackgroundImage})` }}
+      >
         <div className="farms-grid">
           {farms.map((farm) => (
             <Link
               key={farm.id}
               to={{
                 pathname: farm.link,
-                state: { farmName: farm.name } 
               }}
+              state={{ farmName: farm.name }} // Pass farm name in state
               className="farm-box"
             >
               {farm.name}
