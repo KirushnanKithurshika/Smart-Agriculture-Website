@@ -1,17 +1,60 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from '../../components/navbar';
-import './myaccount.css';
-import Sidenavigationbar from '../../components/sidenavbar';
-import { FaCamera } from 'react-icons/fa';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "../../components/navbar";
+import Sidenavigationbar from "../../components/sidenavbar";
+import { FaCamera } from "react-icons/fa";
+import axios from "axios";
+import "./myaccount.css";
 
 function Myaccount() {
-  const [profilePicture, setProfilePicture] = useState('https://via.placeholder.com/100');
+  const [profilePicture, setProfilePicture] = useState(
+    "https://via.placeholder.com/100"
+  );
+  const [profileData, setProfileData] = useState({
+    fullName: "",
+    contactNumber: "",
+    address: "",
+    jobDescription: "",
+  });
+  const [passwordData, setPasswordData] = useState({
+    oldPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
   const [passwordVisibility, setPasswordVisibility] = useState({
     oldPassword: false,
-    confirmPassword: false,
     newPassword: false,
+    confirmPassword: false,
   });
+
+  const token = localStorage.getItem("authToken");
+
+  useEffect(() => {
+    if (token) {
+      axios
+        .get("/profile", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          const data = response.data;
+          setProfileData({
+            fullName: data.fullName,
+            contactNumber: data.contactNumber,
+            address: data.address,
+            jobDescription: data.jobDescription,
+          });
+          setProfilePicture(data.profilePicture || "https://via.placeholder.com/100");
+        })
+        .catch((error) => {
+          console.error("Error fetching user data:", error);
+          alert("Error fetching user data");
+        });
+    } else {
+      alert("No token found, please log in.");
+    }
+  }, [token]);
 
   const handleProfilePictureChange = (event) => {
     const file = event.target.files[0];
@@ -19,8 +62,29 @@ function Myaccount() {
       const imageUrl = URL.createObjectURL(file);
       setProfilePicture(imageUrl);
 
-      // Here you would send the file to the backend for permanent storage
+      const formData = new FormData();
+      formData.append("profilePicture", file);
+
+      axios
+        .post("/profile", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => alert("Profile picture updated successfully!"))
+        .catch((error) => alert("Error uploading profile picture"));
     }
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setProfileData({ ...profileData, [name]: value });
+  };
+
+  const handlePasswordChange = (e) => {
+    const { name, value } = e.target;
+    setPasswordData({ ...passwordData, [name]: value });
   };
 
   const togglePasswordVisibility = (field) => {
@@ -30,14 +94,49 @@ function Myaccount() {
     }));
   };
 
+  const handleProfileUpdate = (e) => {
+    e.preventDefault();
+    axios
+      .put("/profile", profileData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => alert("Profile updated successfully!"))
+      .catch((error) =>
+        alert(error.response?.data?.message || "Error updating profile")
+      );
+  };
+
+  const handlePasswordUpdate = (e) => {
+    e.preventDefault();
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      return alert("New password and confirmation do not match!");
+    }
+
+    axios
+      .put("/profile", passwordData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        alert("Password updated successfully!");
+        setPasswordData({ oldPassword: "", newPassword: "", confirmPassword: "" });
+      })
+      .catch((error) =>
+        alert(error.response?.data?.message || "Error updating password")
+      );
+  };
+
   return (
     <div>
       <div className="cropmanagement-container">
-        <div className="grid-item grid-item-1">
+        <div className="grid-item grid-item-1"></div>
+        <div className="grid-item grid-item-2"></div>
+        <div className="grid-item grid-item-3">
           <Navbar />
         </div>
-        <div className="grid-item grid-item-2"></div>
-        <div className="grid-item grid-item-3"></div>
         <div className="grid-item grid-item-4">
           <Sidenavigationbar />
         </div>
@@ -59,99 +158,92 @@ function Myaccount() {
                   type="file"
                   accept="image/*"
                   onChange={handleProfilePictureChange}
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                 />
               </div>
               <div className="profile-info">
-                <h2 className="profile-name">Kirushnan Kithurshika</h2>
+                <h2 className="profile-name">{profileData.fullName}</h2>
                 <p className="profile-email">kirushnankithurshika@gmail.com</p>
               </div>
             </div>
 
-            <form className="profile-form">
+            <form className="profile-form" onSubmit={handleProfileUpdate}>
               <div className="form-groupmyaccount">
                 <div>
                   <label>Full Name</label>
-                  <input type="text" value="Kirushnan Kithurshika" />
+                  <input
+                    type="text"
+                    name="fullName"
+                    value={profileData.fullName}
+                    onChange={handleInputChange}
+                  />
                 </div>
                 <div>
                   <label>Contact Number</label>
-                  <input type="text" placeholder="Enter Contact Number" />
+                  <input
+                    type="text"
+                    name="contactNumber"
+                    placeholder="Enter Contact Number"
+                    value={profileData.contactNumber}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
 
               <div className="form-group">
                 <div>
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    value="kirushnankithurshika@gmail.com"
-                    readOnly
-                  />
-                </div>
-                <div>
                   <label>Address</label>
                   <input
                     type="text"
-                    value="Sanmugalingam Street, Karuwakerny, Valachchenai"
+                    name="address"
+                    value={profileData.address}
+                    onChange={handleInputChange}
                   />
                 </div>
                 <div>
                   <label>Job Description</label>
-                  <input type="text" value="Manager" />
+                  <input
+                    type="text"
+                    name="jobDescription"
+                    value={profileData.jobDescription}
+                    onChange={handleInputChange}
+                  />
                 </div>
               </div>
 
-              <button type="button" className="save-btn">
-                Save
+              <button type="submit" className="save-btn">
+                Save Profile
               </button>
+            </form>
 
-              <h3>Password Settings</h3>
-              <hr />
+            <h3>Password Settings</h3>
+            <hr />
 
+            <form onSubmit={handlePasswordUpdate}>
               <div className="form-groupmyaccount">
                 <div>
                   <label>Old Password</label>
-                  <div className="password-input" style={{ position: 'relative' }}>
+                  <div className="password-input" style={{ position: "relative" }}>
                     <input
-                      type={passwordVisibility.oldPassword ? 'text' : 'password'}
+                      type={passwordVisibility.oldPassword ? "text" : "password"}
+                      name="oldPassword"
                       placeholder="Enter Old Password"
-                      style={{ paddingRight: '30px' }}
+                      value={passwordData.oldPassword}
+                      onChange={handlePasswordChange}
                     />
                     <i
-                      className={`fas ${passwordVisibility.oldPassword ? 'fa-eye-slash' : 'fa-eye'}`}
-                      onClick={() => togglePasswordVisibility('oldPassword')}
+                      className={`fas ${
+                        passwordVisibility.oldPassword ? "fa-eye-slash" : "fa-eye"
+                      }`}
+                      onClick={() => togglePasswordVisibility("oldPassword")}
                       style={{
-                        fontSize: '12px',
-                        color: '#808080',
-                        cursor: 'pointer',
-                        position: 'absolute',
-                        right: '10px',
-                        top: '30%',
-                        transform: 'translateY(-50%)',
-                      }}
-                    ></i>
-                  </div>
-                </div>
-                <div>
-                  <label>Confirm Password</label>
-                  <div className="password-input" style={{ position: 'relative' }}>
-                    <input
-                      type={passwordVisibility.confirmPassword ? 'text' : 'password'}
-                      placeholder="Confirm Password"
-                      style={{ paddingRight: '30px' }}
-                    />
-                    <i
-                      className={`fas ${passwordVisibility.confirmPassword ? 'fa-eye-slash' : 'fa-eye'}`}
-                      onClick={() => togglePasswordVisibility('confirmPassword')}
-                      style={{
-                        fontSize: '12px',
-                        color: '#808080',
-                        cursor: 'pointer',
-                        position: 'absolute',
-                        right: '10px',
-                        top: '30%',
-                        transform: 'translateY(-50%)',
+                        fontSize: "12px",
+                        color: "#808080",
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "10px",
+                        top: "30%",
+                        transform: "translateY(-50%)",
                       }}
                     ></i>
                   </div>
@@ -161,30 +253,63 @@ function Myaccount() {
               <div className="form-groupmyaccount">
                 <div>
                   <label>New Password</label>
-                  <div className="password-input" style={{ position: 'relative' }}>
+                  <div className="password-input" style={{ position: "relative" }}>
                     <input
-                      type={passwordVisibility.newPassword ? 'text' : 'password'}
+                      type={passwordVisibility.newPassword ? "text" : "password"}
+                      name="newPassword"
                       placeholder="Enter New Password"
-                      style={{ paddingRight: '30px' }}
+                      value={passwordData.newPassword}
+                      onChange={handlePasswordChange}
                     />
                     <i
-                      className={`fas ${passwordVisibility.newPassword ? 'fa-eye-slash' : 'fa-eye'}`}
-                      onClick={() => togglePasswordVisibility('newPassword')}
+                      className={`fas ${
+                        passwordVisibility.newPassword ? "fa-eye-slash" : "fa-eye"
+                      }`}
+                      onClick={() => togglePasswordVisibility("newPassword")}
                       style={{
-                        fontSize: '12px',
-                        color: '#808080',
-                        cursor: 'pointer',
-                        position: 'absolute',
-                        right: '10px',
-                        top: '30%',
-                        transform: 'translateY(-50%)',
+                        fontSize: "12px",
+                        color: "#808080",
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "10px",
+                        top: "30%",
+                        transform: "translateY(-50%)",
+                      }}
+                    ></i>
+                  </div>
+                </div>
+                <div>
+                  <label>Confirm Password</label>
+                  <div className="password-input" style={{ position: "relative" }}>
+                    <input
+                      type={passwordVisibility.confirmPassword ? "text" : "password"}
+                      name="confirmPassword"
+                      placeholder="Confirm Password"
+                      value={passwordData.confirmPassword}
+                      onChange={handlePasswordChange}
+                    />
+                    <i
+                      className={`fas ${
+                        passwordVisibility.confirmPassword
+                          ? "fa-eye-slash"
+                          : "fa-eye"
+                      }`}
+                      onClick={() => togglePasswordVisibility("confirmPassword")}
+                      style={{
+                        fontSize: "12px",
+                        color: "#808080",
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "10px",
+                        top: "30%",
+                        transform: "translateY(-50%)",
                       }}
                     ></i>
                   </div>
                 </div>
               </div>
 
-              <button type="button" className="update-password-btn">
+              <button type="submit" className="update-password-btn">
                 Update Password
               </button>
             </form>

@@ -67,6 +67,15 @@ function Equipment() {
     setEquipmentToDelete(null);
   };
 
+  // Format the date to 'YYYY-MM-DD'
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Add leading zero if month < 10
+    const day = ("0" + date.getDate()).slice(-2); // Add leading zero if day < 10
+    return `${year}-${month}-${day}`; // Return formatted date
+  };
+
   return (
     <div className={`gridequipment-container ${isModalOpen ? 'blur' : ''}`}>
       <div className="grid-item grid-item-1">
@@ -93,7 +102,6 @@ function Equipment() {
                   <th>Quantity</th>
                   <th>Assigned To</th>
                   <th>Actions</th>
-                  
                 </tr>
               </thead>
               <tbody>
@@ -103,12 +111,11 @@ function Equipment() {
                     <td>{equipment.equipmentName}</td>
                     <td>{equipment.category}</td>
                     <td>{equipment.brand}</td>
-                    <td>{equipment.purchaseDate}</td>
+                    <td>{formatDate(equipment.purchaseDate)}</td> {/* Format the date */}
                     <td>{equipment.price}</td>
                     <td>{equipment.image}</td>
                     <td>{equipment.quantity}</td>
                     <td>{equipment.assignedTo}</td>
-                    
                     <td>
                       <Link to={`/updateequipment/${equipment._id}`}>
                         <button className="editE-button">Edit</button>

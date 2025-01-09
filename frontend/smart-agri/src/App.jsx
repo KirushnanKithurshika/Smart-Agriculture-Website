@@ -28,6 +28,7 @@ import FarmingComponent from './components/mapcomponent/slideA';
 import ResetPassword from './pages/Forget-Password/forget-password';
 import UpdatePassword from './pages/Forget-Password/reset-passwordpage';
 import Myaccount from './pages/myaccount/myacount';
+import Alerts from './pages/Alerts/alerts';
 
 
 
@@ -62,6 +63,7 @@ function App() {
                <Route path='/addcroptask' element={<AddCropTask/>}/>
                <Route path='/slideA' element={<FarmingComponent/>}/>
             <Route path='/landmanagement' element={<LandManagement/>}/>
+            <Route path='/alerts' element={<Alerts/>}/>
             </Routes>
         </BrowserRouter>
     );

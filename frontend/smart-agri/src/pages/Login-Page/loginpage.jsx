@@ -42,7 +42,13 @@ export default function Login() {
         toast.error(responseData.error);
         setError(responseData.error); 
       } else {
+        // Store the token in localStorage or sessionStorage
+        localStorage.setItem('token', responseData.token);
+
+        // Clear the input fields
         setData({ email: '', password: '' });
+
+        // Navigate to the homepage or a protected route
         navigate('/homepage'); 
       }
     } catch (error) {
@@ -58,7 +64,6 @@ export default function Login() {
         <div className="logo">
           <img className="Logo" src={Logo} alt="Logo" />
         </div>
-        
       </header>
 
       <div className="login-background" style={{ backgroundImage: `url(${BackgroundImage})` }}>
@@ -71,7 +76,7 @@ export default function Login() {
               <label htmlFor="email">Email</label>
               <div className="input-container">
                 <input
-                className='loginplaceholder'
+                  className='loginplaceholder'
                   type="text"
                   id="email"
                   placeholder="Email"
@@ -86,7 +91,7 @@ export default function Login() {
               <label htmlFor="password">Password</label>
               <div className="input-container" style={{ position: 'relative' }}>
                 <input
-                className='loginplaceholder'
+                  className='loginplaceholder'
                   type={passwordVisible ? 'text' : 'password'}
                   id="password"
                   placeholder="Password"
@@ -111,11 +116,10 @@ export default function Login() {
             </div>
 
             <div className="forget-password">
-  <Link to="/resetpassword" className="forget-password-link">
-    Forget password?
-  </Link>
-</div>
-
+              <Link to="/resetpassword" className="forget-password-link">
+                Forget password?
+              </Link>
+            </div>
 
             <div className='submit-button-container'>
               <button className='submit-buttonL' type="submit">Login</button>

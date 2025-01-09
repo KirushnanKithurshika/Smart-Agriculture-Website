@@ -1,7 +1,7 @@
 
 import User from '../models/user.js';
 import { hashPassword, comparePassword } from '../helpers/auth.js';
-
+import jwt from 'jsonwebtoken';
 
 export const test = (req, res) => {
     res.json('Test is working');
@@ -22,17 +22,17 @@ export const registerUser = async (req, res) => {
             return res.json({ error: 'Password is required and should be at least 6 characters long' });
         }
 
-        // Check if the email already exists
+      
         const exist = await User.findOne({ email });
         if (exist) {
             return res.json({ error: 'Email is already taken' });
         }
 
-        // Hash the password
+       
         const hashedPassword = await hashPassword(password);
         console.log("Hashed Password during registration:", hashedPassword);
 
-        // Create the new user
+       
         const user = await User.create({ 
             name, 
             email, 
@@ -59,21 +59,75 @@ export const loginUser = async (req, res) => {
             return res.json({ error: 'No user found' });
         }
 
-       
         const match = await comparePassword(password, user.password);
         console.log("Entered Password:", password);
         console.log("Stored Hashed Password:", user.password);
         console.log("Match Result:", match);
 
         if (match) {
+          
+            const token = jwt.sign(
+                { id: user._id, email: user.email }, 
+                process.env.JWT_SECRET_KEY,            
+                { expiresIn: '1h' }               
+            );
+
             
-            res.json({ message: 'Login successful', user: { email: user.email, name: user.name } });
+            res.json({ 
+                message: 'Login successful', 
+                token, 
+                user: { email: user.email, name: user.name }
+            });
         } else {
-            
             res.json({ error: 'Incorrect password' });
         }
     } catch (error) {
         console.error("Error during login:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+};
+
+export const authenticateUser = (req, res, next) => {
+    const token = req.header('Authorization');
+    if (!token) {
+      return res.status(401).json({ message: 'No token, authorization denied' });
+    }
+  
+    try {
+      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+      req.user = decoded;
+      next();
+    } catch (err) {
+      res.status(401).json({ message: 'Token is not valid' });
+    }
+  };
+
+
+  
+export const updateUserProfile = async (req, res) => {
+    try {
+        const { name, contactNumber, address, jobDescription } = req.body;
+        const userId = req.user.id;
+
+        // Validate input data
+        if (!name || !contactNumber || !address || !jobDescription) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+
+        // Find the user by ID and update their details
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            { name, contactNumber, address, jobDescription },
+            { new: true }  // Return the updated user
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ error: "User not found" });
+        }
+
+        res.json({ message: "Profile updated successfully", user: updatedUser });
+    } catch (error) {
+        console.error("Error updating profile:", error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 };
