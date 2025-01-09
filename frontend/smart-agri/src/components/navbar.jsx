@@ -71,7 +71,7 @@ const Navbar = () => {
               )}
             </div>
             <FaUserAlt className="top-bar-iconuserM" />
-            <FaSignOutAlt className="top-bar-iconlogoutM" onClick={handleLogout} />
+            <FaSignOutAlt className="top-bar-iconM" onClick={handleLogout} />
           </div>
         </div>
       </div>
