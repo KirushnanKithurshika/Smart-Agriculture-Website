@@ -24,6 +24,10 @@ const Navbar = () => {
     navigate('/');  
   };
 
+  const handleNotificationClick = () => {
+    navigate('/alerts'); 
+  };
+
   return (
     <div>
       <div className="nav-bar">
@@ -37,7 +41,10 @@ const Navbar = () => {
             <Link to="/homepage" className="home-link">
               <FaHome className="top-bar-icon" />
             </Link>
-            <div className="notification-container">
+            <div
+              className="notification-container"
+              onClick={handleNotificationClick} 
+            >
               <FaBell className="top-bar-icon" />
               {notifications > 0 && (
                 <span className="notification-badge">{notifications}</span>
@@ -64,7 +71,10 @@ const Navbar = () => {
             <Link to="/homepage" className="home-linkM">
               <FaHome className="top-bar-iconM" />
             </Link>
-            <div className="notification-containerM">
+            <div
+              className="notification-containerM"
+              onClick={handleNotificationClick} 
+            >
               <FaBell className="top-bar-iconM" />
               {notifications > 0 && (
                 <span className="notification-badgeM">{notifications}</span>

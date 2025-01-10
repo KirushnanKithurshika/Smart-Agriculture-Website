@@ -87,47 +87,33 @@ export const loginUser = async (req, res) => {
     }
 };
 
-export const authenticateUser = (req, res, next) => {
-    const token = req.header('Authorization');
-    if (!token) {
-      return res.status(401).json({ message: 'No token, authorization denied' });
-    }
-  
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-      req.user = decoded;
-      next();
-    } catch (err) {
-      res.status(401).json({ message: 'Token is not valid' });
-    }
-  };
 
 
   
-export const updateUserProfile = async (req, res) => {
-    try {
-        const { name, contactNumber, address, jobDescription } = req.body;
-        const userId = req.user.id;
+// export const updateUserProfile = async (req, res) => {
+//     try {
+//         const { name, contactNumber, address, jobDescription } = req.body;
+//         const userId = req.user.id;
 
-        // Validate input data
-        if (!name || !contactNumber || !address || !jobDescription) {
-            return res.status(400).json({ error: "All fields are required" });
-        }
+//         // Validate input data
+//         if (!name || !contactNumber || !address || !jobDescription) {
+//             return res.status(400).json({ error: "All fields are required" });
+//         }
 
-        // Find the user by ID and update their details
-        const updatedUser = await User.findByIdAndUpdate(
-            userId,
-            { name, contactNumber, address, jobDescription },
-            { new: true }  // Return the updated user
-        );
+//         // Find the user by ID and update their details
+//         const updatedUser = await User.findByIdAndUpdate(
+//             userId,
+//             { name, contactNumber, address, jobDescription },
+//             { new: true }  // Return the updated user
+//         );
 
-        if (!updatedUser) {
-            return res.status(404).json({ error: "User not found" });
-        }
+//         if (!updatedUser) {
+//             return res.status(404).json({ error: "User not found" });
+//         }
 
-        res.json({ message: "Profile updated successfully", user: updatedUser });
-    } catch (error) {
-        console.error("Error updating profile:", error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-};
+//         res.json({ message: "Profile updated successfully", user: updatedUser });
+//     } catch (error) {
+//         console.error("Error updating profile:", error);
+//         res.status(500).json({ error: 'Internal Server Error' });
+//     }
+// };

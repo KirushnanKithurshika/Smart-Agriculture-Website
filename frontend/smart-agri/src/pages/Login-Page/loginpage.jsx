@@ -26,7 +26,7 @@ export default function Login() {
       ...prevData,
       [id]: value,
     }));
-    // Clear the error when the user types
+ 
     if (error) {
       setError('');
     }
@@ -42,13 +42,13 @@ export default function Login() {
         toast.error(responseData.error);
         setError(responseData.error); 
       } else {
-        // Store the token in localStorage or sessionStorage
+        
         localStorage.setItem('token', responseData.token);
 
-        // Clear the input fields
+       
         setData({ email: '', password: '' });
 
-        // Navigate to the homepage or a protected route
+      
         navigate('/homepage'); 
       }
     } catch (error) {

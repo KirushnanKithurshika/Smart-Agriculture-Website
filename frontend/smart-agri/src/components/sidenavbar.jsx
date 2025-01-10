@@ -1,6 +1,6 @@
 // In Sidenavigationbar.js
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaHome, FaCloud, FaWater, FaShieldAlt, FaUserAlt, FaLeaf, FaUsers, FaTractor, FaBook, FaLandmark, FaTag, FaArrowAltCircleLeft } from 'react-icons/fa';
+import { FaBars, FaHome, FaCloud, FaWater, FaCogs, FaUserAlt, FaLeaf, FaUsers, FaTractor, FaBook, FaLandmark, FaTag, FaArrowAltCircleLeft } from 'react-icons/fa';
 import './sidenavbar.css';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -73,8 +73,8 @@ function Sidenavigationbar() {
           <li className={`Account-setting ${location.pathname === '/my-account' ? 'active' : ''}`}>
             <Link to="/myaccount"><FaUserAlt /> My Account</Link>
           </li>
-          <li className={location.pathname === '/alerts' ? 'active' : ''}>
-            <Link to="/alerts"><FaShieldAlt /> Alert</Link>
+          <li className={location.pathname === '/settings' ? 'active' : ''}>
+            <Link to="/settings"><FaCogs /> settings</Link>
           </li>
         </ul>
       </div>
