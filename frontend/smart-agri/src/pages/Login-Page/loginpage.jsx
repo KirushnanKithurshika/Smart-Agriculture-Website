@@ -5,6 +5,7 @@ import Logo from '../../assets/slogo.png';
 import axios from 'axios';
 import BackgroundImage from '../../assets/BG-login.jpg';
 import { toast } from 'react-hot-toast';
+import { useAuth } from '../../context/authContext'; 
 
 export default function Login() {
   const [data, setData] = useState({
@@ -15,6 +16,7 @@ export default function Login() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [error, setError] = useState('');
   const navigate = useNavigate();
+  const { login } = useAuth(); 
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -42,13 +44,13 @@ export default function Login() {
         toast.error(responseData.error);
         setError(responseData.error); 
       } else {
-        
-        localStorage.setItem('token', responseData.token);
+        localStorage.setItem('token', responseData.token); 
 
-       
+        
+        login(responseData.token, responseData.user);
+
         setData({ email: '', password: '' });
 
-      
         navigate('/homepage'); 
       }
     } catch (error) {

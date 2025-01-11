@@ -1,26 +1,28 @@
-
 import jwt from 'jsonwebtoken';
+import User from '../models/user.js';
 
-export const authenticateUser = (req, res, next) => {
-    const authHeader = req.header('Authorization');
-    console.log("Authorization Header:", authHeader); 
-  
-    if (!authHeader) {
-      return res.status(401).json({ message: 'No token, authorization denied' });
-    }
-  
-    const token = authHeader.split(' ')[1]; 
+export const authenticateUser = async (req, res, next) => {
+  try {
+    const token = req.headers.authorization?.split(' ')[1]; 
+
     if (!token) {
-      return res.status(401).json({ message: 'No token, authorization denied' });
+      return res.status(401).json({ message: 'No token provided. Access denied.' });
     }
-  
-    try {
-      const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-      console.log("Decoded Token:", decoded); 
-      req.user = decoded; 
-      next();
-    } catch (err) {
-      console.error("Token verification failed:", err.message); 
-      return res.status(401).json({ message: 'Token is not valid', error: err.message });
+
+    
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+
+   
+    const user = await User.findById(decoded.id);
+
+    if (!user) {
+      return res.status(404).json({ message: 'User not found. Invalid token.' });
     }
+
+ 
+    req.user = { id: user._id, email: user.email };
+    next(); 
+  } catch (error) {
+    res.status(401).json({ message: 'Invalid token or authentication error.', error });
+  }
 };

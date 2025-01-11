@@ -4,6 +4,7 @@ import { getUserProfile, updateUserProfile } from '../controllers/profileControl
 import sendResetPasswordLink from '../middleware/resetPasswordMiddleware.js';
 import { authenticateUser } from '../middleware/authMiddleware.js'; 
 import { updatePassword } from '../middleware/updatePasswordMiddleware.js';
+import {changePassword} from '../controllers/passwordupdateController.js'
 
 const router = express.Router();
 
@@ -15,5 +16,7 @@ router.post('/resetpassword', sendResetPasswordLink);
 router.post('/updatepassword',updatePassword );
 router.get('/profile', authenticateUser, getUserProfile);
 router.put('/profile', authenticateUser, updateUserProfile); 
+router.put('/profile/password', authenticateUser, changePassword);
+
 
 export default router;

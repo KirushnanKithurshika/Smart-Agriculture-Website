@@ -1,14 +1,19 @@
-import React, { useEffect, useState } from 'react';
+// src/components/Navbar.js
+
+import React, { useEffect, useState, useContext } from 'react';
 import { FaBell, FaUserAlt, FaHome, FaSignOutAlt } from 'react-icons/fa';
 import './navbar.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../assets/slogo.png';
 import LogoS from '../assets/logosa.png';
 import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
+import { useAuth } from '../context/authContext';
+
 
 const Navbar = () => {
+ 
   const location = useLocation();
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
   const farmName = location.state?.farmName || 'Farm A';
 
   const [userName, setUserName] = useState('');
@@ -19,17 +24,22 @@ const Navbar = () => {
     setUserName(storedUserName);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem('userName');  
-    navigate('/');  
-  };
+ 
 
+    const { logout } = useAuth(); 
+  
+  
+  const handleLogout = () => {
+    logout(); 
+    navigate('/'); 
+  };
   const handleNotificationClick = () => {
     navigate('/alerts'); 
   };
 
   return (
     <div>
+  
       <div className="nav-bar">
         <div className="container_navbar">
           <div className="logo-container">
@@ -43,7 +53,7 @@ const Navbar = () => {
             </Link>
             <div
               className="notification-container"
-              onClick={handleNotificationClick} 
+              onClick={handleNotificationClick}
             >
               <FaBell className="top-bar-icon" />
               {notifications > 0 && (
@@ -59,6 +69,7 @@ const Navbar = () => {
         </div>
       </div>
 
+     
       <div className="nav-barM">
         <div className="container_navbarM">
           <div className="logo-containerM grid-item-1">
@@ -73,7 +84,7 @@ const Navbar = () => {
             </Link>
             <div
               className="notification-containerM"
-              onClick={handleNotificationClick} 
+              onClick={handleNotificationClick}
             >
               <FaBell className="top-bar-iconM" />
               {notifications > 0 && (
@@ -81,7 +92,7 @@ const Navbar = () => {
               )}
             </div>
             <FaUserAlt className="top-bar-iconuserM" />
-            <FaSignOutAlt className="top-bar-iconM" onClick={handleLogout} />
+           
           </div>
         </div>
       </div>

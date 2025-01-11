@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { FaCamera } from "react-icons/fa";
 import Navbar from "../../components/navbar";
 import Sidenavigationbar from "../../components/sidenavbar";
-import { FaCamera } from "react-icons/fa";
-import axios from "axios";
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import "./myaccount.css";
 
 function Myaccount() {
-  const [profilePicture, setProfilePicture] = useState(
-    "https://via.placeholder.com/100"
-  );
+  const [profilePicture, setProfilePicture] = useState("https://via.placeholder.com/100");
   const [profileData, setProfileData] = useState({
     fullName: "",
     contactNumber: "",
     address: "",
     jobDescription: "",
+    email: "",
   });
   const [passwordData, setPasswordData] = useState({
     oldPassword: "",
@@ -31,6 +31,7 @@ function Myaccount() {
 
   useEffect(() => {
     if (token) {
+      // Fetch user profile details from backend
       axios
         .get("/profile", {
           headers: {
@@ -40,19 +41,20 @@ function Myaccount() {
         .then((response) => {
           const data = response.data;
           setProfileData({
-            fullName: data.fullName,
+            fullName: data.name,
             contactNumber: data.contactNumber,
             address: data.address,
             jobDescription: data.jobDescription,
+            email: data.email, // Added email to be fetched
           });
           setProfilePicture(data.profilePicture || "https://via.placeholder.com/100");
         })
         .catch((error) => {
           console.error("Error fetching user data:", error);
-          alert("Error fetching user data");
+          toast.error("Error fetching user data");
         });
     } else {
-      alert("No token found, please log in.");
+      toast.error("No token found, please log in.");
     }
   }, [token]);
 
@@ -66,14 +68,14 @@ function Myaccount() {
       formData.append("profilePicture", file);
 
       axios
-        .post("/profile", formData, {
+        .put("/profile", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         })
-        .then((response) => alert("Profile picture updated successfully!"))
-        .catch((error) => alert("Error uploading profile picture"));
+        .then((response) => toast.success("Profile picture updated successfully!"))
+        .catch((error) => toast.error("Error uploading profile picture"));
     }
   };
 
@@ -102,30 +104,30 @@ function Myaccount() {
           Authorization: `Bearer ${token}`,
         },
       })
-      .then((response) => alert("Profile updated successfully!"))
+      .then((response) => toast.success("Profile updated successfully!"))
       .catch((error) =>
-        alert(error.response?.data?.message || "Error updating profile")
+        toast.error(error.response?.data?.message || "Error updating profile")
       );
   };
 
   const handlePasswordUpdate = (e) => {
     e.preventDefault();
     if (passwordData.newPassword !== passwordData.confirmPassword) {
-      return alert("New password and confirmation do not match!");
+      return toast.error("New password and confirmation do not match!");
     }
 
     axios
-      .put("/profile", passwordData, {
+      .put("/profile/password", passwordData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        alert("Password updated successfully!");
+        toast.success("Password updated successfully!");
         setPasswordData({ oldPassword: "", newPassword: "", confirmPassword: "" });
       })
       .catch((error) =>
-        alert(error.response?.data?.message || "Error updating password")
+        toast.error(error.response?.data?.message || "Error updating password")
       );
   };
 
@@ -163,7 +165,7 @@ function Myaccount() {
               </div>
               <div className="profile-info">
                 <h2 className="profile-name">{profileData.fullName}</h2>
-                <p className="profile-email">kirushnankithurshika@gmail.com</p>
+                <p className="profile-email">{profileData.email}</p>
               </div>
             </div>
 
@@ -316,6 +318,9 @@ function Myaccount() {
           </div>
         </div>
       </div>
+
+      {/* Toast Container */}
+      <ToastContainer position="bottom-right" />
     </div>
   );
 }

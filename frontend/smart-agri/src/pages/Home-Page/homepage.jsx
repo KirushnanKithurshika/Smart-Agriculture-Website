@@ -1,24 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './homepage.css';
 import Logo from '../../assets/slogo.png';
 import BackgroundImage from '../../assets/BG-login.jpg';
+import { useAuth } from '../../context/authContext';
 
 const farms = [
-    { id: 'farmA', name: 'Farm A', link: '/dashboard' },
-    { id: 'farmB', name: 'Farm B', link: '/dashboard' },
-    { id: 'farmC', name: 'Farm C', link: '/dashboard' },
-    { id: 'farmD', name: 'Farm D', link: '/dashboard' },
-    { id: 'farmE', name: 'Farm E', link: '/dashboard' },
+  { id: 'farmA', name: 'Farm A', link: '/dashboard' },
+  { id: 'farmB', name: 'Farm B', link: '/dashboard' },
+  { id: 'farmC', name: 'Farm C', link: '/dashboard' },
+  { id: 'farmD', name: 'Farm D', link: '/dashboard' },
+  { id: 'farmE', name: 'Farm E', link: '/dashboard' },
 ];
 
 const Farms = () => {
   const navigate = useNavigate();
+  const { logout } = useAuth(); 
 
   const handleLogout = () => {
-    localStorage.removeItem('authToken');
-    sessionStorage.removeItem('authToken');
-    navigate('/');
+    logout(); 
+    navigate('/'); 
   };
 
   return (
@@ -42,7 +43,7 @@ const Farms = () => {
               to={{
                 pathname: farm.link,
               }}
-              state={{ farmName: farm.name }} // Pass farm name in state
+              state={{ farmName: farm.name }} 
               className="farm-box"
             >
               {farm.name}

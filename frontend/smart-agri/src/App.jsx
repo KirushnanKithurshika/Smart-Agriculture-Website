@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import './App.css';
 import Navbar from './components/navbar';
@@ -29,44 +28,50 @@ import ResetPassword from './pages/Forget-Password/forget-password';
 import UpdatePassword from './pages/Forget-Password/reset-passwordpage';
 import Myaccount from './pages/myaccount/myacount';
 import Alerts from './pages/Alerts/alerts';
-
-
-
+import { AuthProvider } from './context/authContext';
+import PrivateRoute from './components/privateRoute'; 
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
 
 function App() {
-    return (
-        <BrowserRouter>
-            <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
-            <Routes>
-                <Route path='/' element={<Login />} />
-                <Route path='/resetpassword' element={<ResetPassword/>}/>
-                <Route path='/updatepasswordpage' element={<UpdatePassword/>}/>
-                <Route path='/register' element={<Register />} />
-                <Route path='/homepage' element={<Farms />} />
-                <Route path='/dashboard' element={<Dashboard />} />
-                <Route path='/logs' element={<LogsTable />} />
-                <Route path='/weather' element={<Weather />} />
-                <Route path='/employee' element={<Employee />} />
-                <Route path='/equipment' element={<Equipment/>} />
-                <Route path='/createequipment' element={<CreateEquipmentForm/>}/>
-                <Route path='/createemployee' element={<AddEmployeeForm />} />
-                <Route path='/cropmanagement' element={<Cropmanagement/>}/>
-                <Route path='/updateequipment/:id' element={<UpdateEquipment/>} />
-                <Route path='/editemployee/:id' element={<EditEmployee />} />
-                <Route path='/weatherforecast' element={<WeatherForecast />} />
-                <Route path='/myaccount' element={<Myaccount/>}/>
-                <Route path='/soil' element={<Soil />} />
-               <Route path='/updatecroptask/:id'element={<UpdateTask/>}/>
-               <Route path='/addcroptask' element={<AddCropTask/>}/>
-               <Route path='/slideA' element={<FarmingComponent/>}/>
-            <Route path='/landmanagement' element={<LandManagement/>}/>
-            <Route path='/alerts' element={<Alerts/>}/>
-            </Routes>
-        </BrowserRouter>
-    );
+  return (
+    <BrowserRouter>
+      <AuthProvider>
+        <Toaster position='bottom-right' toastOptions={{ duration: 2000 }} />
+        <Routes>
+          {/* Public routes */}
+          <Route path='/' element={<Login />} />
+          <Route path='/resetpassword' element={<ResetPassword />} />
+          <Route path='/updatepasswordpage' element={<UpdatePassword />} />
+          <Route path='/register' element={<Register />} />
+
+          {/* Protected routes */}
+          <Route element={<PrivateRoute />}>
+            <Route path='/homepage' element={<Farms />} />
+            <Route path='/dashboard' element={<Dashboard />} />
+            <Route path='/logs' element={<LogsTable />} />
+            <Route path='/weather' element={<Weather />} />
+            <Route path='/employee' element={<Employee />} />
+            <Route path='/equipment' element={<Equipment />} />
+            <Route path='/createequipment' element={<CreateEquipmentForm />} />
+            <Route path='/createemployee' element={<AddEmployeeForm />} />
+            <Route path='/cropmanagement' element={<Cropmanagement />} />
+            <Route path='/updateequipment/:id' element={<UpdateEquipment />} />
+            <Route path='/editemployee/:id' element={<EditEmployee />} />
+            <Route path='/weatherforecast' element={<WeatherForecast />} />
+            <Route path='/myaccount' element={<Myaccount />} />
+            <Route path='/soil' element={<Soil />} />
+            <Route path='/updatecroptask/:id' element={<UpdateTask />} />
+            <Route path='/addcroptask' element={<AddCropTask />} />
+            <Route path='/slideA' element={<FarmingComponent />} />
+            <Route path='/landmanagement' element={<LandManagement />} />
+            <Route path='/alerts' element={<Alerts />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
