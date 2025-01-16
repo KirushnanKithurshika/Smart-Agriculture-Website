@@ -7,10 +7,10 @@ import { Link, useLocation } from 'react-router-dom';
 function Sidenavigationbar() {
   const [isOpen, setIsOpen] = useState(true);
   const [isSmallScreen, setIsSmallScreen] = useState(false);
-  const location = useLocation(); // Get the current location
+  const location = useLocation(); 
 
-  // Access the farm name from location.state if it exists, else use 'Farm' as fallback
-  const farmName = location.state ? location.state.farmName : 'Farm A'; 
+ 
+ 
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen);
@@ -43,9 +43,7 @@ function Sidenavigationbar() {
           </div>
         )}
         <ul className="sidebar-menu">
-          {/* <div className="farmName">
-            <h2>{farmName}</h2> 
-          </div> */}
+         
           <li className={location.pathname === '/dashboard' ? 'active' : ''}>
             <Link to="/dashboard"><FaHome /> Dashboard</Link>
           </li>
@@ -74,7 +72,7 @@ function Sidenavigationbar() {
             <Link to="/myaccount"><FaUserAlt /> My Account</Link>
           </li>
           <li className={location.pathname === '/settings' ? 'active' : ''}>
-            <Link to="/settings"><FaCogs /> settings</Link>
+            <Link to="/setting"><FaCogs /> settings</Link>
           </li>
         </ul>
       </div>

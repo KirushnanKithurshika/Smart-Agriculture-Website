@@ -3,6 +3,7 @@ import { FaBell, FaUserAlt, FaHome, FaSignOutAlt } from 'react-icons/fa';
 import './navbar.css';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Logo from '../assets/slogo.png';
+import LogoS from '../assets/logosa.png';
 import Dropdown from '../components/DropdownComponent/Dropdown/Dropdown';
 import { useAuth } from '../context/authContext';
 import axios from 'axios';
@@ -20,7 +21,6 @@ const Navbar = () => {
   useEffect(() => {
     const token = localStorage.getItem('authToken');
     if (token) {
-      // Fetch user details from the backend
       axios
         .get('/profile', {
           headers: { Authorization: `Bearer ${token}` },
@@ -45,6 +45,7 @@ const Navbar = () => {
 
   return (
     <div>
+      {/* Desktop Navbar */}
       <div className="nav-bar">
         <div className="container_navbar">
           <div className="logo-container">
@@ -56,7 +57,10 @@ const Navbar = () => {
             <Link to="/homepage" className="home-link">
               <FaHome className="top-bar-icon" />
             </Link>
-            <div className="notification-container" onClick={handleNotificationClick}>
+            <div
+              className="notification-container"
+              onClick={handleNotificationClick}
+            >
               <FaBell className="top-bar-icon" />
               {notifications > 0 && (
                 <span className="notification-badge">{notifications}</span>
@@ -67,6 +71,33 @@ const Navbar = () => {
               <FaUserAlt className="top-bar-iconuser" />
               <FaSignOutAlt className="top-bar-icon" onClick={handleLogout} />
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Navbar */}
+      <div className="nav-barM">
+        <div className="container_navbarM">
+          <div className="logo-containerM grid-item-1">
+            <img className="LogoM" src={LogoS} alt="Logo" />
+          </div>
+          <div className="dropdownM grid-item-2">
+            <Dropdown />
+          </div>
+          <div className="top-bar-rightM grid-item-3">
+            <Link to="/homepage" className="home-linkM">
+              <FaHome className="top-bar-iconM" />
+            </Link>
+            <div
+              className="notification-containerM"
+              onClick={handleNotificationClick}
+            >
+              <FaBell className="top-bar-iconM" />
+              {notifications > 0 && (
+                <span className="notification-badgeM">{notifications}</span>
+              )}
+            </div>
+            <FaUserAlt className="top-bar-iconuserM" />
           </div>
         </div>
       </div>

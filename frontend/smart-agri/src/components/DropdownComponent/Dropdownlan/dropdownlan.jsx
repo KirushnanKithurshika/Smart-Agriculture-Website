@@ -7,7 +7,7 @@ import "./Dropdown.css";
 const Dropdown = () => {
   const [open, setOpen] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(0);
-  const [selectedItem, setSelectedItem] = useState("Select Division"); 
+  const [selectedItem, setSelectedItem] = useState("Select language"); 
 
   const dropdownRef = useRef();
   const buttonRef = useRef();
@@ -16,14 +16,9 @@ const Dropdown = () => {
 
   
   const dropdownItems = [
-    "Division A",
-    "Division B",
-    "Division C",
-    "Division D",
-    "Division E",
-    "Division F",
-    "Division G",
-    "Division H",
+    "",
+    "English",
+    
   ];
 
   const toggleDropdown = () => {

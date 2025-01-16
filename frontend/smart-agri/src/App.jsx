@@ -30,6 +30,7 @@ import Myaccount from './pages/myaccount/myacount';
 import Alerts from './pages/Alerts/alerts';
 import { AuthProvider } from './context/authContext';
 import PrivateRoute from './components/privateRoute'; 
+import Setting from "./pages/Setting/setting";
 
 axios.defaults.baseURL = 'http://localhost:8000';
 axios.defaults.withCredentials = true;
@@ -67,6 +68,7 @@ function App() {
             <Route path='/slideA' element={<FarmingComponent />} />
             <Route path='/landmanagement' element={<LandManagement />} />
             <Route path='/alerts' element={<Alerts />} />
+            <Route path='/setting' element={<Setting/>}/>
           </Route>
         </Routes>
       </AuthProvider>

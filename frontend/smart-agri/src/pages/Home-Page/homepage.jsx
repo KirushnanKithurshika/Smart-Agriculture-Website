@@ -25,8 +25,8 @@ const Farms = () => {
   return (
     <div className="login-container">
       <header className="login-header">
-        <div className="logo">
-          <img className="Logo" src={Logo} alt="Logo" />
+        <div className="logohome">
+          <img className="Logohome" src={Logo} alt="Logo" />
         </div>
         <button className="logout-button" onClick={handleLogout}>
           Logout

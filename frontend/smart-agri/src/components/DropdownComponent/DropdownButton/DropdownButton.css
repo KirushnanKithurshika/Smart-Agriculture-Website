@@ -1,8 +1,8 @@
 .dropdown-btn{
-  margin-left:20;
+  margin-left:20px;
   display:flex; 
   align-items:center;
-  width: fit-content;
+  width: 200px;
   height:10px;
   padding:1rem;
   background-color: rgb(14, 108, 113); 
