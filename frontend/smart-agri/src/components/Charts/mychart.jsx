@@ -4,16 +4,16 @@ import HighchartsReact from 'highcharts-react-official';
 import './mychart.css';
 
 const MyChart = () => {
-    // State to store chart data
+   
     const [chartData, setChartData] = useState({
-        moisturePercentage: null, // Use null initially to check if data is fetched
+        moisturePercentage: null, 
         phLevel: null,
         nitrogenLevel: null,
         phosphorusLevel: null,
         potassiumLevel: null,
     });
 
-    // Fetch data from the API
+    
     const fetchData = async () => {
         try {
             const response = await fetch('http://localhost:8000/api/logs/latest');
@@ -146,7 +146,7 @@ const MyChart = () => {
         ]
     });
 
-    // Check if chart data is available before rendering the charts
+   
     if (chartData.moisturePercentage === null || chartData.phLevel === null) {
         return <div>Loading...</div>; // Show loading until data is available
     }

@@ -1,0 +1,82 @@
+.Preference-container {
+    font-family: Arial, sans-serif;
+    width:100%;
+    background-color:white;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+ 
+  
+  .setting {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .settingtheme{
+    display:grid;
+    grid-template-rows: 0.6fr 1fr;
+  }
+  .Appearancehead{
+    text-align: left;
+    font-size: 24px;
+    font-weight: 600;
+    color:rgb(24, 96, 96);
+    margin-bottom: 50px;
+
+  }
+ 
+  
+  .headlabel{
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color:#216c6e;
+  }
+  input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .sentence {
+    color: #666;
+    font-size: 14px;
+  }
+  .sentencet {
+    color: #34757a;
+    font-size: 14px;
+    font-weight:600 ;
+    margin-top: 10px;
+  }
+  
+  .themes {
+    display: grid;
+    grid-template-columns: 320px 320px 320px;
+    gap: 20px;
+  }
+  
+  .theme-option {
+    text-align:left;
+    cursor: pointer;
+  }
+  
+  .theme-option.selected {
+    border: 2px solid #0078D4;
+    border-radius: 8px;
+    padding: 5px;
+  }
+  
+  .theme-preview {
+    width: 300px;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+  }
+  
+ 

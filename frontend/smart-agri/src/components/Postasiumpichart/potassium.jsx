@@ -60,7 +60,7 @@ const PotassiumStatus = () => {
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '22px',
+                            fontSize: '18px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })

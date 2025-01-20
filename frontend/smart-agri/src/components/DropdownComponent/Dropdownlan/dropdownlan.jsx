@@ -2,9 +2,9 @@ import { useEffect, useState, useRef } from "react";
 import DropdownButton from "../DropdownButton/DropdownButton";
 import DropdownContent from "../DropdownContent/DropdownContent";
 import DropdownItem from "../DropdownItem/DropdownItem"; 
-import "./Dropdown.css";
 
-const Dropdown = () => {
+
+const Dropdownlan = () => {
   const [open, setOpen] = useState(false);
   const [dropdownTop, setDropdownTop] = useState(0);
   const [selectedItem, setSelectedItem] = useState("Select language"); 
@@ -16,7 +16,7 @@ const Dropdown = () => {
 
   
   const dropdownItems = [
-    "",
+    "Arabic",
     "English",
     
   ];
@@ -69,4 +69,4 @@ const Dropdown = () => {
   );
 };
 
-export default Dropdown;
+export default Dropdownlan;

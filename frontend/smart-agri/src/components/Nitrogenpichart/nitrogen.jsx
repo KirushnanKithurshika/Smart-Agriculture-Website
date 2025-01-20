@@ -8,10 +8,10 @@ const NitrogenStatus = () => {
     const allowableRange = { min: 5, max: 12 };
     const [status, setStatus] = useState('Normal');
     
-    // Fetch nitrogen data from the backend
+    
     const fetchNitrogenData = async () => {
         try {
-            const response = await fetch('http://localhost:8000/api/logs/latest'); // Adjust URL to your backend API
+            const response = await fetch('http://localhost:8000/api/logs/latest'); 
             if (!response.ok) {
                 throw new Error('Failed to fetch data');
             }
@@ -24,7 +24,7 @@ const NitrogenStatus = () => {
         }
     };
 
-    // Check if nitrogen level is within range
+ 
     useEffect(() => {
         fetchNitrogenData();
     }, []);
@@ -43,7 +43,6 @@ const NitrogenStatus = () => {
         return <div>Loading...</div>;
     }
 
-    // Chart options for nitrogen data
     const getNitrogenChartOptions = () => ({
         chart: {
             type: 'pie',
@@ -52,7 +51,7 @@ const NitrogenStatus = () => {
             events: {
                 load: function () {
                     const chart = this;
-                    const text = `N`; // Add unit
+                    const text = `N`; 
                     chart.renderer.text(
                         text,
                         chart.plotLeft + chart.plotWidth / 2 ,
@@ -60,7 +59,7 @@ const NitrogenStatus = () => {
                     )
                         .css({
                             color: '#45782',
-                            fontSize: '16px',
+                            fontSize: '18px',
                             fontWeight: 'bold',
                             textAlign: 'center',
                         })
@@ -86,7 +85,7 @@ const NitrogenStatus = () => {
                 ]
             }
         ],
-        colors: ['#32CD32', '#cfd8dc'] // You can choose a color scheme
+        colors: ['#32CD32', '#cfd8dc'] 
     });
 
     return (

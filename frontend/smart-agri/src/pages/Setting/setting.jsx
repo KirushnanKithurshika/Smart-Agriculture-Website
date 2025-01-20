@@ -1,6 +1,7 @@
 import React from "react";
 import Navbar from "../../components/navbar";
 import Sidenavigationbar from "../../components/sidenavbar";
+import Preference from "../../components/preference/preference";
 
 
 
@@ -25,7 +26,7 @@ function Setting() {
         
         <div className="croplog-dashboard grid-item">
          <div>
-            
+            <Preference/>
          </div>
         </div>
       </div>
