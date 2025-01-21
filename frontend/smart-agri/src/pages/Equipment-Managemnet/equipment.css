@@ -112,4 +112,27 @@
   .modal button {
     margin: 10px;
   }
-  
+  /* General styles for both buttons */
+.icon-button {
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Adjust icon size */
+
+  align-items: center;
+  justify-content: center;
+}
+
+
+.edit-button {
+  background-color: rgb(30, 30, 114);
+  color: white;
+  margin-right: 5px; 
+}
+
+
+.delete-button {
+  background-color: rgb(191, 30, 30);
+  color: white;
+}

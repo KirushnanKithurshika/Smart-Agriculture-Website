@@ -3,8 +3,11 @@ import Sidebar from '../../components/sidenavbar';
 import Navbar from '../../components/navbar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './equipment.css'; // Make sure this CSS file is updated for equipment
+import './equipment.css'; 
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 function Equipment() {
   const [equipments, setEquipments] = useState([]);
@@ -67,13 +70,12 @@ function Equipment() {
     setEquipmentToDelete(null);
   };
 
-  // Format the date to 'YYYY-MM-DD'
   const formatDate = (dateString) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    const month = ("0" + (date.getMonth() + 1)).slice(-2); // Add leading zero if month < 10
-    const day = ("0" + date.getDate()).slice(-2); // Add leading zero if day < 10
-    return `${year}-${month}-${day}`; // Return formatted date
+    const month = ("0" + (date.getMonth() + 1)).slice(-2); 
+    const day = ("0" + date.getDate()).slice(-2); 
+    return `${year}-${month}-${day}`; 
   };
 
   return (
@@ -117,11 +119,19 @@ function Equipment() {
                     <td>{equipment.quantity}</td>
                     <td>{equipment.assignedTo}</td>
                     <td>
-                      <Link to={`/updateequipment/${equipment._id}`}>
-                        <button className="editE-button">Edit</button>
-                      </Link>
+                    
+                    <Link to={`/updateequipment/${equipment._id}`}>
+        <button className="edit-button icon-button">
+          <FontAwesomeIcon icon={faEdit} />
+        </button>
+      </Link>
 
-                      <button className="deleteE-button" onClick={() => handleDelete(index)}>Delete</button>
+      <button
+        className="delete-button icon-button"
+        onClick={() => handleDelete(index)}
+      >
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
                     </td>
                   </tr>
                 ))}

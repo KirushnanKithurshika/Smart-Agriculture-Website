@@ -14,7 +14,7 @@ const userSchema = new Schema({
     contactNumber: String,
     jobDescription: String,
     profilePicture: {
-        type: mongoose.Schema.Types.ObjectId, // Store the file ID of the image in GridFS
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'GridFS'
     },
 });

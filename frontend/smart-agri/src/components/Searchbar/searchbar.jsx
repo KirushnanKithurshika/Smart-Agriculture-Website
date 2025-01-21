@@ -11,8 +11,8 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSearch = () => {
     if (searchQuery.trim() !== '') {
-      onSearch(searchQuery); // Send the searched city to the parent component
-      setSearchQuery(''); // Clear input after search
+      onSearch(searchQuery); 
+      setSearchQuery(''); 
     }
   };
 
