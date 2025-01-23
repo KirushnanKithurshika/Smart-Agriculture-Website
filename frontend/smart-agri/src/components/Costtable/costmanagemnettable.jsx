@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./costmanagementtable.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
+
 
 const CropTable = () => {
   const [crops, setCrops] = useState([]);
@@ -55,7 +58,7 @@ const CropTable = () => {
         expenseName,
         value,
       });
-      fetchCrops(); 
+      fetchCrops();
     } catch (error) {
       console.error("Error updating expense:", error);
       alert("Failed to update the expense. Please try again.");
@@ -139,11 +142,13 @@ const CropTable = () => {
             {crops.map((crop) => (
               <th key={crop.name}>
                 {crop.name}
-                <button
-                  className="deletecost"
-                  onClick={() => triggerDelete(crop.name, "crop")}
-                >
-                  Delete
+               
+                  <button
+                    className="delete-buttoncrop"
+                    onClick={() => triggerDelete(crop.name, "crop")}
+                  >
+                    <FontAwesomeIcon icon={faTrash} />
+                  
                 </button>
               </th>
             ))}
@@ -160,6 +165,7 @@ const CropTable = () => {
                 >
                   Delete
                 </button>
+                
               </td>
               {crops.map((crop) => (
                 <td key={crop.name}>

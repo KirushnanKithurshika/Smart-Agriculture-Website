@@ -65,8 +65,14 @@ const FarmingComponentSlideB = ({ activity, onBackClick, onClose }) => {
                 <div className="SlideBgridDA">
                     <div className="expense">Crop expenses</div>
                     <div>
-                        <button className="seedetails">See Details</button>
-                    </div>
+    <button
+        className="seedetails"
+        onClick={() => handleButtonClick('costAnalysis')}
+    >
+        See Details
+    </button>
+</div>
+
                 </div>
                 <div className="SlideBgridDB">
                     <span className="totalA">Rs.55,000</span>
