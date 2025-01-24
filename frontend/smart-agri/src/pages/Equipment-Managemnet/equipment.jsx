@@ -113,7 +113,7 @@ function Equipment() {
                     <td>{equipment.equipmentName}</td>
                     <td>{equipment.category}</td>
                     <td>{equipment.brand}</td>
-                    <td>{formatDate(equipment.purchaseDate)}</td> {/* Format the date */}
+                    <td>{formatDate(equipment.purchaseDate)}</td> 
                     <td>{equipment.price}</td>
                     <td>{equipment.image}</td>
                     <td>{equipment.quantity}</td>
